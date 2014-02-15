@@ -1,0 +1,9 @@
+<% contests = Contest.virtual.running.order(start_time: :desc).limit(5) %>
+<% if contests.count > 0 %>
+  <h3>Running Virtual Contests</h3>
+  <p>
+    <% contests.each { |contest| %>
+      <a href='<%= url_for :controller => 'contests', :action => 'show', :id => contest.cid %>'><%= contest.title %></a> ends at <span class='display_time'><%= contest.final_time %></span><br />
+    <% } %>
+  </p>
+<% end %>

@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>Welcome to BNUOJ 4.0!</h1>
+    <p>
+      Enjoy and have fun! <br />
+      If you have prefer the old OJ, click <a href='/bnuoj'>here</a> for BNUOJ 2.0.<br />
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <%= render({:file => 'sidebar_items/_vjudge_status'}) %>
+  </div>
+  <div class="col-sm-4">
+    <%= render({:file => 'sidebar_items/_recent_news'}) %>
+    <h3>Todo list</h3>
+    We are working/will work on following functions:
+    <ol>
+      <li>Virtual Judge on many other OJs</li>
+      <li>Class/Interactive Module</li>
+      <li>AI Battle Module</li>
+      <li>SNS link</li>
+    </ol>
+  </div>
+  <div class="col-sm-5">
+    <%= render({:file => 'sidebar_items/_standard_running_contests'}) %>
+    <%= render({:file => 'sidebar_items/_virtual_running_contests'}) %>
+    <%= render({:file => 'sidebar_items/_standard_scheduled_contests'}) %>
+    <%= render({:file => 'sidebar_items/_virtual_scheduled_contests'}) %>
+  </div>
+</div>

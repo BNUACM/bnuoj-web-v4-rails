@@ -1,0 +1,26 @@
+<h3>VJudge Status</h3>
+By checking remote status page every 10 minutes.
+<table class='table table-hover table-striped table-condensed' width="100%">
+  <thead>
+    <tr>
+      <th width="70%">OJ</th>
+      <th width="30%">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <% OjInfo.where('name NOT LIKE ?', 'BNU').each { |info| %>
+    <tr title='Last Check: <%= info.lastcheck %>, <%= info.status %>'>
+      <td><%= info.name %></td>
+      <% if info.status == "Normal" %>
+        <td><img src='<%= image_path("green_light.png") %>' /></td>
+      <% elsif info.status =~ /^Down/ %>
+        <td><img src='<%= image_path("red_light.png") %>' /></td>
+      <% else %>
+        <td><img src='<%= image_path("yellow_light.png") %>' /></td>
+      <% end %>
+    </tr>
+  <% } %>
+
+  </tbody>
+</table>

@@ -1,0 +1,9 @@
+<% contests = Contest.standard.scheduled.order(start_time: :desc).limit(5) %>
+<% if contests.count > 0 %>
+  <h3>Upcoming Contests</h3>
+  <p>
+    <% contests.each { |contest| %>
+      <a href='<%= url_for :controller => 'contests', :action => 'show', :id => contest.cid %>'><%= contest.title %></a> at <span class='display_time'><%= contest.final_time %></span><br />
+    <% } %>
+  </p>
+<% end %>

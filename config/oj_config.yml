@@ -1,0 +1,20 @@
+contact:
+  server: 127.0.0.1
+  port: 5907
+  string:
+    submit: yoursubmitstring
+    rejudge: yourrejudgestring
+    error_rejudge: yourerrorjudgestring
+    challenge: yourchallengestring
+    pretest: yourpreteststring
+    test_all: yourtestallstring
+
+misc:
+  OJcode: BNU
+  cookie_prefix: bnuoj_v4_
+
+encrypt:
+  password:
+    key: "klj90j()h*(hIOh0inL&T^GUY"
+    iv: "\t\x02C5+\x8BK\x9D\xAA\x1Al\x85\xF1\xB5\xCE\xE3"
+    salt: "fads$#tre%Gfr"

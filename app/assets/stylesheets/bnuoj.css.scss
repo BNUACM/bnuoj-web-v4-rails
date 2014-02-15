@@ -1,0 +1,42 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+#footer {
+  text-align: center;
+}
+
+// add margin to buttons
+#problist_wrapper, #statuslist_wrapper {
+    margin-top: 20px;
+}
+
+#problist {
+    table-layout: fixed;
+    min-width: 750px;
+    td, th {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &.title { min-width: 162px;}
+        &.source { min-width: 120px;}
+    }
+    .ac {
+        color: blue !important;
+        font-weight:bold;
+    }
+    .wa {color: red !important;}
+}
+
+#statuslist {
+    .ac {
+        color: blue !important;
+        font-weight:bold;
+    }
+    .wa, .tle, .ole, .mle, .pe, .re {
+        color: red !important;
+    }
+    .ce {color: green !important;}
+    .rf {color: black !important;}
+}

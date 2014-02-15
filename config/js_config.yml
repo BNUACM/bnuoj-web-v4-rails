@@ -1,0 +1,28 @@
+limits:
+  status_per_page: 20
+  problems_per_page: 25
+  mails_per_page: 20
+  users_per_page: 25
+  contests_per_page: 20
+  discuss_per_page: 30
+  news_on_index: 4
+  problems_on_contest_add: 15
+  problems_on_contest_add_cf: 6
+  users_on_problem_stat: 25
+  news_on_index_title_len: 30
+  news_on_index_content_len: 200
+  max_runid: 10000000
+  max_status_username_len: 20
+  max_source_code_len: 256000
+  max_mail_len: 256000
+  max_rank_in_animation: 16
+  max_error_rejudge_times: 3
+
+status:
+  refresh_rate: 5000
+  max_refresh_times: 5
+
+misc:
+  OJcode: BNU
+  cookie_prefix: bnuoj_v4_
+  datetime_format: "YYYY-MM-DD HH:mm:ss"

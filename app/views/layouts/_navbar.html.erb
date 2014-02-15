@@ -1,0 +1,81 @@
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= url_for :controller => 'home', :action => 'index' %>">BNUOJ</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav" id="main_navbar">
+        <li class="dropdown" id="problem">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="<%= url_for :controller => 'problems', :action => 'index' %>">Problem <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li id="localp"><a href="<%= url_for :controller => 'problems', :action => 'index' %>?oj=BNU">Local Problems</a></li>
+            <li id="allp"><a href="<%= url_for :controller => 'problems', :action => 'index' %>">All Problems</a></li>
+            <li id="categoryp"><a href="problem_category.php">Problem Category</a></li>
+          </ul>
+        </li>
+        <li id="status"><a href="<%= url_for :controller => 'statuses', :action => 'index' %>">Status</a></li>
+        <li class="dropdown" id="contest">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="contest.php?type=50">Contest <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li id="stdcontest"><a href="contest.php?type=50">Standard Contests</a></li>
+            <li id="icpccontest"><a href="contest.php?type=0">Contests (ICPC format)</a></li>
+            <li id="cfcontest"><a href="contest.php?type=1">Contests (CF format)</a></li>
+            <li id="repcontest"><a href="contest.php?type=99">Replay Contests</a></li>
+            <li id="vcontest"><a href="contest.php?virtual=1">Virtual Contests</a></li>
+          </ul>
+        </li>
+        <li class="dropdown" id="more">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="teaminfo.php">More <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="ranklist.php">Ranklist</a></li>
+            <li><a href="discuss.php">Discuss</a></li>
+            <li><a href="news.php">News</a></li>
+            <li class="divider"></li>
+            <li><a href="teaminfo.php">Our Team</a></li>
+            <li class="divider"></li>
+            <li><a href="recent_contest.php">Recent Contests</a></li>
+            <li class="divider"></li>
+            <li class="disabled"><a>Coming Soon...</a></li>
+          </ul>
+        </li>
+      </ul>
+<% unless logged_in? %>
+      <ul id="loginbar" class="nav navbar-nav navbar-right">
+        <li><a href="#" id="login-btn">Login</a></li>
+        <li><a href="#" id="register-btn">Register</a></li>
+      </ul>
+<% else %>
+      <ul id="logoutbar" class="nav navbar-nav navbar-right">
+        <li class="dropdown" id="userspace">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="" id="displayname">
+            <%= current_user.username %>
+            <% if current_user.unread_message_count > 0 %>
+            <b style='color:#F00'> (<%= current_user.unread_message_count %>) <b class="caret"></b></a>
+            <% end %>
+          <ul class="dropdown-menu">
+            <li><a href="">Show My Information</a></li>
+            <li><a href="#" id="modify-my-info">Modify My Information</a></li>
+            <li><a href="mail.php" id="mail">
+              Mail
+              <% if current_user.unread_message_count > 0 %>
+              <b style='color:#F00'> (<%= current_user.unread_message_count %>) <b class="caret"></b></a>
+              <% end %>
+            </a></li>
+  <% if current_user.is_admin? %>
+            <li><a href="admin_index.php" id="admin">Administration</a></li>
+  <% end %>
+            <li><a href="<%= url_for :controller => 'users', :action => 'logout' %>" id="logout-btn">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+<% end %>
+      <p class="navbar-text navbar-right"><span id="servertime"><%= Time.now.to_s :db %></span>&nbsp;</p>
+    </div><!--/.navbar-collapse -->
+  </div>
+</div>

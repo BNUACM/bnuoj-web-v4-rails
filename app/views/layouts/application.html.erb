@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="BNU Online Judge, A simple, full-featured Online Judge." />
+  <meta name="keywords" content="Online Judge, BNU, OJ, BNUOJ, BOJ, Virtual Judge, Replay Contest, Problem Category" />
+  <meta name="author" content="51isoft">
+  <link rel="shortcut icon" href="<%= root_url.end_with?('/') ? root_url : root_url + '/' %>favicon.ico" />
+  <title><%= @page_title.nil? ? "BNU Online Judge" : @page_title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript">
+    var baseUrl = "<%= root_url.end_with?('/') ? root_url : root_url + '/' %>";
+    var basePath = baseUrl.match('.*?\/\/.*?(\/.*)')[1];
+    var currentServerTime = "<%= Time.now %>";
+    var serverTimeOffset = "<%= Time.zone.utc_offset %>";
+    var timePassed = 0;
+  </script>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="<%= url_for('extra-js/respond.min.js') %>"></script>
+  <![endif]-->
+</head>
+<body>
+  <div id="page-content">
+    <%= render({:file => 'layouts/_navbar'}) %>
+    <marquee class="hidden-xs" direction="left" behavior="alternate" scrollamount="2" style="position:absolute;width:100%;"></marquee>
+    <div class="hidden-xs" id="marqueepos"></div>
+    <div class="container">
+      <div id="main-content">
+        <%= yield %>
+      </div>
+      <hr />
+      <footer id="footer">
+        <p>
+          Distributed under GPLv3. | <a href='https://github.com/51isoft/bnuoj' target="_blank">Project Homepage</a> | Developer: <a href="mailto:yichaonet#gmail.com">51isoft</a>.
+        </p>
+      </footer>
+    </div>
+  </div>
+
+  <div id="bnuoj-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true"></div>
+
+</body>
+</html>
+
