@@ -8,6 +8,15 @@ development:
   port: 3306
   secure_auth: false
 
+staging:
+  adapter: mysql2
+  encoding: utf8
+  database: bnuoj
+  username: bnuojuser
+  password: bnuojpassword
+  host: 127.0.0.1
+  port: 3306
+  secure_auth: false
 
 production:
   adapter: mysql2
