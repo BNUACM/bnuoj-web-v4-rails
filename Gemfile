@@ -61,3 +61,6 @@ gem "handlebars_assets", "~> 0.15"
 
 # for datatables pagination
 gem "will_paginate"
+
+# bower and rails, yay~
+gem "bower-rails", "~> 0.7.1"

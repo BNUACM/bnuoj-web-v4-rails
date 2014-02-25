@@ -24,7 +24,7 @@ module BnuojV4
     config.active_record.record_timestamps = false
 
     # bower components
-    config.assets.paths << Rails.root.join('vendor', 'bower-components')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
 
   end
 end
