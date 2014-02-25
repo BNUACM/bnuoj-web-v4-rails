@@ -11,7 +11,6 @@
 // about supported directives.
 //
 // vendor js below
-//= require sizzle/dist/sizzle
 //= require jquery/dist/jquery
 //= require bootstrap/dist/js/bootstrap
 //= require underscore/underscore
