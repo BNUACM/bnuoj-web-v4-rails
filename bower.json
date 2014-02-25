@@ -2,6 +2,7 @@
   "name": "bnuoj-v4",
   "dependencies": {
     "underscore": "~1.6.0",
+    "sizzle": "~1.10.18",
     "jquery": "1",
     "bootstrap": "~3.1.1",
     "momentjs": "~2.5.1",
