@@ -9,7 +9,6 @@ set :branch, 'develop'
 
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, '/home/deploy/bnuoj-v4-rails'
-set :unicorn_pid, "#{deploy_to}/tmp/pids/unicorn.pid"
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -62,11 +61,11 @@ namespace :deploy do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
 
-      execute "kill -USR2 `cat #{unicorn_pid}`"
-      sleep 10
-      execute "kill -WINCH `cat #{unicorn_pid}.oldbin`"
-      sleep 10
-      execute "kill -QUIT `cat #{unicorn_pid}.oldbin`"
+      execute "kill -USR2 `cat #{deploy_to}/tmp/pids/unicorn.pid`"
+      sleep 5
+      execute "kill -WINCH `cat #{deploy_to}/tmp/pids/unicorn.pid.oldbin`"
+      sleep 5
+      execute "kill -QUIT `cat #{deploy_to}/tmp/pids/unicorn.pid.oldbin`"
     end
   end
   
