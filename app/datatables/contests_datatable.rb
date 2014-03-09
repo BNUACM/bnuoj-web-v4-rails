@@ -54,6 +54,8 @@ private
         if @columns[i] == "contest.type" && params["sSearch_#{i}"] == "-99"
           # hack for non-replay contests
           records = records.where("#{@columns[i]} != 99")
+        elsif @columns[i] == "contest.type" && params["sSearch_#{i}"] == "all"
+          # hack when contest type is all
         else
           records = records.where("#{@columns[i]} = ?", params["sSearch_#{i}"])
         end
