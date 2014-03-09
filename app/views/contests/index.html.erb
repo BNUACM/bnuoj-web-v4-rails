@@ -1,25 +1,48 @@
-<h1>Listing contests</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @contests.each do |contest| %>
-      <tr>
-        <td><%= link_to 'Show', contest %></td>
-        <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
-        <td><%= link_to 'Destroy', contest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="row">
+  <div class="col-sm-12">
+    <% if logged_in? %>
+      <button id="arrangevirtual" class="btn btn-primary">Arrange VContest</button>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Contest', new_contest_path %>
+    <div class="btn-group virtual-btns">
+      <button class="btn btn-info" is-virtual="">All</button>
+      <button class="btn btn-info" is-virtual="0">Standard</button>
+      <button class="btn btn-info" is-virtual="1">Virtual</button>
+    </div>
+    <div class="btn-group type-btns">
+      <button class="btn btn-info" contest-type="">All</button>
+      <button class="btn btn-info" contest-type="0">ICPC</button>
+      <button class="btn btn-info" contest-type="1">CF</button>
+      <button class="btn btn-info" contest-type="99">Replay</button>
+      <button class="btn btn-info" contest-type="-99">Non-Replay</button>
+    </div>
+    <div class="btn-group access-btns">
+      <button class="btn btn-info" access="">All</button>
+      <button class="btn btn-info" access="0">Public</button>
+      <button class="btn btn-info" access="1">Private</button>
+      <button class="btn btn-info" access="2">Password</button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-hover table-striped" id="contestlist">
+      <thead>
+        <tr>
+          <th> CID </th>
+          <th width="30%"> Title </th>
+          <th> Start Time </th>
+          <th> End Time </th>
+          <th> Status </th>
+          <th> Access </th>
+          <th> Manager </th>
+          <th> Private </th>
+          <th> Type </th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      <tfoot>
+      </tfoot>
+    </table>
+  </div>
+</div>

@@ -2,7 +2,8 @@ $(document).ready(function() {
   var viewRoutes = {
     "^$"                                : BNUOJ.Views.HomeView,
     "^problems(\/?)$"                   : BNUOJ.Views.ProblemListView,
-    "^statuses(\/?)$"               : BNUOJ.Views.StatusListView
+    "^statuses(\/?)$"                   : BNUOJ.Views.StatusListView,
+    "^contests(\/?)$"                   : BNUOJ.Views.ContestListView
   };
 
   // find first matching route

@@ -17,8 +17,6 @@
 
     activeNavbar: "#problem",
 
-    isPoppingState: false,
-    isPushingState: false,
     withSearchBar: true,
 
     currentInfo: _.extend({
@@ -86,6 +84,9 @@
         this.listTable.fnSetColumnVis( 8, true, false );
         this.listTable.fnSetColumnVis( 9, true, false );
       }
+
+      // since we aren't firing any ajax calls in this function
+      // we should check whether there is ongoing ajax to avoid conflict
       if (!this.isPoppingState) this.updateUrl();
 
     },
@@ -94,7 +95,7 @@
       if ($(evt.target).hasClass('active')) return;
       this.currentInfo.unsolveCheck = $(evt.target).attr('unsolved');
       $(this._selectors.UNSOLVED_BTNS).removeClass('active');
-      $(evt.target).addClass('active')
+      $(evt.target).addClass('active');
       this.listTable.fnReloadAjax();
     },
 
@@ -131,7 +132,7 @@
 
     setupTableOptions: function() {
       this.tableOptions = ({
-        "sDom": '<"row"<"col-sm-5"f><"col-sm-7"p>r<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
+        "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
         "oLanguage": {
           "sEmptyTable": "No problems found.",
           "sZeroRecords": "No problems found.",
@@ -150,19 +151,19 @@
           { "bVisible": false , "aTargets": [ 6, 7, 8, 9 ] },
           {
             "mRender": function ( data, type, full ) {
-              return "<a href='status.php?showpid=" + full[1] + "&showres=Accepted'>" + full[4] + "</a>";
+              return "<a href='" + basePath + "statuses?pid=" + full[1] + "&result=Accepted'>" + full[4] + "</a>";
             },
             "aTargets": [ 4 ]
           },
           {
             "mRender": function ( data, type, full ) {
-              return "<a href='status.php?showpid=" + full[1] + "'>" + full[5] + "</a>";
+              return "<a href='" + basePath + "statuses?pid=" + full[1] + "'>" + full[5] + "</a>";
             },
             "aTargets": [ 5 ]
           },
           {
             "mRender": function ( data, type, full ) {
-              return "<a href='problem_show.php?pid=" + full[1] + "' title='" + full[2] + "' >" + full[2] + "</a>";
+              return "<a href='" + basePath + "problems/" + full[1] + "' title='" + full[2] + "' >" + full[2] + "</a>";
             },
             "aTargets": [ 2 ]
           },
@@ -174,7 +175,7 @@
           },
           {
             "mRender": function ( data, type, full ) {
-              return "<a href='problem_show.php?pid=" + data + "'>" + data + "</a>";
+              return "<a href='" + basePath + "problems/" + data + "'>" + data + "</a>";
             },
             "aTargets": [ 1 ]
           },

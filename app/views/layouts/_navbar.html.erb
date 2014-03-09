@@ -21,13 +21,13 @@
         </li>
         <li id="status"><a href="<%= url_for :controller => 'statuses', :action => 'index' %>">Status</a></li>
         <li class="dropdown" id="contest">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="contest.php?type=50">Contest <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="<%= url_for :controller => 'contests', :action => 'index' %>">Contest <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li id="stdcontest"><a href="contest.php?type=50">Standard Contests</a></li>
-            <li id="icpccontest"><a href="contest.php?type=0">Contests (ICPC format)</a></li>
-            <li id="cfcontest"><a href="contest.php?type=1">Contests (CF format)</a></li>
-            <li id="repcontest"><a href="contest.php?type=99">Replay Contests</a></li>
-            <li id="vcontest"><a href="contest.php?virtual=1">Virtual Contests</a></li>
+            <li id="stdcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>">Standard Contests</a></li>
+            <li id="icpccontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=0">Contests (ICPC format)</a></li>
+            <li id="cfcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=1">Contests (CF format)</a></li>
+            <li id="repcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=99">Replay Contests</a></li>
+            <li id="vcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?virtual=1">Virtual Contests</a></li>
           </ul>
         </li>
         <li class="dropdown" id="more">

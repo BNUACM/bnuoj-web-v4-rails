@@ -15,8 +15,6 @@
 
     activeNavbar: "#status",
 
-    isPoppingState: false,
-    isPushingState: false,
     withSearchBar: false,
 
     currentInfo: _.extend({

@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "contest", primary_key: "cid", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.boolean  "isprivate",                             null: false
+    t.integer  "isprivate",            limit: 2,        null: false
     t.datetime "start_time",                            null: false
     t.datetime "end_time",                              null: false
     t.datetime "lock_board_time",                       null: false

@@ -30,6 +30,7 @@
 //= require utils
 //= require views/base_view
 //= require views/page_view
+//= require views/datatable_history_view
 //= require_tree ./views
 //= require controls/base_dialog
 //= require_tree ./controls

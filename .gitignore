@@ -20,3 +20,6 @@
 
 # Ignore bower components
 /vendor/assets/bower_components
+
+# Ignore DB info
+/config/database.yml

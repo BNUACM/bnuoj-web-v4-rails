@@ -1,9 +1,12 @@
 class ContestsController < ApplicationController
 
-  def list
-  end
-
   def index
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: ContestsDatatable.new(view_context)
+      }
+    end
   end
 
   def show

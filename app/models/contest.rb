@@ -53,4 +53,29 @@ class Contest < ActiveRecord::Base
     return Time.now > final_time
   end
 
+  def status_text
+    return "Running" if running?
+    return "Scheduled" if !started?
+    return "Passed" if ended?
+  end
+
+  def access_text
+    case isprivate
+    when 1
+      "Private"
+    when 2
+      "Password"
+    else
+      "Public"
+    end
+  end
+
+  def start_time_display
+    start_time.to_s :db
+  end
+
+  def final_time_display
+    final_time.to_s :db
+  end
+
 end

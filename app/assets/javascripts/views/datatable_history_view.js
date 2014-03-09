@@ -125,6 +125,7 @@
 
       var url = this.getViewUrl();
 
+      // avoid push empty string to history
       url += ("&page=" + this.currentInfo.page);
       if (this.withSearchBar) {
         url += (this.currentInfo.searchString == "" || this.currentInfo.searchString == null ? "" : "&searchstr=" + encodeURIComponent(this.currentInfo.searchString));
