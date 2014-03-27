@@ -3,7 +3,9 @@ $(document).ready(function() {
     "^$"                                : BNUOJ.Views.HomeView,
     "^problems(\/?)$"                   : BNUOJ.Views.ProblemListView,
     "^statuses(\/?)$"                   : BNUOJ.Views.StatusListView,
-    "^contests(\/?)$"                   : BNUOJ.Views.ContestListView
+    "^statuses\/[0-9]+$"                : BNUOJ.Views.ShowSourceView,
+    "^contests(\/?)$"                   : BNUOJ.Views.ContestListView,
+    "^signin(\/?)$"                     : BNUOJ.Views.SignInView,
   };
 
   // find first matching route

@@ -7,7 +7,18 @@ class Status < ActiveRecord::Base
   has_one :language_name, primary_key: "language", foreign_key: "id"
 
   scope :accepted, ->{ where(result: "Accepted") }
-  scope :public, ->{ joins('LEFT JOIN contest ON status.contest_belong = contest.cid').where('contest_belong = 0 OR end_time<NOW()') }
+  scope :public, ->{ joins('LEFT JOIN contest ON status.contest_belong = contest.cid').where('contest_belong = 0 OR end_time < NOW()') }
+
+  def to_json(options={})
+    options[:methods] = [] if options[:methods].nil?
+    options[:except] = [] if options[:except].nil?
+    options[:include] = [] if options[:include].nil?
+
+    options[:except] |= [:jnum, :time_submit]
+    options[:include] |= [:language_name]
+    options[:methods] |= [:time_submit_display]
+    super(options)
+  end
 
   def time_submit_display
     time_submit.to_s :db

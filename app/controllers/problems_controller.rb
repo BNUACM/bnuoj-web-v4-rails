@@ -4,6 +4,7 @@ class ProblemsController < ApplicationController
   # # GET /problems
   # # GET /problems.json
   def index
+    @page_title = "Problem List"
     respond_to do |format|
       format.html
       format.json {

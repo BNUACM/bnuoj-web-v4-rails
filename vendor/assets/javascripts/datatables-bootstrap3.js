@@ -51,8 +51,8 @@
 				};
 				$(nPaging).append(
 					'<ul class="pagination">'+
-						'<li class="prev disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;'+oLang.sPrevious+'</a></li>'+
-						'<li class="next disabled"><a href="#">'+oLang.sNext+'&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a></li>'+
+						'<li class="prev disabled"><a href="#">'+oLang.sPrevious+'</a></li>'+
+						'<li class="next disabled"><a href="#">'+oLang.sNext+'</a></li>'+
 					'</ul>'
 				);
 				var els = $('a', nPaging);

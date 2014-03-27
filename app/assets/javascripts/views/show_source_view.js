@@ -1,5 +1,5 @@
 (function($) {
-  BNUOJ.Views.HomeView = BNUOJ.Views.PageView.extend({
+  BNUOJ.Views.ShowSourceView = BNUOJ.Views.PageView.extend({
     events: _.extend({
     }, BNUOJ.Views.PageView.prototype.events),
 

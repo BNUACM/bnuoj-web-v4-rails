@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_status_path(@status) %> |
-<%= link_to 'Back', statuses_path %>
+<h1>Source Code of Run <%= @status.runid %></h1>
+<div class="text-center well">
+  Result: <b><%= @status.result %></b> &nbsp;&nbsp;&nbsp; Memory Used: <%= @status.memory_used %> KB &nbsp;&nbsp;&nbsp; Time Used: <%= @status.time_used %> ms <br/>
+  Language: <%= @status.language_name.name %> &nbsp;&nbsp;&nbsp; Username: <%= @status.username %> &nbsp;&nbsp;&nbsp; Problem ID: <%= @status.pid %> <br/>
+  <% if @status.isshared %>
+    <b>This code is shared.</b>
+  <% end %>
+</div>
+<pre><%= @status.source %></pre>

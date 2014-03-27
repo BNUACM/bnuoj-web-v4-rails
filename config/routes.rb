@@ -7,8 +7,9 @@ BnuojV4::Application.routes.draw do
   
   scope ENV['RAILS_RELATIVE_URL_ROOT'] || '/' do
     root :to => 'home#index'
-    post 'login' => 'users#login'
-    get 'logout' => 'users#logout'
+    post 'users/login' => 'users#login'
+    get 'users/logout' => 'users#logout'
+    get 'signin' => 'users#signin'
 
     get 'server_time' => 'home#server_time'
 
@@ -18,11 +19,7 @@ BnuojV4::Application.routes.draw do
     resources :contests
     resources :problems
     resources :users
-    
-    namespace :resource do
-      get 'contests' => 'contests#list'
-      get 'problems' => 'problems#list'
-    end
+
   end
 
   # Example of regular route:

@@ -25,13 +25,13 @@ private
   def data
     records.map do |record|
       viewable = begin
-        if !logged_in? || record.isshared == 1
+        if !logged_in? || record.isshared
           record.isshared
         else
           if current_user.username.casecmp(record.username) == 0 || current_user.is_admin?
-            1
+            true
           else
-            0
+            false
           end
         end
       end

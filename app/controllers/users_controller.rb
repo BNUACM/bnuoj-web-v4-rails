@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     render json: { msg: "Logged in." }
   end
 
+  def signin
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def logout
     set_cookie("username", "")
     set_cookie("password", "")

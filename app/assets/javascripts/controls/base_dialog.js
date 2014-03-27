@@ -2,7 +2,7 @@
   BNUOJ.Dialogs = {
     _nameClass: {},
     _currentDialog: null,
-    _container: "#bnuoj-dialog",
+    _container: ".bnuoj-dialog",
 
     register: function(name, dialogClass) {
       if (!this._nameClass[name]) {
@@ -15,6 +15,7 @@
         this.hide();
       }
       this._currentDialog = _.extend(new this._nameClass[name](), options);
+      $(this._container).attr("id", name);
       this._currentDialog.render();
       var self = this;
       $(this._container).on("shown.bs.modal", function() {
@@ -26,11 +27,12 @@
     hide: function() {
       $(this._container).modal("hide");
       $(this._container).off("shown.bs.modal");
+      $(this._container).attr("id", "");
     }
   };
 
   BNUOJ.Dialogs.BaseDialog = BNUOJ.Views.BaseView.extend({
-    _container: "#bnuoj-dialog",
+    _container: ".bnuoj-dialog",
     _template: null,
 
     _withAjax: false,
@@ -41,6 +43,7 @@
     onLoaded: function(content) {
       this.ajaxContent = content;
       this.ajaxContentLoaded = true;
+      this.onAjaxContentLoaded();
       this.render();
     },
 
@@ -56,6 +59,9 @@
 
     // Should be overrided
     onShown: function() {
+    },
+
+    onAjaxContentLoaded: function() {
     }
   })
 

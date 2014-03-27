@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :clarifies, class_name: "ContestClarify", primary_key: "username", foreign_key: "username", inverse_of: :questioner
   has_many :tags, primary_key: "username", foreign_key: "username", inverse_of: :user
 
-  def to_json(options={})
+  def to_json(options = {})
     if options[:except].nil?
       options[:except] = []
     end

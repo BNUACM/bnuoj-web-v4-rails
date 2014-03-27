@@ -94,7 +94,7 @@ private
   end
 
   def sort_column
-    @columns[ [params[:iSortCol_0].to_i, 0].max ]
+    @columns[ [params[:iSortCol_0].to_i - 1, 0].max ]
   end
 
   def sort_direction

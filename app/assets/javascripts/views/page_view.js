@@ -64,7 +64,7 @@
 
     onShowNews: function(evt) {
       var newsid = $(evt.target).attr("name");
-      BNUOJ.Dialogs.show("news_box", { ajaxUrl: basePath + "news/" + newsid } );
+      BNUOJ.Dialogs.show("news_box", { ajaxUrl: basePath + "news/" + newsid + ".json" } );
     }
 
   })

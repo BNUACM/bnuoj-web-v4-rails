@@ -1,7 +1,8 @@
 (function($) {
   BNUOJ.Views.StatusListView = BNUOJ.Views.DatatableHistoryView.extend({
     events: _.extend({
-      "submit #status-filter": "submitStatusFilter"
+      "submit #status-filter": "submitStatusFilter",
+      "click a.show-source": "showSourceCode"
     }, BNUOJ.Views.DatatableHistoryView.prototype.events),
 
     _selectors: _.extend({
@@ -95,6 +96,11 @@
     afterTableDrawn: function() {
     },
 
+    showSourceCode: function(evt) {
+      var runid = $(evt.target).attr('runid');
+      BNUOJ.Dialogs.show("source_code_box", { ajaxUrl: basePath + "statuses/" + runid + ".json" } );
+    },
+
     setupTableOptions: function() {
       this.tableOptions = ({
         "sDom": '<"row"<"col-sm-12"p>r<"table-responsive"t>>',
@@ -117,6 +123,15 @@
               return "<a target='_blank' href='" + basePath + "users/" + data + "'>" + data + "</a>";
             },
             "aTargets": [ 0 ]
+          },
+          {
+            "mRender": function ( data, type, full ) {
+              if (full[9] == false) {
+                return data;
+              }
+              return "<a class='show-source' runid='" + full[1] + "' href='#'>" + data + "</a>";
+            },
+            "aTargets": [ 1, 4 ]
           },
           {
             "mRender": function ( data, type, full ) {
@@ -144,10 +159,11 @@
           },
           {
             "mRender": function ( data, type, full ) {
-              if (data == "0") {
-                return "";
+              var display = data + " B";
+              if (full[9] == false) {
+                return display;
               }
-              return data + " B";
+              return "<a class='show-source' runid='" + full[1] + "' href='#'>" + display + "</a>";
             },
             "aTargets": [ 7 ]
           },
