@@ -15,4 +15,5 @@ $(document).ready(function() {
 
   currentView = new viewClass;
   currentView.render();
+  BNUOJ.Dialogs.init();
 });

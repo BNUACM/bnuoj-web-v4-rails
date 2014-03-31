@@ -22,6 +22,7 @@
 //= require jquery-form/jquery.form
 //= require jquery.cookie/jquery.cookie
 //= require handlebars.runtime
+//= require google-code-prettify/src/prettify
 //= require base-class
 //
 // app js below

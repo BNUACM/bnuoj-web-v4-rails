@@ -37,8 +37,14 @@ class StatusesController < ApplicationController
         }
       end
     else
-      p request.path
-      redirect_to url_for(:controller => 'users', :action => 'signin', :params => {:redirect_to => request.path })
+      respond_to do |format|
+        format.html {
+          redirect_to url_for(:controller => 'users', :action => 'signin', :params => {:redirect_to => request.path }), status: :temporary_redirect
+        }
+        format.json {
+          render status: :forbidden, nothing: true
+        }
+      end
     end
   end
 

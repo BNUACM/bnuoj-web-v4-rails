@@ -16,6 +16,7 @@
     var currentServerTime = "<%= Time.now %>";
     var serverTimeOffset = "<%= Time.zone.utc_offset %>";
     var timePassed = 0;
+    var loggedIn = <%= logged_in? %>;
   </script>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
