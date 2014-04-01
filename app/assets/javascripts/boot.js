@@ -6,6 +6,7 @@ $(document).ready(function() {
     "^statuses\/[0-9]+$"                : BNUOJ.Views.ShowSourceView,
     "^contests(\/?)$"                   : BNUOJ.Views.ContestListView,
     "^signin(\/?)$"                     : BNUOJ.Views.SignInView,
+    "^problems\/[0-9]+$"                : BNUOJ.Views.ProblemShowView
   };
 
   // find first matching route

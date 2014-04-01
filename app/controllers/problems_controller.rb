@@ -13,10 +13,12 @@ class ProblemsController < ApplicationController
     end
   end
 
-  # # GET /problems/1
-  # # GET /problems/1.json
-  # def show
-  # end
+  # GET /problems/1
+  # GET /problems/1.json
+  def show
+    @problem = Problem.find(params[:id])
+    @page_title = "BNUOJ #{@problem.pid} - #{@problem.title}"
+  end
 
   # # GET /problems/new
   # def new

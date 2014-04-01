@@ -14,7 +14,8 @@
       "history": "~1.8.0",
       "jquery-form": "~3.46.0",
       "jquery.cookie": "~1.4.0",
-      "google-code-prettify": "~1.0.1"
+      "google-code-prettify": "~1.0.1",
+      "MathJax": "v2.3"
     }
   }
 }

@@ -1,4 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-12" id="show_problem">
+    <h2 class="text-center"> <%= @problem.title %> </h2>
+    <div class="well text-center row">
+      <% if @problem.ignore_noc || @problem.time_limit == @problem.case_time_limit %>
+        <div class="col-sm-6">Time Limit: <%= @problem.time_limit %> ms</div>
+        <div class="col-sm-6">Memory Limit: <%= @problem.memory_limit %> KB</div>
+      <% else %>
+        <div class="col-sm-4">Time Limit: <%= @problem.time_limit %> ms</div>
+        <div class="col-sm-4">Case Time Limit: <%= @problem.case_time_limit %> ms</div>
+        <div class="col-sm-4">Memory Limit: <%= @problem.memory_limit %> KB</div>
+      <% end %>
+      <% if @problem.isvirtual %>
+        <p>This problem will be judged on <span class="label label-info"><%= @problem.vname %></span>. Original ID: <a href="<%= @problem.to_url %>" target="_blank"><%= @problem.vid %></a></p>
+      <% end %>
+      <p>64-bit integer IO format: <span class="label label-primary"><%= @problem.oj_info.int64io %></span> &nbsp;&nbsp;&nbsp;&nbsp; Java class name: <span class="label label-primary"><%= @problem.oj_info.javaclass %></span></p>
+      <% if @problem.special_judge_status != 0 %>
+        <p><span class="label label-danger">Special Judge</span></p>
+      <% end %>
+      <% if @problem.hide %>
+        <p><b>This problem is hidden.</b></p>
+      <% end %>
+    </div>
+    <div class="text-center problem-actions">
+      <div class="btn-group">
+        <a href="#" class="submitprob btn btn-primary">Submit</a>
+        <a href="<%= url_for :controller => 'statuses', :action => 'index' %>?showpid=<%= @problem.pid %>" class="btn btn-default">Status</a>
+        <a href="problem_stat.php?pid=<?=$pid?>" class="btn btn-default">Statistics</a>
+        <a href="discuss.php?pid=<?=$pid?>" class="btn btn-default">Discuss</a>
+      </div>
+      <% if logged_in? && current_user.is_admin? %>
+        <a href="admin_index.php?pid=<?=$pid?>#problemtab" class="btn btn-primary">Edit</a>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_problem_path(@problem) %> |
-<%= link_to 'Back', problems_path %>
