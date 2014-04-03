@@ -9,6 +9,7 @@ BnuojV4::Application.routes.draw do
     root :to => 'home#index'
     post 'users/login' => 'users#login'
     get 'users/logout' => 'users#logout'
+    get 'statuses/compile_info/:id' => 'statuses#compile_info'
     get 'signin' => 'users#signin'
 
     get 'server_time' => 'home#server_time'

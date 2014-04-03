@@ -52,3 +52,17 @@ body {
     color: red !important;
   }
 }
+
+#show_problem {
+  .problem-actions {
+    margin-bottom: 20px;
+  }
+  #problem_tags {
+    a {
+      margin-left: 30px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}

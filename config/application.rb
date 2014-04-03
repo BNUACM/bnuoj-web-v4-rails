@@ -22,6 +22,7 @@ module BnuojV4
 
     config.time_zone = 'Beijing'    
     config.active_record.record_timestamps = false
+    config.active_record.default_timezone = :local
 
     # bower components
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')

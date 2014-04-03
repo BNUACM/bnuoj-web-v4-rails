@@ -2,7 +2,8 @@
   BNUOJ.Views.StatusListView = BNUOJ.Views.DatatableHistoryView.extend({
     events: _.extend({
       "submit #status-filter": "submitStatusFilter",
-      "click a.show-source": "showSourceCode"
+      "click a.show-source": "showSourceCode",
+      "click a.ce-info": "showCompileInfo"
     }, BNUOJ.Views.DatatableHistoryView.prototype.events),
 
     _selectors: _.extend({
@@ -97,8 +98,21 @@
     },
 
     showSourceCode: function(evt) {
+      if (!loggedIn) {
+        BNUOJ.Dialogs.show("login_box");
+        return;
+      }
       var runid = $(evt.target).attr('runid');
       BNUOJ.Dialogs.show("source_code_box", { ajaxUrl: basePath + "statuses/" + runid + ".json" } );
+    },
+
+    showCompileInfo: function(evt) {
+      if (!loggedIn) {
+        BNUOJ.Dialogs.show("login_box");
+        return;
+      }
+      var runid = $(evt.target).attr('runid');
+      BNUOJ.Dialogs.show("compile_info_box", { ajaxUrl: basePath + "statuses/compile_info/" + runid + ".json" } );
     },
 
     setupTableOptions: function() {
@@ -169,8 +183,10 @@
           },
           {
             "mRender": function ( data, type, full ) {
-              var tdata = "<span class='" + BNUOJ.Utils.getResultClass(data) + "'>" + data + "</span>";
-              if (data.substr(0, 7) == "Compile") return "<a href='#' class='ceinfo' runid='" + full[1] + "'>" + tdata + "</a>";
+              var tdata = "<span class='" + BNUOJ.Utils.getResultClass(data) + "' runid='" + full[1] + "'>" + data + "</span>";
+              if (data.substr(0, 7) == "Compile") {
+                return "<a href='#' class='ce-info' runid='" + full[1] + "'>" + tdata + "</a>";
+              }
               return tdata;
             },
             "aTargets": [ 3 ]

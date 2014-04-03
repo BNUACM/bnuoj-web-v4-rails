@@ -3,6 +3,6 @@ class News < ActiveRecord::Base
   self.primary_key = "newsid"
 
   def time_added_display
-    time_added.to_s :db
+    time_added.strftime OJ_CONFIG["misc"]["datetime_format"]
   end
 end

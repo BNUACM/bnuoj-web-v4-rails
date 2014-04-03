@@ -21,6 +21,10 @@ class Status < ActiveRecord::Base
   end
 
   def time_submit_display
-    time_submit.to_s :db
+    begin
+      time_submit.strftime OJ_CONFIG["misc"]["datetime_format"]
+    rescue
+      time_submit
+    end
   end
 end

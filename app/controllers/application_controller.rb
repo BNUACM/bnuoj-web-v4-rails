@@ -47,4 +47,21 @@ class ApplicationController < ActionController::Base
     @user
   end
   helper_method :current_user
+
+  # login filter
+  def need_login
+    unless logged_in?
+      render status: :forbidden, json: { msg: "Login needed." }
+      return
+    end
+  end
+
+  # admin filter
+  def need_admin
+    unless logged_in? && current_user.is_admin?
+      render status: :forbidden, json: { msg: "Admin needed." }
+      return
+    end
+  end
+
 end

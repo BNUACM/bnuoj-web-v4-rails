@@ -12,6 +12,7 @@ contact:
 misc:
   OJcode: BNU
   cookie_prefix: bnuoj_v4_
+  datetime_format: "%F %T"
 
 encrypt:
   password:

@@ -80,11 +80,42 @@
     errorMessage: "Something is wrong."
   });
 
+  BNUOJ.Dialogs.SubmitDialog = BNUOJ.Dialogs.BaseDialog.extend({
+    _template: "templates/dialogs/submit_box",
+    events: {
+      "correct #problem_submit_form": "onSubmitted"
+    },
+
+    onSubmitted: function() {
+      window.location.href = basePath + "statuses";
+    }
+  });
+
+  BNUOJ.Dialogs.ModifyUserDialog = BNUOJ.Dialogs.BaseDialog.extend({
+    _template: "templates/dialogs/modify_user_box",
+    _withAjax: true
+  });
+
+  BNUOJ.Dialogs.CompileInfoDialog = BNUOJ.Dialogs.BaseDialog.extend({
+    _template: "templates/dialogs/compile_info_box",
+    _withAjax: true,
+
+    onFailed: function() {
+      if (loggedIn) {
+        BNUOJ.Dialogs.show("error_box", { errorMessage: "No permission to see this code." });
+      } else {
+        BNUOJ.Dialogs.show("login_box");
+      }
+    }
+  });
+
   BNUOJ.Dialogs.register("register_box", BNUOJ.Dialogs.RegisterDialog);
   BNUOJ.Dialogs.register("login_box", BNUOJ.Dialogs.LoginDialog);
   BNUOJ.Dialogs.register("news_box", BNUOJ.Dialogs.NewsDialog);
   BNUOJ.Dialogs.register("modify_user_box", BNUOJ.Dialogs.ModifyUserDialog);
   BNUOJ.Dialogs.register("source_code_box", BNUOJ.Dialogs.SourceCodeDialog);
   BNUOJ.Dialogs.register("error_box", BNUOJ.Dialogs.ErrorDialog);
+  BNUOJ.Dialogs.register("submit_box", BNUOJ.Dialogs.SubmitDialog);
+  BNUOJ.Dialogs.register("compile_info_box", BNUOJ.Dialogs.CompileInfoDialog);
 
 }).call(this, jQuery);

@@ -57,4 +57,8 @@ class Problem < ActiveRecord::Base
         end
     end
   end
+
+  def tagged_categories
+    ProblemCategory.joins(:category).includes(:category).where(pid: pid).where('weight > 0')
+  end
 end

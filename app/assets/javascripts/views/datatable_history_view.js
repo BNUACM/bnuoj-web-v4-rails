@@ -47,8 +47,9 @@
     beforeRender: function() {
       this.parseBaseUrlParams();
       this.parseUrlParams();
-      // store info for landing page
-      this.initialInfo = _.clone(this.currentInfo);
+      // store landing page info for history.js
+      History.replaceState(_.clone(this.currentInfo), this.getCurrentTitle(), window.location.href);
+
       this.isPoppingState = true;
       this.beforeRenderView();
       this.setupTableOptions();
@@ -63,8 +64,6 @@
     changeState: function() {
       var state = History.getState();
       var info = state.data;
-      // for landing page, we should use inital info
-      if (_.isEmpty(info)) info = this.initialInfo;
 
       // filter search
       if (this.withSearchBar && info.searchString != this.currentInfo.searchString) {

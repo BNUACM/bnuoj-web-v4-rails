@@ -71,11 +71,23 @@ class Contest < ActiveRecord::Base
   end
 
   def start_time_display
-    start_time.to_s :db
+    start_time.strftime OJ_CONFIG["misc"]["datetime_format"]
   end
 
   def final_time_display
-    final_time.to_s :db
+    final_time.strftime OJ_CONFIG["misc"]["datetime_format"]
+  end
+
+  def has_user username
+    case isprivate
+    when 1
+      !ContestUser.where(username: username, cid: cid).empty?
+    when 2
+      # TODO: Password type
+      false
+    else
+      true
+    end
   end
 
 end
