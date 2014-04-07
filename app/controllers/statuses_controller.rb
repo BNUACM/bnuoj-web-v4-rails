@@ -2,8 +2,8 @@ require 'socket'
 
 class StatusesController < ApplicationController
 
-  before_filter :need_login, :check_submit_valid, :only => [:create]
-  before_filter :check_visibility, :only => [:show, :compile_info]
+  before_action :need_login, :check_submit_valid, only: [:create]
+  before_action :check_visibility, only: [:show, :compile_info]
 
   def index
     @page_title = "Status List"
