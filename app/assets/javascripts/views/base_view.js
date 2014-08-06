@@ -43,6 +43,14 @@
       })
     },
 
+    unBindEvents: function() {
+      var self = this;
+      _.each(this.events, function(func, evt) {
+        var result = evt.match(/([^ ]*) (.*)/);
+        self.$el.off(result[1], result[2]);
+      })
+    },
+
     beforeAll: function() {
     },
 

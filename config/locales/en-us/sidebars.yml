@@ -1,0 +1,17 @@
+en-us:
+  sidebars:
+    recent_news:
+      title: Latest News
+    contests:
+      running_contests: Running Contests
+      running_virtual_contests: Running Virtual Contests
+      scheduled_contests: Upcoming Contests
+      scheduled_virtual_contests: Upcoming Virtual Contests
+      current_item: "<a href='%{link}'>%{title}</a> ends at <span class='display_time'>%{end_time}</span>"
+      future_item: "<a href='%{link}'>%{title}</a> at <span class='display_time'>%{start_time}</span>"
+    vjudge_status:
+      title: VJudge Status
+      desc: By checking remote status page every 10 minutes.
+      oj: OJ
+      status: Status
+      check_text: "Last Check: %{time}, %{status}"

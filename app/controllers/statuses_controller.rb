@@ -3,7 +3,7 @@ require 'socket'
 class StatusesController < ApplicationController
 
   before_action :need_login, :check_submit_valid, only: [:create]
-  before_action :check_visibility, only: [:show, :compile_info]
+  before_action :check_visibility, only: [:show, :compile_info, :update]
 
   def index
     @page_title = "Status List"
@@ -83,12 +83,7 @@ class StatusesController < ApplicationController
     @status = Status.new(create_params)
     if @status.save
       begin
-        Problem.find(create_params[:pid])
-        sock = TCPSocket.new OJ_CONFIG["contact"]["server"], OJ_CONFIG["contact"]["port"]
-        sock.puts OJ_CONFIG["contact"]["string"]["submit"]
-        sock.puts @status.runid
-        sock.puts @problem.vname
-        sock.close
+        send_socket_message(runid: @status.runid, vname: @problem.vname, type: OJ_CONFIG["contact"]["string"]["submit"])
         @problem.total_submit = @problem.total_submit + 1
         @problem.save
         current_user.total_submit = current_user.total_submit + 1
@@ -99,6 +94,14 @@ class StatusesController < ApplicationController
     else
       render json: { msg: @status.errors }, status: :unprocessable_entity
     end
+  end
+
+  def send_socket_message options={}
+    sock = TCPSocket.new OJ_CONFIG["contact"]["server"], OJ_CONFIG["contact"]["port"]
+    sock.puts options[:type]
+    sock.puts options[:runid]
+    sock.puts options[:vname]
+    sock.close
   end
 
   def check_submit_valid
@@ -126,6 +129,19 @@ class StatusesController < ApplicationController
     rescue Exception => e
       render status: :not_acceptable, json: { msg: e.message }
       return
+    end
+  end
+
+  # PATCH/PUT /statuses/1
+  # PATCH/PUT /statuses/1.json
+  # only allow updating 'isshared'
+  def update
+    respond_to do |format|
+      if @status.update(isshared: params[:isshared])
+        format.json { head :no_content }
+      else
+        format.json { render json: @status.errors, status: :unprocessable_entity }
+      end
     end
   end
 

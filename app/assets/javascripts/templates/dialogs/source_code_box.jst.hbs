@@ -3,17 +3,17 @@
     {{#if ajaxContentLoaded }}
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 id="modal-title" class="modal-title">Source Code of Run {{ ajaxContent.runid }}</h4>
+        <h4 id="modal-title" class="modal-title">Source Code of Run <span class="runid">{{ ajaxContent.runid }}</span></h4>
       </div>
       <div class="modal-body">
         <div class="well" style="text-align:center">
           Result: {{{ ajaxContent.displayResult }}} &nbsp;&nbsp;&nbsp; Memory Used: {{ ajaxContent.memory_used }} KB &nbsp;&nbsp;&nbsp; Time Used: {{ ajaxContent.time_used }} ms <br/>
           Language: {{ ajaxContent.language_name.name }} &nbsp;&nbsp;&nbsp; Username: {{ ajaxContent.username }} &nbsp;&nbsp;&nbsp; Problem ID: {{ ajaxContent.pid }} <br/>
           {{#if ajaxContent.isshared }}
-            Share Code? <div class="btn-group" id="rshare"><button id="sharey" type="button" class="btn btn-default active">Yes</button><button id="sharen" type="button" class="btn btn-default">No</button></div> <br />
+            Share Code? <div class="btn-group" id="rshare"><button isshared="1" type="button" class="btn btn-default active">Yes</button><button isshared="0" type="button" class="btn btn-default">No</button></div> <br />
             <b id='sharenote'>This code is shared.</b>
           {{else}}
-            Share Code? <div class="btn-group" id="rshare"><button id="sharey" type="button" class="btn btn-default">Yes</button><button id="sharen" type="button" class="btn btn-default active">No</button></div> <br />
+            Share Code? <div class="btn-group" id="rshare"><button isshared="1" type="button" class="btn btn-default">Yes</button><button isshared="0" type="button" class="btn btn-default active">No</button></div> <br />
             <b id='sharenote' style="display: none">This code is shared.</b>
           {{/if}}
         </div>

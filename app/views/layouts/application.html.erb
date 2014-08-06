@@ -8,7 +8,7 @@
   <meta name="keywords" content="Online Judge, BNU, OJ, BNUOJ, BOJ, Virtual Judge, Replay Contest, Problem Category" />
   <meta name="author" content="51isoft">
   <link rel="shortcut icon" href="<%= root_url.end_with?('/') ? root_url : root_url + '/' %>favicon.ico" />
-  <title><%= @page_title.nil? ? "BNU Online Judge" : @page_title %></title>
+  <title><%= @page_title.nil? ? I18n.t("home.default_title") : @page_title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript">
     var baseUrl = "<%= root_url.end_with?('/') ? root_url : root_url + '/' %>";
@@ -36,7 +36,7 @@
       <hr />
       <footer id="footer">
         <p>
-          Distributed under GPLv3. | <a href='https://github.com/51isoft/bnuoj' target="_blank">Project Homepage</a> | Developer: <a href="mailto:yichaonet#gmail.com">51isoft</a>.
+          <%= raw I18n.t("home.footer_note") %>
         </p>
       </footer>
     </div>

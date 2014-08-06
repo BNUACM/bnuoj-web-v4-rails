@@ -1,0 +1,24 @@
+en-us:
+  contest:
+    btns:
+      arrange_vcontest: Arrange VContest
+      all: All
+      standard: Standard
+      virtual: Virtual
+      icpc: ICPC
+      cf: CF
+      replay: Replay
+      non_replay: Non-Replay
+      public: Public
+      password: Password
+      private: Private
+    headers:
+      cid: ID
+      title: Title
+      start_time: Start Time
+      end_time: End Time
+      status: Status
+      access: Access
+      manager: Manager
+      private: Private
+      type: Type

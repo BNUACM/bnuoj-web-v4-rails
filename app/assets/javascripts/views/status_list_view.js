@@ -195,7 +195,7 @@
             "mRender": function ( data, type, full ) {
               return BNUOJ.Utils.getLocalTime(data);
             },
-            "aTargets": [ 9 ]
+            "aTargets": [ 8 ]
           }
         ]
       });

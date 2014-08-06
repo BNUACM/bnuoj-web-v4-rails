@@ -69,3 +69,6 @@ gem "will_paginate"
 
 # bower and rails, yay~
 gem "bower-rails", "~> 0.7.1"
+
+#I18n-js
+gem 'i18n-js'

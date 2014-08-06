@@ -2,18 +2,18 @@
   <div class="col-sm-12">
     <% if logged_in? %>
       <div class="btn-group unsolved-btns">
-        <button class="btn btn-default" unsolved='0'>All</button>
-        <button class="btn btn-default" unsolved='1'>Unsolved</button>
+        <button class="btn btn-default" unsolved='0'><%= t "problem.btns.all" %></button>
+        <button class="btn btn-default" unsolved='1'><%= t "problem.btns.unsolved" %></button>
       </div>
     <% end %>
     <div class="btn-group stat-btns">
-      <button class="btn btn-default" stat='0'>Local Stat</button>
-      <button class="btn btn-default" stat='1'>Remote Stat</button>
-      <button class="btn btn-default" stat='2'>Remote User Stat</button>
+      <button class="btn btn-default" stat='0'><%= t "problem.btns.local_stat" %></button>
+      <button class="btn btn-default" stat='1'><%= t "problem.btns.remote_stat" %></button>
+      <button class="btn btn-default" stat='2'><%= t "problem.btns.remote_user_stat" %></button>
     </div>
     <div class="btn-group">
       <select class="form-control" id="selectoj">
-        <option value="">All</option>
+        <option value=""><%= t "problem.btns.all" %></option>
         <% OjInfo.all.each { |info| %>
           <option value="<%= info.name %>"><%= info.name %></option>
         <% } %>
@@ -26,18 +26,18 @@
     <table class="table table-striped table-hover" id="problist">
       <thead>
         <tr>
-          <th>Flag</th>
-          <th>PID</th>
-          <th class="title" width="25%">Title</th>
-          <th class="source" width="23%">Source</th>
-          <th>AC</th>
-          <th>All</th>
-          <th>AC</th>
-          <th>All</th>
-          <th>AC(U)</th>
-          <th>All(U)</th>
-          <th>OJ</th>
-          <th>VID</th>
+          <th><%= t "problem.headers.flag" %></th>
+          <th><%= t "problem.headers.pid" %></th>
+          <th class="title" width="25%"><%= t "problem.headers.title" %></th>
+          <th class="source" width="23%"><%= t "problem.headers.source" %></th>
+          <th><%= t "problem.headers.ac" %></th>
+          <th><%= t "problem.headers.all" %></th>
+          <th><%= t "problem.headers.ac" %></th>
+          <th><%= t "problem.headers.all" %></th>
+          <th><%= t "problem.headers.user_ac" %></th>
+          <th><%= t "problem.headers.user_all" %></th>
+          <th><%= t "problem.headers.oj" %></th>
+          <th><%= t "problem.headers.vid" %></th>
         </tr>
       </thead>
       <tbody>

@@ -1,0 +1,41 @@
+en-us:
+  problem:
+    btns:
+      all: All
+      unsolved: Unsolved
+      local_stat: Local Stat
+      remote_stat: Remote Stat
+      remote_user_stat: Remote User Stat
+      submit: Submit
+      status: Status
+      stat: Statistics
+      discuss: Discuss
+      edit: Edit
+    headers:
+      flag: Flag
+      pid: ID
+      title: Title
+      source: Source
+      ac: AC
+      all: All
+      user_ac: AC(U)
+      user_all: All(U)
+      oj: OJ
+      vid: VID
+    show:
+      time_limit: "Time Limit: %{time} ms"
+      case_time_limit: "Case Time Limit: %{time} ms"
+      memory_limit: "Memory Limit: %{memory} KB"
+      virtual_info: "This problem will be judged on <span class='label label-info'>%{oj}</span> &nbsp;&nbsp;&nbsp;&nbsp; Original ID: <a href='%{url}' target='_blank'>%{id}</a>"
+      language_info: "64-bit integer IO format: <span class='label label-primary'>%{io}</span> &nbsp;&nbsp;&nbsp;&nbsp; Java class name: <span class='label label-primary'>%{class}</span>"
+      spj: Special Judge
+      hidden: This problem is hidden.
+      input: Input
+      output: Output
+      sample_input: Sample Input
+      sample_output: Sample Output
+      hint: Hint
+      source: Source
+      author: Author
+      tags: Tags
+      toggle: Toggle

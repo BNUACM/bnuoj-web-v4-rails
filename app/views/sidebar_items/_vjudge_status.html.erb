@@ -1,16 +1,16 @@
-<h3>VJudge Status</h3>
-By checking remote status page every 10 minutes.
+<h3><%= t "sidebars.vjudge_status.title" %></h3>
+<%= t "sidebars.vjudge_status.desc" %>
 <table class='table table-hover table-striped table-condensed' width="100%">
   <thead>
     <tr>
-      <th width="70%">OJ</th>
-      <th width="30%">Status</th>
+      <th width="70%"><%= t "sidebars.vjudge_status.oj" %></th>
+      <th width="30%"><%= t "sidebars.vjudge_status.status" %></th>
     </tr>
   </thead>
   <tbody>
 
-  <% OjInfo.where('name NOT LIKE ?', 'BNU').each { |info| %>
-    <tr title='Last Check: <%= info.lastcheck %>, <%= info.status %>'>
+  <% OjInfo.where('name NOT LIKE ?', OJ_CONFIG["misc"]["OJcode"]).each { |info| %>
+    <tr title='<%= t "sidebars.vjudge_status.check_text", :time => info.lastcheck_display, :status => info.status %>'>
       <td><%= info.name %></td>
       <% if info.status == "Normal" %>
         <td><img src='<%= image_path("green_light.png") %>' /></td>

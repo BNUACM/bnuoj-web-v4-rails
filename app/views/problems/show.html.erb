@@ -18,33 +18,33 @@
     <h2 class="text-center"> <span class="problem-id"><%= @problem.pid %></span>. <%= @problem.title %> </h2>
     <div class="well text-center">
       <% if @problem.ignore_noc || @problem.time_limit == @problem.case_time_limit %>
-        <div class="col-sm-6">Time Limit: <%= @problem.time_limit %> ms</div>
-        <div class="col-sm-6">Memory Limit: <%= @problem.memory_limit %> KB</div>
+        <div class="col-sm-6"><%= t "problem.show.time_limit", :time => @problem.time_limit %></div>
+        <div class="col-sm-6"><%= t "problem.show.memory_limit", :memory => @problem.memory_limit %></div>
       <% else %>
-        <div class="col-sm-4">Time Limit: <%= @problem.time_limit %> ms</div>
-        <div class="col-sm-4">Case Time Limit: <%= @problem.case_time_limit %> ms</div>
-        <div class="col-sm-4">Memory Limit: <%= @problem.memory_limit %> KB</div>
+        <div class="col-sm-4"><%= t "problem.show.time_limit", :time => @problem.time_limit %></div>
+        <div class="col-sm-4"><%= t "problem.show.case_time_limit", :time => @problem.case_time_limit %></div>
+        <div class="col-sm-4"><%= t "problem.show.memory_limit", :memory => @problem.memory_limit %></div>
       <% end %>
       <% if @problem.isvirtual %>
-        <p>This problem will be judged on <span class="label label-info"><%= @problem.vname %></span>. Original ID: <a href="<%= @problem.to_url %>" target="_blank"><%= @problem.vid %></a></p>
+        <p><%= raw t("problem.show.virtual_info", :oj => @problem.vname, :url => @problem.to_url, :id => @problem.vid) %></p>
       <% end %>
-      <p>64-bit integer IO format: <span class="label label-primary"><%= @problem.oj_info.int64io %></span> &nbsp;&nbsp;&nbsp;&nbsp; Java class name: <span class="label label-primary"><%= @problem.oj_info.javaclass %></span></p>
+      <p><%= raw t("problem.show.language_info", :io => @problem.oj_info.int64io, :class => @problem.oj_info.javaclass) %></p>
       <% if @problem.special_judge_status != 0 %>
-        <p><span class="label label-danger">Special Judge</span></p>
+        <p><span class="label label-danger"><%= t "problem.show.spj" %></span></p>
       <% end %>
       <% if @problem.hide %>
-        <p><b>This problem is hidden.</b></p>
+        <p><b><%= t "problem.show.hidden" %></b></p>
       <% end %>
     </div>
     <div class="text-center problem-actions">
       <div class="btn-group">
-        <a href="#" class="submit-problem btn btn-primary">Submit</a>
-        <a href="<%= url_for :controller => 'statuses', :action => 'index' %>?pid=<%= @problem.pid %>" class="btn btn-default">Status</a>
-        <a href="problem_stat.php?pid=<?=$pid?>" class="btn btn-default">Statistics</a>
-        <a href="discuss.php?pid=<?=$pid?>" class="btn btn-default">Discuss</a>
+        <a href="#" class="submit-problem btn btn-primary"><%= t "problem.btns.submit" %></a>
+        <a href="<%= url_for :controller => 'statuses', :action => 'index' %>?pid=<%= @problem.pid %>" class="btn btn-default"><%= t "problem.btns.status" %></a>
+        <a href="problem_stat.php?pid=<%= @problem.pid %>" class="btn btn-default"><%= t "problem.btns.stat" %></a>
+        <a href="discuss.php?pid=<%= @problem.pid %>" class="btn btn-default"><%= t "problem.btns.discuss" %></a>
       </div>
       <% if logged_in? && current_user.is_admin? %>
-        <a href="admin_index.php?pid=<?=$pid?>#problemtab" class="btn btn-primary">Edit</a>
+        <a href="admin_index.php?pid=<%= @problem.pid %>#problemtab" class="btn btn-primary"><%= t "problem.btns.edit" %></a>
       <% end %>
     </div>
 
@@ -56,7 +56,7 @@
     <% end %>
 
     <% unless @problem.input.empty? %>
-      <h3> Input </h3>
+      <h3> <%= t "problem.show.input" %> </h3>
       <div class="content-wrapper well">
         <%= raw @problem.input %>
         <div style="clear:both"></div>
@@ -64,7 +64,7 @@
     <% end %>
 
     <% unless @problem.output.empty? %>
-      <h3> Output </h3>
+      <h3> <%= t "problem.show.output" %> </h3>
       <div class="content-wrapper well">
         <%= raw @problem.output %>
         <div style="clear:both"></div>
@@ -72,7 +72,7 @@
     <% end %>
 
     <% unless @problem.sample_in.empty? %>
-      <h3> Sample Input </h3>
+      <h3> <%= t "problem.show.sample_input" %> </h3>
       <% if @problem.sample_in.index("<br").nil? && @problem.sample_in.index("<p").nil? %>
         <pre class="content-wrapper"><%= raw @problem.sample_in %></pre>
       <% else %>
@@ -83,7 +83,7 @@
     <% end %>
 
     <% unless @problem.sample_out.empty? %>
-      <h3> Sample Output </h3>
+      <h3> <%= t "problem.show.sample_output" %> </h3>
       <% if @problem.sample_out.index("<br").nil? && @problem.sample_out.index("<p").nil? %>
         <pre class="content-wrapper"><%= raw @problem.sample_out %></pre>
       <% else %>
@@ -94,7 +94,7 @@
     <% end %>
 
     <% unless @problem.hint.length < 50 && strip_tags(@problem.hint).empty? %>
-      <h3> Hint </h3>
+      <h3> <%= t "problem.show.hint" %> </h3>
       <div class="content-wrapper well">
         <%= raw @problem.hint %>
         <div style="clear:both"></div>
@@ -102,21 +102,21 @@
     <% end %>
 
     <% unless @problem.source.empty? %>
-      <h3> Source </h3>
+      <h3> <%= t "problem.show.source" %> </h3>
       <div class="content-wrapper well">
         <a href="<%= url_for :controller => 'problems', :action => 'index' %>?searchstr=<%= @problem.source %>"><%= @problem.source %></a>
       </div>
     <% end %>
 
     <% unless @problem.author.empty? %>
-      <h3> Author </h3>
+      <h3> <%= t "problem.show.author" %> </h3>
       <div class="content-wrapper well">
         <%= raw @problem.author %>
       </div>
     <% end %>
 
     <% unless @problem.tagged_categories.empty? %>
-      <h3> Tags <button class="btn btn-danger" id="tags_toggle">Toggle</button> </h3>
+      <h3> <%= t "problem.show.tags" %> <button class="btn btn-danger" id="tags_toggle"><%= t "problem.show.toggle" %></button> </h3>
       <div id="problem_tags" class="content-wrapper well" style="display: none">
         <% @problem.tagged_categories.each do |category| %>
           <a style='font-size:<%= (category.weight.to_f)*0.15+90 %>%' href='problem_category_result.php?category=<%= category.catid %>' target='_blank'><%= category.category.name %></a>

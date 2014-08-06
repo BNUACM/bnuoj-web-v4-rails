@@ -51,12 +51,38 @@
     _template: "templates/dialogs/source_code_box",
     _withAjax: true,
 
+    events: {
+      "click #rshare .btn": "onShareChange"
+    },
+
     _selectors: {
-      SOURCE_CODE: "pre"
+      SOURCE_CODE: "pre",
+      SHARE_BTNS: "#rshare .btn",
+      RUNID: ".runid",
+      SHARE_NOTE: "#sharenote"
     },
 
     onAjaxContentLoaded: function() {
       this.ajaxContent.displayResult = "<span class='" + BNUOJ.Utils.getResultClass(this.ajaxContent.result) + "'>" + this.ajaxContent.result + "</span>"
+    },
+
+    onShareChange: function(evt) {
+      if (this.$(evt.target).hasClass("active")) {
+        return;
+      }
+      var isshared = this.$(evt.target).attr("isshared");
+      var runid = this.$(this._selectors.RUNID).text();
+      var self = this;
+
+      this.$(this._selectors.SHARE_BTNS).removeClass("active");
+      this.$(evt.target).addClass("active");
+      this.$(this._selectors.SHARE_NOTE).toggle();
+
+      $.post(basePath + "statuses/" + runid + ".json", {
+        _method: "PATCH",
+        isshared: isshared,
+        authenticity_token: BNUOJ.Utils.getCsrfToken()
+      });
     },
 
     onFailed: function() {

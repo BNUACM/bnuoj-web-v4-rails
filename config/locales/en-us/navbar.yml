@@ -1,0 +1,30 @@
+en-us:
+  navbar:
+    toggle_navigation: Toggle Navigation
+    brand_name: BNUOJ
+    problem:
+      main: Problem
+      local_problems: Local Problems
+      all_problems: All Problems
+      problem_category: Problem Category
+    status: Status
+    contest:
+      main: Contest
+      standard_contests: Standard Contests
+      icpc_contests: Contests (ICPC format)
+      cf_contests: Contests (CF format)
+      replay_contests: Replay Contests
+      virtual_contests: Virtual Contests
+    more: More
+    ranklist: Ranklist
+    discuss: Discuss
+    news: News
+    our_team: Our Team
+    recent_contests: Recent Contests
+    login: Login
+    register: Register
+    logout: Logout
+    personal:
+      show_my_info: Show My Information
+      modify_my_info: Modify My Information
+      admin: Administration

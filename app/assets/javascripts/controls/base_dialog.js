@@ -6,6 +6,11 @@
 
     init: function() {
       var self = this;
+      $(this._container).on("hide.bs.modal", function() {
+        if (self._currentDialog) {
+          self._currentDialog.onClose();
+        }
+      });
       $(this._container).on("hidden.bs.modal", function() {
         self._currentDialog = null;
         $(self._container).off("shown.bs.modal");
@@ -58,6 +63,8 @@
       this.ajaxContent = content;
       this.ajaxContentLoaded = true;
       this.onAjaxContentLoaded();
+      // render will bind events, so unbind first
+      this.unBindEvents();
       this.render();
     },
 
@@ -83,6 +90,10 @@
     },
 
     onAjaxContentLoaded: function() {
+    },
+
+    onClose: function() {
+      this.unBindEvents();
     }
   })
 

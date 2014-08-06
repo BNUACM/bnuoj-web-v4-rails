@@ -1,9 +1,9 @@
 <% contests = Contest.standard.running.order(start_time: :desc).limit(5) %>
 <% if contests.count > 0 %>
-  <h3>Running Contests</h3>
+  <h3><%= I18n.t "sidebars.contests.running_contests" %></h3>
   <p>
     <% contests.each { |contest| %>
-      <a href='<%= url_for :controller => 'contests', :action => 'show', :id => contest.cid %>'><%= contest.title %></a> ends at <span class='display_time'><%= contest.final_time %></span><br />
+      <%= raw I18n.t("sidebars.contests.current_item", :link => url_for(:controller => 'contests', :action => 'show', :id => contest.cid), :title => contest.title, :end_time => contest.final_time) %><br />
     <% } %>
   </p>
 <% end %>
