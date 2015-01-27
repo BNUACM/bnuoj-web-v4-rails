@@ -1,6 +1,10 @@
+// Initialize BNUOJ object.
 window.BNUOJ = {
-  Helpers: {},
+  // Common Utilities.
   Utils: {},
+  // View controllers.
   Views: {}
 };
-var globalConfig = (<%= JS_CONFIG.to_json %>);
+
+// Inject global configs.
+window.globalConfig = (<%= JS_CONFIG.to_json %>);

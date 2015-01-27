@@ -1,4 +1,5 @@
 (function($) {
+  // Standalone sign-in page.
   BNUOJ.Views.SignInView = BNUOJ.Views.PageView.extend({
     events: _.extend({
       "correct #login_form": "onLoggedIn"

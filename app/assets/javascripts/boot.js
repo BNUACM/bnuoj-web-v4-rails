@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // Corresponding view controller for each path pattern.
   var viewRoutes = {
     "^$"                                : BNUOJ.Views.HomeView,
     "^problems(\/?)$"                   : BNUOJ.Views.ProblemListView,
@@ -9,12 +10,16 @@ $(document).ready(function() {
     "^problems\/[0-9]+$"                : BNUOJ.Views.ProblemShowView
   };
 
-  // find first matching route
+  // Find the first matching route.
   var viewClass = _.find(viewRoutes, function(viewClass, route) {
     return window.location.pathname.substr(basePath.length).match(route);
   });
 
-  currentView = new viewClass;
+  window.currentView = new viewClass;
+
+  // Boot js env.
   currentView.render();
+
+  // Initialize dialog service.
   BNUOJ.Dialogs.init();
 });

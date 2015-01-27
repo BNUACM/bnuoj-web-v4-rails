@@ -1,21 +1,28 @@
 (function($) {
   BNUOJ.Views.BaseView = BaseClass.extend({
 
-    // following three params should be overwrited
+    // Should be overrided, the dom container of this view.
     _container: null,
+
+    // Events binded to this view.
     events: {},
 
+    // Common selectors, good for reuse.
     _selectors: {
       AJAX_FORM_BTNS: "input:submit, button:submit, .btn",
-      AJAX_FORM_MSG: "#msgbox"
+      AJAX_FORM_MSG: "#msgbox",
+      DISPLAY_TIME: ".display_time"
     },
 
+    // Standard ajax loading html, can be overrided.
     ajaxLoadingHtml: '<img style="height:20px" src="' + basePath + 'assets/ajax-loader.gif" /> Loading....',
 
+    // jQuery selector inside the view dom.
     $: function() {
       return this.$el.find.apply(this.$el, arguments);
     },
 
+    // Acutally renders the view.
     render: function() {
       this.$el = $(this._container);
       this.beforeAll();
@@ -28,10 +35,8 @@
       this.afterAll();
     },
 
-    /**
-     * Bind delegated events
-     * https://learn.jquery.com/events/event-delegation/
-     */
+    // Bind events using delegation, so it will also work on elements created after initialization.
+    // https://learn.jquery.com/events/event-delegation/
     bindEvents: function() {
       var self = this;
       _.each(this.events, function(func, evt) {
@@ -43,6 +48,7 @@
       })
     },
 
+    // Unbinds all events.
     unBindEvents: function() {
       var self = this;
       _.each(this.events, function(func, evt) {
@@ -51,24 +57,27 @@
       })
     },
 
+    // Can be overrided.
     beforeAll: function() {
     },
 
+    // Can be overrided.
     afterAll: function() {
     },
 
-    // should be overwrite by inherited class
+    // Can be overrided.
     beforeRender: function() {
     },
 
-    // should be overwrite by inherited class
+    // Should be overrided.
     renderInternal: function() {
     },
 
-    // should be overwrite by inherited class
+    // Can be overrided.
     afterRender: function() {
     },
 
+    // Convert server time to local time.
     convertDisplayTime: function() {
       this.$(this._selectors.DISPLAY_TIME).each(function() {
         var time = $(this).text();
@@ -76,7 +85,8 @@
       });
     },
 
-    // setup basic ajax forms
+    // Setup ajax forms with standard behaviors.
+    // TODO(51isoft): Consider move this to a proper place.
     setupAjaxForms: function() {
       var self = this;
       this.$("form.ajform").ajaxForm({
