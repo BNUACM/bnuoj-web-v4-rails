@@ -126,7 +126,7 @@
       this.updateCurrentInfo();
 
       var url = this.getViewUrl();
-      // Avoid push empty string to history
+      // Avoid push empty string to history。
       url += ("&page=" + this.currentInfo.page);
       if (this.withSearchBar) {
         url += (this.currentInfo.searchString == "" || this.currentInfo.searchString == null) ? 

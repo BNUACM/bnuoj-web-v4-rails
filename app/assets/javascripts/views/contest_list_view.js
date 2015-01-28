@@ -1,4 +1,5 @@
 (function($) {
+  // Contest list page.
   BNUOJ.Views.ContestListView = BNUOJ.Views.DatatableHistoryView.extend({
     events: _.extend({
       "click .type-btns .btn": "clickContestType",
@@ -25,6 +26,7 @@
       isVirtual: null
     }, BNUOJ.Views.DatatableHistoryView.prototype.currentInfo),
 
+    // Override.
     parseUrlParams: function(url) {
       url = url || window.location.href;
       this.currentInfo.contestType = BNUOJ.Utils.getUrlParam('type', url) || "-99";
@@ -33,6 +35,7 @@
       return "";
     },
 
+    // Override.
     filterStateInfo: function(info) {
       if (info.contestType != this.currentInfo.contestType) {
         $(this._selectors.CONTEST_TYPE_BTNS).filter('[contest-type=' + info.contestType + ']').click();
@@ -45,22 +48,26 @@
       }
     },
 
+    // Override.
     afterViewAll: function() {
       $(this._selectors.CONTEST_TYPE_BTNS).filter('[contest-type=' + this.currentInfo.contestType + ']').click();
       $(this._selectors.ACCESS_BTNS).filter('[access=' + this.currentInfo.access + ']').click();
       $(this._selectors.IS_VIRTUAL_BTNS).filter('[is-virtual=' + this.currentInfo.isVirtual + ']').click();
     },
 
+    // Override.
     getCurrentTitle: function() {
       return "Contest List";
     },
 
+    // Override.
     getViewUrl: function() {
       return (this.currentInfo.contestType == "-99" || this.currentInfo.contestType == null ? "" : "&type=" + encodeURIComponent(this.currentInfo.contestType)) +
           (this.currentInfo.access == "" || this.currentInfo.access == null ? "" : "&access=" + encodeURIComponent(this.currentInfo.access)) +
           (this.currentInfo.isVirtual == "0" || this.currentInfo.isVirtual == null ? "" : "&virtual=" + encodeURIComponent(this.currentInfo.isVirtual));
     },
 
+    // When user click contest type radio buttons to filter contests.
     clickContestType: function(evt) {
       if ($(evt.target).hasClass('active')) return;
       this.currentInfo.contestType = $(evt.target).attr('contest-type');
@@ -69,6 +76,7 @@
       this.listTable.fnFilter(this.currentInfo.contestType, 7);
     },
 
+    // When user click access type radio buttons to filter contests.
     clickAccess: function(evt) {
       if ($(evt.target).hasClass('active')) return;
       this.currentInfo.access = $(evt.target).attr('access');
@@ -77,6 +85,7 @@
       this.listTable.fnFilter(this.currentInfo.access, 4);
     },
 
+    // When user click is-virtual type radio buttons to filter contests.
     clickIsVirtual: function(evt) {
       if ($(evt.target).hasClass('active')) return;
       this.currentInfo.isVirtual = $(evt.target).attr('is-virtual');
@@ -90,12 +99,11 @@
       this.listTable.fnFilter(this.currentInfo.isVirtual, 6);
     },
 
+    // Override. Nothing specific to do.
     renderView: function() {
     },
 
-    afterTableDrawn: function() {
-    },
-
+    // Override.
     setupTableOptions: function() {
       this.tableOptions = ({
         "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
@@ -117,18 +125,22 @@
           { "bVisible": false, "aTargets": [ 6, 7, 8 ] },
           {
             "mRender": function ( data, type, full ) {
+              // Enhance cid column.
               return "<a href='" + basePath + "contests/" + full[0] + "' title='" + BNUOJ.Utils.escapeHtml(BNUOJ.Utils.stripTags(data)) + "'>" + data + "</a>";
-            },
-            "aTargets": [ 1 ]
-          },
-          {
-            "mRender": function ( data, type, full ) {
-              return "<a href='" + basePath + "contests/" + data + "'>" + data + "</a>";
             },
             "aTargets": [ 0 ]
           },
           {
             "mRender": function ( data, type, full ) {
+              // Enhance title column.
+              return "<a href='" + basePath + "contests/" + data + "'>" + data + "</a>";
+            },
+            "aTargets": [ 1 ]
+          },
+          {
+            "mRender": function ( data, type, full ) {
+              // Enhance current status.
+              // TODO(51isoft): I18n.
               if (data == "Passed") {
                 return "<span class='passed'>" + data + "</a>";
               } else if (data == "Scheduled") {
@@ -141,6 +153,8 @@
           },
           {
             "mRender": function ( data, type, full ) {
+              // Enhance access status.
+              // TODO(51isoft): I18n.
               if (data == "Public") {
                 return "<span class='public'>" + data + "</a>";
               } else {
@@ -151,6 +165,7 @@
           },
           {
             "mRender": function ( data, type, full ) {
+              // Enhance owner status.
               if (!_.isEmpty(data)) {
                 return "<a href='" + basePath + "users/" + data + "' target='_blank'>" + data + "</a>";
               }
@@ -162,6 +177,7 @@
           },
           {
             "mRender": function ( data, type, full ) {
+              // Enhance begin time and end time columns.
               return BNUOJ.Utils.getLocalTime(data);
             },
             "aTargets": [ 2, 3 ]

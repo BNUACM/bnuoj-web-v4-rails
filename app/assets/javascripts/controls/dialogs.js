@@ -1,5 +1,6 @@
 (function($) {
 
+  // Login dialog.
   BNUOJ.Dialogs.LoginDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/login_box",
 
@@ -21,11 +22,13 @@
     }
   });
 
+  // Show news.
   BNUOJ.Dialogs.NewsDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/news_box",
     _withAjax: true
   });
 
+  // Register dialog.
   BNUOJ.Dialogs.RegisterDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/register_box",
 
@@ -42,11 +45,13 @@
     }
   });
 
+  // Modify info dialog.
   BNUOJ.Dialogs.ModifyUserDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/modify_user_box",
     _withAjax: true
   });
 
+  // Show source code.
   BNUOJ.Dialogs.SourceCodeDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/source_code_box",
     _withAjax: true,
@@ -63,9 +68,11 @@
     },
 
     onAjaxContentLoaded: function() {
-      this.ajaxContent.displayResult = "<span class='" + BNUOJ.Utils.getResultClass(this.ajaxContent.result) + "'>" + this.ajaxContent.result + "</span>"
+      // Add span class wrapper for status result.
+      this.ajaxContent.displayResult = "<span class='" + BNUOJ.Utils.getResultClass(this.ajaxContent.result) + "'>" + this.ajaxContent.result + "</span>";
     },
 
+    // User clicks share radio.
     onShareChange: function(evt) {
       if (this.$(evt.target).hasClass("active")) {
         return;
@@ -87,25 +94,31 @@
 
     onFailed: function() {
       if (loggedIn) {
-        BNUOJ.Dialogs.show("error_box", { errorMessage: "No permission to see this code." });
+        BNUOJ.Dialogs.show("error_box", {
+          errorMessage: "No permission to see this code."
+        });
       } else {
         BNUOJ.Dialogs.show("login_box");
       }
     },
 
     afterRender: function() {
+      // Highlight code.
       this.$(this._selectors.SOURCE_CODE).each(function(idx, el) {
         el.innerHTML = prettyPrintOne(el.innerHTML);
       });
     }
   });
 
+  // Basic error dialog.
   BNUOJ.Dialogs.ErrorDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/error_box",
+    // TODO(51isoft): I18n.
     errorTitle: "Error Occured",
     errorMessage: "Something is wrong."
   });
 
+  // Code submit dialog.
   BNUOJ.Dialogs.SubmitDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/submit_box",
     events: {
@@ -117,18 +130,16 @@
     }
   });
 
-  BNUOJ.Dialogs.ModifyUserDialog = BNUOJ.Dialogs.BaseDialog.extend({
-    _template: "templates/dialogs/modify_user_box",
-    _withAjax: true
-  });
-
+  // Shows compiling info of a run.
   BNUOJ.Dialogs.CompileInfoDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/compile_info_box",
     _withAjax: true,
 
     onFailed: function() {
       if (loggedIn) {
-        BNUOJ.Dialogs.show("error_box", { errorMessage: "No permission to see this code." });
+        BNUOJ.Dialogs.show("error_box", {
+          errorMessage: "No permission to see this code."
+        });
       } else {
         BNUOJ.Dialogs.show("login_box");
       }

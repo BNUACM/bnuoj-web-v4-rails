@@ -8,6 +8,7 @@
     _selectors: _.extend({
     }, BNUOJ.Views.PageView.prototype._selectors),
 
+    // Redirect back.
     onLoggedIn: function() {
       var url = BNUOJ.Utils.getUrlParam("redirect_to");
       if (url) {

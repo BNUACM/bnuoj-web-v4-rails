@@ -1,4 +1,5 @@
 (function($) {
+	// Shows the source code of a run.
   BNUOJ.Views.ShowSourceView = BNUOJ.Views.PageView.extend({
     events: _.extend({
     }, BNUOJ.Views.PageView.prototype.events),

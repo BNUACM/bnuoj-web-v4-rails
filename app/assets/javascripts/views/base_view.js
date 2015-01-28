@@ -1,4 +1,5 @@
 (function($) {
+  // Base class for every view.
   BNUOJ.Views.BaseView = BaseClass.extend({
 
     // Should be overrided, the dom container of this view.
