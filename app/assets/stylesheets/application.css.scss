@@ -9,8 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap/dist/css/bootstrap
- *= require bootstrap-cerulean
+ *= require bootswatch-dist/css/bootstrap
  *= require google-code-prettify/src/prettify
  *= require datatables-bootstrap3
  *= require_tree .
