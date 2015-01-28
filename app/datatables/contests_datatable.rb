@@ -10,6 +10,7 @@ class ContestsDatatable
     @view.send(meth, *args, &block)
   end
 
+  # Override this to fit datatable format.
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
@@ -52,10 +53,10 @@ private
     @columns.each_index { |i|
       if params["bSearchable_#{i}"] == "true" && !params["sSearch_#{i}"].empty?
         if @columns[i] == "contest.type" && params["sSearch_#{i}"] == "-99"
-          # hack for non-replay contests
+          # Hack for non-replay contests
           records = records.where("#{@columns[i]} != 99")
         elsif @columns[i] == "contest.type" && params["sSearch_#{i}"] == "all"
-          # hack when contest type is all
+          # Hack when contest type is all
         else
           records = records.where("#{@columns[i]} = ?", params["sSearch_#{i}"])
         end

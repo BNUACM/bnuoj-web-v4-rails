@@ -15,6 +15,7 @@ class StatusesController < ApplicationController
     end
   end
 
+  # Check if the current run is visible to current user.
   def check_visibility
     set_status
     viewable = begin
@@ -42,6 +43,7 @@ class StatusesController < ApplicationController
     end
   end
 
+  # Show compile info, standalone page.
   def compile_info
     @page_title = "Compile Information of Run #{@status.runid}"
     respond_to do |format|
@@ -54,6 +56,7 @@ class StatusesController < ApplicationController
     end
   end
 
+  # Show source code, standalone page.
   def show
     @page_title = "Source Code of Run #{@status.runid}"
     respond_to do |format|
@@ -96,6 +99,7 @@ class StatusesController < ApplicationController
     end
   end
 
+  # Notify dispacther.
   def send_socket_message options={}
     sock = TCPSocket.new OJ_CONFIG["contact"]["server"], OJ_CONFIG["contact"]["port"]
     sock.puts options[:type]
@@ -104,6 +108,7 @@ class StatusesController < ApplicationController
     sock.close
   end
 
+  # Check whether the submit is valid.
   def check_submit_valid
     begin
       raise 'Source code too long' if params[:status][:source].length > JS_CONFIG["limits"]["max_source_code_len"]

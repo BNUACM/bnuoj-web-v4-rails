@@ -10,6 +10,7 @@ class ProblemsDatatable
     @view.send(meth, *args, &block)
   end
 
+  # Override this to fit datatable format.
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,

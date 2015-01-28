@@ -3,6 +3,7 @@ class StatusesDatatable
   def initialize(view)
     @view = view
     @columns = %w[username runid pid result language time_used memory_used LENGTH(source) time_submit isshared]
+    # Eager load language_name since we'll need that to render
     @model = Status.eager_load(:language_name)
   end
 
@@ -10,6 +11,7 @@ class StatusesDatatable
     @view.send(meth, *args, &block)
   end
 
+  # Override this to fit datatable format.
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
@@ -66,7 +68,7 @@ private
   def fetch_records
     records = @model.public.order("status.runid DESC")
     records = search_records(records)
-    # will_paginate will do count(*), so just use offset and limit here
+    # Will_paginate will do count(*), so just use offset and limit here
     records = records.offset(offset).limit(per_page)
   end
 

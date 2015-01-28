@@ -21,11 +21,13 @@ class ApplicationController < ActionController::Base
   end
 
   def encrypt_password(password)
-    Base64.encode64(Encryptor.encrypt(:value => password, :key => OJ_CONFIG["encrypt"]["password"]["key"], :iv => OJ_CONFIG["encrypt"]["password"]["iv"], :salt => OJ_CONFIG["encrypt"]["password"]["salt"]))
+    Base64.encode64(Encryptor.encrypt(:value => password, :key => OJ_CONFIG["encrypt"]["password"]["key"],
+      :iv => OJ_CONFIG["encrypt"]["password"]["iv"], :salt => OJ_CONFIG["encrypt"]["password"]["salt"]))
   end
 
   def decrypt_password(password)
-    Encryptor.decrypt(:value => Base64.decode64(password), :key => OJ_CONFIG["encrypt"]["password"]["key"], :iv => OJ_CONFIG["encrypt"]["password"]["iv"], :salt => OJ_CONFIG["encrypt"]["password"]["salt"])
+    Encryptor.decrypt(:value => Base64.decode64(password), :key => OJ_CONFIG["encrypt"]["password"]["key"],
+      :iv => OJ_CONFIG["encrypt"]["password"]["iv"], :salt => OJ_CONFIG["encrypt"]["password"]["salt"])
   end
 
   def logged_in?
@@ -33,6 +35,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :logged_in?
 
+  # Get current user, if not signed in, return nil.
   def current_user
     if !get_cookie("username").nil? && !get_cookie("password").nil?
       @user ||= User.find_by(username: get_cookie("username"))
@@ -51,6 +54,7 @@ class ApplicationController < ActionController::Base
   # login filter
   def need_login
     unless logged_in?
+      # TODO(51isoft): I18n.
       render status: :forbidden, json: { msg: "Login needed." }
       return
     end
@@ -59,6 +63,7 @@ class ApplicationController < ActionController::Base
   # admin filter
   def need_admin
     unless logged_in? && current_user.is_admin?
+      # TODO(51isoft): I18n.
       render status: :forbidden, json: { msg: "Admin needed." }
       return
     end

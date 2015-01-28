@@ -9,7 +9,8 @@ class Status < ActiveRecord::Base
   scope :accepted, ->{ where(result: "Accepted") }
   scope :public, ->{ joins('LEFT JOIN contest ON status.contest_belong = contest.cid').where('contest_belong = 0 OR end_time < NOW()') }
 
-  def to_json(options={})
+  # Override to specify the columns to show.
+  def to_json(options = {})
     options[:methods] = [] if options[:methods].nil?
     options[:except] = [] if options[:except].nil?
     options[:include] = [] if options[:include].nil?
@@ -20,6 +21,7 @@ class Status < ActiveRecord::Base
     super(options)
   end
 
+  # Format time_submit.
   def time_submit_display
     begin
       time_submit.strftime OJ_CONFIG["misc"]["datetime_format"]

@@ -14,6 +14,7 @@ class ProblemsController < ApplicationController
     end
   end
 
+  # Check if the current problem is visible to current user.
   def check_visibility
     set_problem
     viewable = begin

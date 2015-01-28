@@ -22,43 +22,54 @@ class Contest < ActiveRecord::Base
       )
   ') }
 
+  # Real contest end time for each type of contest.
   def final_time
     return challenge_end_time if has_cha
     return end_time
   end
 
+  # Whether is in challenging phase, always false for non challenge contest.
   def challenging?
     return false unless has_cha
     return Time.now > challenge_start_time && Time.now < challenge_end_time
   end
 
+  # Whether is in coding phase, or running for non challenge contest.
   def coding?
     return Time.now > start_time && Time.now < end_time
   end
 
+  # Whether is in intermission phase, always false for non challenge contest.
   def intermission?
     return false unless has_cha
     return Time.now > end_time && Time.now < challenge_start_time
   end
 
+  # Whether contest has started.
   def started?
     return Time.now > start_time
   end
 
+  # Whether contest is running.
   def running?
     return Time.now > start_time && Time.now < final_time
   end
 
+  # Whether contest has finished.
   def ended?
     return Time.now > final_time
   end
 
+  # Status display text for datatables.
+  # TODO(51isoft): I18n.
   def status_text
     return "Running" if running?
     return "Scheduled" if !started?
     return "Passed" if ended?
   end
 
+  # Access text for datatables.
+  # TODO(51isoft): I18n.
   def access_text
     case isprivate
     when 1
@@ -70,14 +81,17 @@ class Contest < ActiveRecord::Base
     end
   end
 
+  # Formats start time for datatables.
   def start_time_display
     start_time.strftime OJ_CONFIG["misc"]["datetime_format"]
   end
 
+  # Formats end time for datatables.
   def final_time_display
     final_time.strftime OJ_CONFIG["misc"]["datetime_format"]
   end
 
+  # Whether username is in this contest.
   def has_user username
     case isprivate
     when 1
