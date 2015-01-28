@@ -41,11 +41,11 @@
       }
 
       if (info.shownStat != this.currentInfo.shownStat) {
-        $(this._selectors.STAT_BTNS).filter('[stat=' + info.shownStat + ']').click();
+        $(this._selectors.STAT_BTNS).filter('[stat="' + info.shownStat + '"]').click();
       }
 
       if (info.unsolveCheck != this.currentInfo.unsolveCheck) {
-        $(this._selectors.UNSOLVED_BTNS).filter('[unsolved=' + info.unsolveCheck + ']').click();
+        $(this._selectors.UNSOLVED_BTNS).filter('[unsolved="' + info.unsolveCheck + '"]').click();
       }
     },
 
@@ -54,8 +54,8 @@
       if (this.currentInfo.OJ != "") {
         $(this._selectors.OJ_SELECTOR).val(this.currentInfo.OJ).trigger('change');
       }
-      $(this._selectors.STAT_BTNS).filter('[stat=' + this.currentInfo.shownStat + ']').click();
-      $(this._selectors.UNSOLVED_BTNS).filter('[unsolved=' + this.currentInfo.unsolveCheck + ']').addClass('active');
+      $(this._selectors.STAT_BTNS).filter('[stat="' + this.currentInfo.shownStat + '"]').click();
+      $(this._selectors.UNSOLVED_BTNS).filter('[unsolved="' + this.currentInfo.unsolveCheck + '"]').addClass('active');
     },
 
     // Change the visibility of stats columns.
@@ -143,7 +143,7 @@
     // Override.
     setupTableOptions: function() {
       this.tableOptions = ({
-        "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
+        "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"clearfix"><"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
         "oLanguage": {
           "sEmptyTable": "No problems found.",
           "sZeroRecords": "No problems found.",

@@ -66,7 +66,7 @@ private
   end
 
   def fetch_records
-    records = @model.public.order("status.runid DESC")
+    records = @model.public_contests.order("status.runid DESC")
     records = search_records(records)
     # Will_paginate will do count(*), so just use offset and limit here
     records = records.offset(offset).limit(per_page)

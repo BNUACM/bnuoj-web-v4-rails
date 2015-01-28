@@ -7,7 +7,7 @@
         return output;
       };
       ++ timePassed;
-      var displayTime = moment(currentServerTime).add('s', timePassed).local();
+      var displayTime = moment(currentServerTime, globalConfig.misc.datetime_format + ' Z').add(timePassed, 's').local();
       $("#servertime").text(displayTime.format(globalConfig.misc.datetime_format));
     },
 

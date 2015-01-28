@@ -38,21 +38,21 @@
     // Override.
     filterStateInfo: function(info) {
       if (info.contestType != this.currentInfo.contestType) {
-        $(this._selectors.CONTEST_TYPE_BTNS).filter('[contest-type=' + info.contestType + ']').click();
+        $(this._selectors.CONTEST_TYPE_BTNS).filter('[contest-type="' + info.contestType + '"]').click();
       }
       if (info.access != this.currentInfo.access) {
-        $(this._selectors.ACCESS_BTNS).filter('[access=' + info.access + ']').click();
+        $(this._selectors.ACCESS_BTNS).filter('[access="' + info.access + '"]').click();
       }
       if (info.isVirtual != this.currentInfo.isVirtual) {
-        $(this._selectors.IS_VIRTUAL_BTNS).filter('[is-virtual=' + info.isVirtual + ']').click();
+        $(this._selectors.IS_VIRTUAL_BTNS).filter('[is-virtual="' + info.isVirtual + '"]').click();
       }
     },
 
     // Override.
     afterViewAll: function() {
-      $(this._selectors.CONTEST_TYPE_BTNS).filter('[contest-type=' + this.currentInfo.contestType + ']').click();
-      $(this._selectors.ACCESS_BTNS).filter('[access=' + this.currentInfo.access + ']').click();
-      $(this._selectors.IS_VIRTUAL_BTNS).filter('[is-virtual=' + this.currentInfo.isVirtual + ']').click();
+      $(this._selectors.CONTEST_TYPE_BTNS).filter('[contest-type="' + this.currentInfo.contestType + '"]').click();
+      $(this._selectors.ACCESS_BTNS).filter('[access="' + this.currentInfo.access + '"]').click();
+      $(this._selectors.IS_VIRTUAL_BTNS).filter('[is-virtual="' + this.currentInfo.isVirtual + '"]').click();
     },
 
     // Override.
@@ -106,7 +106,7 @@
     // Override.
     setupTableOptions: function() {
       this.tableOptions = ({
-        "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
+        "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"clearfix"><"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
         "oLanguage": {
           "sEmptyTable": "No contests found.",
           "sZeroRecords": "No contests found.",
@@ -125,17 +125,17 @@
           { "bVisible": false, "aTargets": [ 6, 7, 8 ] },
           {
             "mRender": function ( data, type, full ) {
-              // Enhance cid column.
+              // Enhance title column. Title maybe truncated, need tooltip.
               return "<a href='" + basePath + "contests/" + full[0] + "' title='" + BNUOJ.Utils.escapeHtml(BNUOJ.Utils.stripTags(data)) + "'>" + data + "</a>";
             },
-            "aTargets": [ 0 ]
+            "aTargets": [ 1 ]
           },
           {
             "mRender": function ( data, type, full ) {
-              // Enhance title column.
+              // Enhance cid column.
               return "<a href='" + basePath + "contests/" + data + "'>" + data + "</a>";
             },
-            "aTargets": [ 1 ]
+            "aTargets": [ 2 ]
           },
           {
             "mRender": function ( data, type, full ) {

@@ -125,7 +125,7 @@
     // Override.
     setupTableOptions: function() {
       this.tableOptions = ({
-        "sDom": '<"row"<"col-sm-12"p>r<"table-responsive"t>>',
+        "sDom": '<"row"<"col-sm-12"p>r<"clearfix"><"table-responsive"t>>',
         "oLanguage": {
           "sEmptyTable": "No status found.",
           "sZeroRecords": "No status found.",

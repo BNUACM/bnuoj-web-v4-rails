@@ -16,7 +16,7 @@
 //= require underscore/underscore
 //= require history/scripts/bundled-uncompressed/html4+html5/jquery.history
 //= require momentjs/moment
-//= require jquery.dataTables
+//= require datatables/media/js/jquery.dataTables
 //= require datatables-bootstrap3
 //= require datatables.plugins
 //= require jquery-form/jquery.form

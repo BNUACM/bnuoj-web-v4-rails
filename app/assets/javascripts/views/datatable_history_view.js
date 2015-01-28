@@ -71,7 +71,7 @@
 
       // Filters search string.
       if (this.withSearchBar && info.searchString != this.currentInfo.searchString) {
-        $(this._selectors.SEARCH_INPUT).val(info.searchString);
+        this.$(this._selectors.SEARCH_INPUT).val(info.searchString);
         this.listTable.fnFilter(info.searchString);
       }
       this.filterStateInfo(info);
@@ -121,7 +121,7 @@
 
       this.currentInfo.page = this.listTable.fnPagingInfo().iPage + 1;
       if (this.withSearchBar) {
-        this.currentInfo.searchString = $(this._selectors.SEARCH_INPUT).val();
+        this.currentInfo.searchString = this.$(this._selectors.SEARCH_INPUT).val();
       }
       this.updateCurrentInfo();
 
@@ -169,6 +169,13 @@
           self['addAjaxParams'].call(self, aoData);
         },
         "oSearch": {"sSearch": self.currentInfo.searchString},
+        "fnPreDrawCallback": function() {
+          if (self.withSearchBar) {
+            // Hack for search input, add class to fit bootstrap layout.
+            // TODO(51isoft): I18n.
+            self.$(self._selectors.SEARCH_INPUT).addClass("form-control").attr("placeholder", "Search");
+          }
+        },
         "fnDrawCallback": function() {
           if (!self.isPoppingState) self.updateUrl();
           self.afterTableDrawn();
@@ -178,9 +185,9 @@
       _.extend(options, this.tableOptions)
       if (this.withSearchBar) {
         // We should delay the response when user is typing.
-        this.listTable = $(this._selectors.DATATABLE).dataTable(options).fnSetFilteringDelay();
+        this.listTable = this.$(this._selectors.DATATABLE).dataTable(options).fnSetFilteringDelay();
       } else {
-        this.listTable = $(this._selectors.DATATABLE).dataTable(options);
+        this.listTable = this.$(this._selectors.DATATABLE).dataTable(options);
       }
     }
     

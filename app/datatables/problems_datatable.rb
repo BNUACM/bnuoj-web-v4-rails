@@ -81,7 +81,7 @@ private
   end
 
   def fetch_records
-    records = @model.public.order("#{sort_column} #{sort_direction}")
+    records = @model.public_problems.order("#{sort_column} #{sort_direction}")
     records = search_records(records)
     records = records.page(page).per_page(per_page)
   end
