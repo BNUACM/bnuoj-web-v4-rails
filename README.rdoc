@@ -1,15 +1,12 @@
-== README
+== BNU Online Judge
 
 This project is a front-end rewrite of BNUOJ using rails.
 
-* Ruby version
-Currently using Ruby 2.2.0p0, plan to follow the updates.
-
-* Setup guide
+=== Setup guide
 
 DB Schema: https://github.com/51isoft/bnuoj/blob/master/bnuoj-schema.sql
 
-Install RVM: https://rvm.io/
+Install RVM: https://rvm.io
 
 Install Ruby: <code>rvm install ruby-2.2.0p0</code>
 
