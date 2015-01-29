@@ -1,28 +1,28 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+This project is a front-end rewrite of BNUOJ using rails.
 
 * Ruby version
+Currently using Ruby 2.2.0p0, plan to follow the updates.
 
-* System dependencies
+* Setup guide
 
-* Configuration
+DB Schema: https://github.com/51isoft/bnuoj/blob/master/bnuoj-schema.sql
 
-* Database creation
+Install RVM: https://rvm.io/
 
-* Database initialization
+Install Ruby: <code>rvm install ruby-2.2.0p0</code>
 
-* How to run the test suite
+Install bundler: <code>gem install bundler</code>
 
-* Services (job queues, cache servers, search engines, etc.)
+Clone repo
 
-* Deployment instructions
+Install gems: inside repo directory, run <code>bundle install</code>
 
-* ...
+Install bower packages: <code>rake bower:install</code>
 
+Resolve bower url paths: <code>rake bower:resolve</code>
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Change <code>config/database.yml</code> <code>config/oj_config.yml</code> to match your local environment.
+
+Run the server: <code>rails s</code>
