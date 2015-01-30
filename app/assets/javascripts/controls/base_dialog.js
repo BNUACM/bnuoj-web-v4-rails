@@ -65,7 +65,7 @@
   // Base class of the dialog.
   BNUOJ.Dialogs.BaseDialog = BNUOJ.Views.BaseView.extend({
     // DOM container dialog is in.
-    _container: ".bnuoj-dialog",
+    _container: ".bnuoj-dialog #dialog-content",
     // Handlebar template path.
     _template: null,
     // Whether it will fire an ajax request upon loading.
