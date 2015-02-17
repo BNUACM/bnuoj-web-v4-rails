@@ -2,51 +2,51 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only"><%= I18n.t "navbar.toggle_navigation" %></span>
+        <span class="sr-only"><%= t "navbar.toggle_navigation" %></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<%= url_for :controller => 'home', :action => 'index' %>"><%= I18n.t "navbar.brand_name" %></a>
+      <a class="navbar-brand" href="<%= url_for :controller => 'home', :action => 'index' %>"><%= t "navbar.brand_name" %></a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav" id="main_navbar">
         <li class="dropdown" id="problem">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="<%= url_for :controller => 'problems', :action => 'index' %>"><%= I18n.t "navbar.problem.main" %> <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="<%= url_for :controller => 'problems', :action => 'index' %>"><%= t "navbar.problem.main" %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li id="localp"><a href="<%= url_for :controller => 'problems', :action => 'index' %>?oj=<%= OJ_CONFIG["misc"]["OJcode"] %>"><%= I18n.t "navbar.problem.local_problems" %></a></li>
-            <li id="allp"><a href="<%= url_for :controller => 'problems', :action => 'index' %>"><%= I18n.t "navbar.problem.all_problems" %></a></li>
-            <li id="categoryp"><a href="problem_category.php"><%= I18n.t "navbar.problem.problem_category" %></a></li>
+            <li id="localp"><a href="<%= url_for :controller => 'problems', :action => 'index' %>?oj=<%= OJ_CONFIG["misc"]["OJcode"] %>"><%= t "navbar.problem.local_problems" %></a></li>
+            <li id="allp"><a href="<%= url_for :controller => 'problems', :action => 'index' %>"><%= t "navbar.problem.all_problems" %></a></li>
+            <li id="categoryp"><a href="problem_category.php"><%= t "navbar.problem.problem_category" %></a></li>
           </ul>
         </li>
-        <li id="status"><a href="<%= url_for :controller => 'statuses', :action => 'index' %>"><%= I18n.t "navbar.status" %></a></li>
+        <li id="status"><a href="<%= url_for :controller => 'statuses', :action => 'index' %>"><%= t "navbar.status" %></a></li>
         <li class="dropdown" id="contest">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="<%= url_for :controller => 'contests', :action => 'index' %>"><%= I18n.t "navbar.contest.main" %> <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="<%= url_for :controller => 'contests', :action => 'index' %>"><%= t "navbar.contest.main" %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li id="stdcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>"><%= I18n.t "navbar.contest.standard_contests" %></a></li>
-            <li id="icpccontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=0"><%= I18n.t "navbar.contest.icpc_contests" %></a></li>
-            <li id="cfcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=1"><%= I18n.t "navbar.contest.cf_contests" %></a></li>
-            <li id="repcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=99"><%= I18n.t "navbar.contest.replay_contests" %></a></li>
-            <li id="vcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?virtual=1"><%= I18n.t "navbar.contest.virtual_contests" %></a></li>
+            <li id="stdcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>"><%= t "navbar.contest.standard_contests" %></a></li>
+            <li id="icpccontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=0"><%= t "navbar.contest.icpc_contests" %></a></li>
+            <li id="cfcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=1"><%= t "navbar.contest.cf_contests" %></a></li>
+            <li id="repcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=99"><%= t "navbar.contest.replay_contests" %></a></li>
+            <li id="vcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?virtual=1"><%= t "navbar.contest.virtual_contests" %></a></li>
           </ul>
         </li>
         <li class="dropdown" id="more">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="teaminfo.php"><%= I18n.t "navbar.more" %> <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="teaminfo.php"><%= t "navbar.more" %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="ranklist.php"><%= I18n.t "navbar.ranklist" %></a></li>
-            <li><a href="discuss.php"><%= I18n.t "navbar.discuss" %></a></li>
-            <li><a href="news.php"><%= I18n.t "navbar.news" %></a></li>
+            <li><a href="ranklist.php"><%= t "navbar.ranklist" %></a></li>
+            <li><a href="discuss.php"><%= t "navbar.discuss" %></a></li>
+            <li><a href="news.php"><%= t "navbar.news" %></a></li>
             <li class="divider"></li>
-            <li><a href="teaminfo.php"><%= I18n.t "navbar.our_team" %></a></li>
+            <li><a href="teaminfo.php"><%= t "navbar.our_team" %></a></li>
             <li class="divider"></li>
-            <li><a href="recent_contest.php"><%= I18n.t "navbar.recent_contests" %></a></li>
+            <li><a href="recent_contest.php"><%= t "navbar.recent_contests" %></a></li>
           </ul>
         </li>
       </ul>
 <% unless logged_in? %>
       <ul id="loginbar" class="nav navbar-nav navbar-right">
-        <li><a href="#" id="login-btn"><%= I18n.t "navbar.login" %></a></li>
-        <li><a href="#" id="register-btn"><%= I18n.t "navbar.register" %></a></li>
+        <li><a href="#" id="login-btn"><%= t "navbar.login" %></a></li>
+        <li><a href="#" id="register-btn"><%= t "navbar.register" %></a></li>
       </ul>
 <% else %>
       <ul id="logoutbar" class="nav navbar-nav navbar-right">
@@ -59,8 +59,8 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><a href=""><%= I18n.t "navbar.personal.show_my_info" %></a></li>
-            <li><a href="#" id="modify-my-info"><%= I18n.t "navbar.personal.modify_my_info" %></a></li>
+            <li><a href=""><%= t "navbar.personal.show_my_info" %></a></li>
+            <li><a href="#" id="modify-my-info"><%= t "navbar.personal.modify_my_info" %></a></li>
             <li><a href="mail.php" id="mail">
               Mail
               <% if current_user.unread_message_count > 0 %>
@@ -68,9 +68,9 @@
               <% end %>
             </a></li>
   <% if current_user.is_admin? %>
-            <li><a href="admin_index.php" id="admin"><%= I18n.t "navbar.personal.admin" %></a></li>
+            <li><a href="admin_index.php" id="admin"><%= t "navbar.personal.admin" %></a></li>
   <% end %>
-            <li><a href="<%= url_for :controller => 'users', :action => 'logout' %>" id="logout-btn"><%= I18n.t "navbar.logout" %></a></li>
+            <li><a href="<%= url_for :controller => 'users', :action => 'logout' %>" id="logout-btn"><%= t "navbar.logout" %></a></li>
           </ul>
         </li>
       </ul>

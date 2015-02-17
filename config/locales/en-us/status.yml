@@ -1,24 +1,30 @@
 en-us:
-  contest:
-    btns:
-      arrange_vcontest: Arrange VContest
-      all: All
-      standard: Standard
-      virtual: Virtual
-      icpc: ICPC
-      cf: CF
-      replay: Replay
-      non_replay: Non-Replay
-      public: Public
-      password: Password
-      private: Private
+  status:
+    edit_title: Editing status
+    new_title: New status
+    show_title: "Source Code of Run %{runid}"
     headers:
-      cid: ID
-      title: Title
-      start_time: Start Time
-      end_time: End Time
-      status: Status
-      access: Access
-      manager: Manager
-      private: Private
-      type: Type
+      username: Username
+      runid: Run ID
+      pid: PID
+      result: Result
+      language: Language
+      time: Time
+      memory: Memory
+      length: Length
+      submit_time: Submit Time
+      visible: Visible
+    show:
+      memory: "Memory Used: %{memory} KB"
+      time: "Time Used: %{time} ms"
+      shared: This code is shared.
+    results:
+      accepted: Accepted
+      wrong_answer: Wrong Answer
+      runtime_error: Runtime Error
+      time_limit_exceed: Time Limit Exceed
+      memory_limit_exceed: Memory Limit Exceed
+      output_limit_exceed: Output Limit Exceed
+      presentation_error: Presentation Error
+      restricted_function: Restricted Function
+      compile_error: Compile Error

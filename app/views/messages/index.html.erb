@@ -1,4 +1,4 @@
-<h1>Listing messages</h1>
+<h1><%= t "message.list_title" %></h1>
 
 <table>
   <thead>
@@ -12,9 +12,9 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t("global.show"), message %></td>
+        <td><%= link_to t("global.edit"), edit_message_path(message) %></td>
+        <td><%= link_to t("global.delete"), message, method: :delete, data: { confirm: t("global.is_sure") } %></td>
       </tr>
     <% end %>
   </tbody>

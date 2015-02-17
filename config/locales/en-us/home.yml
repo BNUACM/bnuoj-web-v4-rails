@@ -1,4 +1,5 @@
 en-us:
   home:
     default_title: BNU Online Judge
+    welcome: "Enjoy and have fun! <br />If you have prefer the old OJ, click <a href='/bnuoj'>here</a> for BNUOJ 2.0.<br />"
     footer_note: "Distributed under GPLv3. | <a href='https://github.com/51isoft/bnuoj' target='_blank'>Project Homepage</a> | Developer: <a href='mailto:yichaonet#gmail.com'>51isoft</a>."

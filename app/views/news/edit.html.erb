@@ -1,6 +1,6 @@
-<h1>Editing news</h1>
+<h1><%= t "news.edit_title" %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @news %> |
-<%= link_to 'Back', news_index_path %>
+<%= link_to t("global.show"), @news %> |
+<%= link_to t("global.back"), news_index_path %>

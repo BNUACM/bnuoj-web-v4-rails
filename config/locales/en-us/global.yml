@@ -1,0 +1,12 @@
+en-us:
+  global:
+    access_denied: Access Denied
+    remeber_me: Remeber me
+    is_sure: Are you sure?
+    register: Register
+    show: Show
+    edit: Edit
+    delete: Delete
+    new: New
+    back: Back
+    all: All
