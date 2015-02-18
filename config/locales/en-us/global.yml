@@ -1,6 +1,7 @@
 en-us:
   global:
-    access_denied: Access Denied
+    need_login: Need login
+    need_admin: Need admin
     remeber_me: Remeber me
     is_sure: Are you sure?
     register: Register

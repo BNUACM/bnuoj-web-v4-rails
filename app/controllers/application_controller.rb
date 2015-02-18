@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   # login filter
   def need_login
     unless logged_in?
-      render status: :forbidden, json: { msg: t("global.access_denied") }
+      render status: :forbidden, json: { msg: t("global.need_login") }
       return
     end
   end
@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   # admin filter
   def need_admin
     unless logged_in? && current_user.is_admin?
-      render status: :forbidden, json: { msg: t("global.access_denied") }
+      render status: :forbidden, json: { msg: t("global.need_admin") }
       return
     end
   end
