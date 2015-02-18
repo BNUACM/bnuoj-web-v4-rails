@@ -1,5 +1,8 @@
 en-us:
   problem:
+    id: Problem ID
+    edit_title: Editing problem
+    new_title: New problem
     btns:
       all: All
       unsolved: Unsolved

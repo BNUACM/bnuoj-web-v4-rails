@@ -1,0 +1,8 @@
+en-us:
+  user:
+    signin_title: Signin
+    edit_title: Editing user
+    list_title: Listing users
+    new_title: New user
+    username: Username
+    password: Password

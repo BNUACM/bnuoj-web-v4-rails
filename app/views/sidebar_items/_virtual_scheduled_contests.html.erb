@@ -1,9 +1,9 @@
 <% contests = Contest.virtual.scheduled.order(start_time: :desc).limit(5) %>
 <% if contests.count > 0 %>
-  <h3><%= I18n.t "sidebars.contests.scheduled_virtual_contests" %></h3>
+  <h3><%= t "sidebars.contests.scheduled_virtual_contests" %></h3>
   <p>
     <% contests.each { |contest| %>
-      <%= raw I18n.t("sidebars.contests.future_item", :link => url_for(:controller => 'contests', :action => 'show', :id => contest.cid), :title => contest.title, :start_time => contest.start_time) %><br />
+      <%= raw t("sidebars.contests.future_item", :link => url_for(:controller => 'contests', :action => 'show', :id => contest.cid), :title => contest.title, :start_time => contest.start_time) %><br />
     <% } %>
   </p>
 <% end %>

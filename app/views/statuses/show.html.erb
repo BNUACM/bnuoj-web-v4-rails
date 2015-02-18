@@ -1,10 +1,13 @@
-<!-- TODO(51isoft): I18n. -->
-<h1>Source Code of Run <%= @status.runid %></h1>
+<h1><%= t "status.show_title", :runid => @status.runid %></h1>
 <div class="text-center well">
-  Result: <b><%= @status.result %></b> &nbsp;&nbsp;&nbsp; Memory Used: <%= @status.memory_used %> KB &nbsp;&nbsp;&nbsp; Time Used: <%= @status.time_used %> ms <br/>
-  Language: <%= @status.language_name.name %> &nbsp;&nbsp;&nbsp; Username: <%= @status.username %> &nbsp;&nbsp;&nbsp; Problem ID: <%= @status.pid %> <br/>
+  <%= t "status.headers.result" %>: <b><%= @status.result %></b>
+  &nbsp;&nbsp;&nbsp; <%= t "status.show.memory", :memory => @status.memory_used %> 
+  &nbsp;&nbsp;&nbsp; <%= t "status.show.time", :time => @status.time_used %><br/>
+  <%= t "status.headers.language" %>: <%= @status.language_name.name %>
+  &nbsp;&nbsp;&nbsp; <%= t "user.username" %>: <%= @status.username %>
+  &nbsp;&nbsp;&nbsp; <%= t "problem.id" %>: <%= @status.pid %> <br/>
   <% if @status.isshared %>
-    <b>This code is shared.</b>
+    <b><%= t "status.show.shared" %></b>
   <% end %>
 </div>
 <pre><%= @status.source %></pre>

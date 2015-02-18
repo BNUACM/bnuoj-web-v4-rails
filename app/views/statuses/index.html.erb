@@ -1,40 +1,39 @@
-<!-- TODO(51isoft): I18n. -->
 <div class="row">
   <div class="col-sm-12">
     <form id="status-filter">
       <div class="row">
         <div class="col-sm-3">
-          <input type='text' name='showname' placeholder="Username" class="form-control" value='' />
+          <input type='text' name='showname' placeholder="<%= t "user.username" %>" class="form-control" value='' />
         </div>
         <div class="col-sm-3">
-          <input type='text' name='showpid' placeholder="Problem ID" class="form-control" />
+          <input type='text' name='showpid' placeholder="<%= t "problem.id" %>" class="form-control" />
         </div>
         <div class="col-sm-3">
           <select name="showres" class="form-control">
-            <option value=''>All</option>
-            <option value='Accepted'>Accepted</option>
-            <option value='Wrong Answer'>Wrong Answer</option>
-            <option value='Runtime Error'>Runtime Error</option>
-            <option value='Time Limit Exceed'>Time Limit Exceed</option>
-            <option value='Memory Limit Exceed'>Memory Limit Exceed</option>
-            <option value='Output Limit Exceed'>Output Limit Exceed</option>
-            <option value='Presentation Error'>Presentation Error</option>
-            <option value='Restricted Function'>Restricted Function</option>
-            <option value='Compile Error'>Compile Error</option>
+            <option value=''><%= t "global.all" %></option>
+            <option value='Accepted'><%= t "status.results.accepted" %></option>
+            <option value='Wrong Answer'><%= t "status.results.wrong_answer" %></option>
+            <option value='Runtime Error'><%= t "status.results.runtime_error" %></option>
+            <option value='Time Limit Exceed'><%= t "status.results.time_limit_exceed" %></option>
+            <option value='Memory Limit Exceed'><%= t "status.results.memory_limit_exceed" %></option>
+            <option value='Output Limit Exceed'><%= t "status.results.output_limit_exceed" %></option>
+            <option value='Presentation Error'><%= t "status.results.presentation_error" %></option>
+            <option value='Restricted Function'><%= t "status.results.restricted_function" %></option>
+            <option value='Compile Error'><%= t "status.results.compile_error" %></option>
           </select>
         </div>
         <div class="col-sm-3">
           <div class="row">
             <div class="col-xs-6">
               <select name="showlang" class="form-control">
-                <option value="">All</option>
+                <option value=""><%= t "global.all" %></option>
                 <% LanguageName.all.each { |language| %>
                   <option value="<%= language.id %>"><%= language.name %></option>
                 <% } %>
               </select>
             </div>
             <div class="col-xs-6">
-              <button type='submit' class="btn btn-primary pull-right">Show</button>
+              <button type='submit' class="btn btn-primary pull-right"><%= t "global.show" %></button>
             </div>
           </div>
         </div>
@@ -47,16 +46,16 @@
     <table class="table table-striped table-hover" id="statuslist">
       <thead>
         <tr>
-          <th>Username</th>
-          <th>RunID</th>
-          <th>PID</th>
-          <th>Result</th>
-          <th>Language</th>
-          <th>Time</th>
-          <th>Memory</th>
-          <th>Length</th>
-          <th>Submit Time</th>
-          <th>Visible</th>
+          <th><%= t "user.username" %></th>
+          <th><%= t "status.headers.runid" %></th>
+          <th><%= t "status.headers.pid" %></th>
+          <th><%= t "status.headers.result" %></th>
+          <th><%= t "status.headers.language" %></th>
+          <th><%= t "status.headers.time" %></th>
+          <th><%= t "status.headers.memory" %></th>
+          <th><%= t "status.headers.length" %></th>
+          <th><%= t "status.headers.submit_time" %></th>
+          <th><%= t "status.headers.visible" %></th>
         </tr>
       </thead>
       <tbody>

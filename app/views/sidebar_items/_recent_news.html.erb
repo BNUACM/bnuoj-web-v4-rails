@@ -1,5 +1,5 @@
 <h3>
-  <%= I18n.t "sidebars.recent_news.title" %>
+  <%= t "sidebars.recent_news.title" %>
 </h3>
 <% News.order(time_added: :desc).limit(JS_CONFIG["limits"]["news_on_index"]).each { |news| %>
   <% if news.title.length > JS_CONFIG["limits"]["news_on_index_title_len"] %>

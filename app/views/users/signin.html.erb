@@ -1,16 +1,15 @@
-<!-- TODO(51isoft): I18n. -->
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <h1>Signin to Online Judge</h1>
+    <h1><%= t "user.signin_title" %></h1>
     <form method="POST" action="<%= url_for :controller => 'users', :action => 'login' %>" accept-charset="UTF-8" id="login_form" class="ajform form-horizontal" role="form">
       <div class="form-group">
-        <label for="username" class="control-label col-sm-3">Username</label>
+        <label for="username" class="control-label col-sm-3"><%= t "user.username" %></label>
         <div class="col-sm-9">
           <input class="form-control" name="username" type="text" value="" id="username">
         </div>
       </div>
       <div class="form-group">
-        <label for="password" class="control-label col-sm-3">Password</label>
+        <label for="password" class="control-label col-sm-3"><%= t "user.password" %></label>
         <div class="col-sm-9">
           <input class="form-control" name="password" type="password" value="" id="password">
         </div>
@@ -19,7 +18,7 @@
         <div class="col-sm-offset-3 col-sm-9">
           <div class="checkbox">
             <label>
-              <input name="cksave" type="checkbox" value="1"> Remember me
+              <input name="cksave" type="checkbox" value="1"> <%= t "global.remeber_me" %>
             </label>
           </div>
         </div>
@@ -27,7 +26,7 @@
       <div class="text-right">
         <span id="msgbox" style="display:none"></span>
         <input class="btn btn-primary" type="submit" value="Login">
-        <a class='btn btn-default' id="register-btn" href="#">Register</a>
+        <a class='btn btn-default' id="register-btn" href="#"><%= t "global.register" %></a>
       </div>
     </form>
   </div>
