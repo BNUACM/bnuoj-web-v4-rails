@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group: MyString
+  user: MyString
+  password: MyString
+  privilege: MyString
+  restrict_to_key: MyString
+  restrict_to_value: MyString
+
+two:
+  group: MyString
+  user: MyString
+  password: MyString
+  privilege: MyString
+  restrict_to_key: MyString
+  restrict_to_value: MyString

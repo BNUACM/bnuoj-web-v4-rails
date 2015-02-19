@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Privileged
+
   self.table_name = "user"
   self.primary_key = "uid"
 
@@ -7,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :out_messages, class_name: "Message", primary_key: "username", foreign_key: "sender", inverse_of: :sender
   has_many :clarifies, class_name: "ContestClarify", primary_key: "username", foreign_key: "username", inverse_of: :questioner
   has_many :tags, primary_key: "username", foreign_key: "username", inverse_of: :user
+  has_and_belongs_to_many :user_groups, inverse_of: :users
+
 
   # Override to specify the columns to show.
   def to_json(options = {})
@@ -36,4 +40,16 @@ class User < ActiveRecord::Base
     runs.where(pid: pid).count > 0
   end
 
+  # Get privileges, combined with user-based and group-based
+  def get_merged_priv
+    if @my_priv.nil?
+      @my_priv = parse_priv
+      user_groups.each do |group|
+        @my_priv = @my_priv.merge group.parse_priv
+      end
+    end
+    return @my_priv
+  end
+
 end
+
