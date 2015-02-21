@@ -24,22 +24,12 @@ module AccessHelper
   end
 
   def is_admin?
-    if current_user.is_admin?
-      yield if block_given?
-      return true
-    else
-      return false
-    end
+    current_user.is_admin?
   end
 
   # Whether current user has certain privilege
   def has_priv? (privilege, restriction = nil)
-    if current_user.can? privilege,restriction
-      yield if block_given?
-      return true
-    else
-      return false
-    end
+    is_admin? || current_user.can?(privilege,restriction)
   end
 
   # Require current user to have certain privilege
@@ -56,12 +46,7 @@ module AccessHelper
   end
 
   def is_contest_owner? contest
-    if current_user.name == contest.owner
-      yield if block_given?
-      return true
-    else
-      return false
-    end
+    current_user.name == contest.owner
   end
 
   def require_contest_owner contest
