@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
+  include AccessHelper
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  rescue_from Authorization::NotAuthorized, :with => :access_denied
+  rescue_from Authorization::NotLoggedIn, :with => :need_login
 
   def set_cookie(name, value, expires_in = 0, path = root_path)
     if expires_in > 0
@@ -30,41 +33,19 @@ class ApplicationController < ActionController::Base
       :iv => OJ_CONFIG["encrypt"]["password"]["iv"], :salt => OJ_CONFIG["encrypt"]["password"]["salt"])
   end
 
-  def logged_in?
-    @logged_in ||= !current_user.nil?
-  end
-  helper_method :logged_in?
-
-  # Get current user, if not signed in, return nil.
-  def current_user
-    if !get_cookie("username").nil? && !get_cookie("password").nil?
-      @user ||= User.find_by(username: get_cookie("username"))
-      if @user.nil? || @user.password != decrypt_password(get_cookie("password"))
-        @user = nil
-        set_cookie("username", "")
-        set_cookie("password", "")
-      end
-    else
-      @user = nil
-    end
-    @user
-  end
-  helper_method :current_user
-
-  # login filter
+  # When logged in is needed
   def need_login
-    unless logged_in?
-      render status: :forbidden, json: { msg: t("global.need_login") }
-      return
+    respond_to do |format|
+      format.html { redirect_to controller: "users", action: "login" }
+      format.json { render status: :forbidden, json: { msg: t("global.need_login") } }
     end
   end
 
-  # admin filter
-  def need_admin
-    unless logged_in? && current_user.is_admin?
-      render status: :forbidden, json: { msg: t("global.need_admin") }
-      return
+  # When access denied
+  def access_denied
+    respond_to do |format|
+      format.html { render "application/access_denied" }
+      format.json { render status: :forbidden, json: { msg: t("global.access_denied") } }
     end
   end
-
 end

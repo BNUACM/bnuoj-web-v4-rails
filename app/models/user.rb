@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include Privileged
-
   self.table_name = "user"
   self.primary_key = "uid"
 
@@ -9,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :out_messages, class_name: "Message", primary_key: "username", foreign_key: "sender", inverse_of: :sender
   has_many :clarifies, class_name: "ContestClarify", primary_key: "username", foreign_key: "username", inverse_of: :questioner
   has_many :tags, primary_key: "username", foreign_key: "username", inverse_of: :user
-  has_and_belongs_to_many :user_groups, inverse_of: :users
+  has_many :privileges, inverse_of: :user
 
 
   # Override to specify the columns to show.
@@ -40,15 +38,13 @@ class User < ActiveRecord::Base
     runs.where(pid: pid).count > 0
   end
 
-  # Get privileges, combined with user-based and group-based
-  def get_merged_priv
-    if @my_priv.nil?
-      @my_priv = parse_priv
-      user_groups.each do |group|
-        @my_priv = @my_priv.merge group.parse_priv
-      end
+  # Whether user has certain privilege
+  def can? (privilege, restriction = nil)
+    if restriction.nil?
+      privileges.where(privilege: privilege, restrict_to_key: "any", restrict_to_value: "any").count > 0
+    else
+      privileges.where(privilege: privilege, restrict_to_key: restriction.keys[0], restrict_to_value: restriction.values[0]).count > 0
     end
-    return @my_priv
   end
 
 end

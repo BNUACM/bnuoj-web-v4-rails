@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218060953) do
+ActiveRecord::Schema.define(version: 20150218060735) do
 
   create_table "category", force: :cascade do |t|
     t.string  "name",   limit: 2048, null: false
@@ -147,7 +147,6 @@ ActiveRecord::Schema.define(version: 20150218060953) do
   add_index "ojinfo", ["name"], name: "name", unique: true, using: :btree
 
   create_table "privileges", force: :cascade do |t|
-    t.integer  "group_id",          limit: 4
     t.integer  "user_id",           limit: 4
     t.string   "privilege",         limit: 255, null: false
     t.string   "restrict_to_key",   limit: 255, null: false
@@ -156,7 +155,7 @@ ActiveRecord::Schema.define(version: 20150218060953) do
     t.datetime "updated_at",                    null: false
   end
 
-  add_index "privileges", ["group_id"], name: "index_privileges_on_group_id", using: :btree
+  add_index "privileges", ["privilege"], name: "index_privileges_on_privilege", using: :btree
   add_index "privileges", ["restrict_to_key"], name: "index_privileges_on_restrict_to_key", using: :btree
   add_index "privileges", ["restrict_to_value"], name: "index_privileges_on_restrict_to_value", using: :btree
   add_index "privileges", ["user_id"], name: "index_privileges_on_user_id", using: :btree
@@ -302,20 +301,6 @@ ActiveRecord::Schema.define(version: 20150218060953) do
   add_index "user", ["nickname"], name: "nickname", length: {"nickname"=>333}, using: :btree
   add_index "user", ["password"], name: "password", using: :btree
   add_index "user", ["username"], name: "username", using: :btree
-
-  create_table "user_groups", force: :cascade do |t|
-    t.string   "groupname",  limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "user_groups_users", id: false, force: :cascade do |t|
-    t.integer "user_id",        limit: 4
-    t.integer "user_groups_id", limit: 4
-  end
-
-  add_index "user_groups_users", ["user_groups_id"], name: "index_user_groups_users_on_user_groups_id", using: :btree
-  add_index "user_groups_users", ["user_id"], name: "index_user_groups_users_on_user_id", using: :btree
 
   create_table "usertag", force: :cascade do |t|
     t.integer "pid",      limit: 4,    null: false
