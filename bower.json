@@ -10,7 +10,7 @@
       "underscore": "~1",
       "jquery": "1",
       "bootstrap": "~3",
-      "bootswatch-dist": "paper",
+      "bootswatch-dist": "cerulean",
       "datatables": "~1",
       "momentjs": "~2",
       "history": "~1.8",
