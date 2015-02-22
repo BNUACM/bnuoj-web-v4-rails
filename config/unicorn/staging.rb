@@ -1,6 +1,6 @@
 app_path = "/home/deploy/release/bnuoj-v4-rails/current"
 shared_path = "/home/deploy/release/bnuoj-v4-rails/shared"
-unicorn_pid = "/home/deploy/release/bnuoj-v4-rails/tmp/pids/unicorn.pid"
+unicorn_pid = "#{shared_path}/tmp/pids/unicorn.pid"
 
 user 'deploy'
 working_directory app_path
