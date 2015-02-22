@@ -13,7 +13,11 @@ class UsersController < ApplicationController
     end
     set_cookie("username", user.username, cookie_time)
     set_cookie("password", encrypt_password(user.password), cookie_time)
-    render json: { msg: "Logged in." }
+    respond_to do |format|
+      format.html { redirect_to params[:referer] } if params[:referer]
+      format.html { redirect_to controller: "home", action: "index" }
+      format.json { render json: { msg: "Logged in." } }
+    end
   end
 
   def signin

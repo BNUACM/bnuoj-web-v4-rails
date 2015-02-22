@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def set_cookie(name, value, expires_in = 0, path = root_path)
     if expires_in > 0
       cookie = {:value => value.to_s, :path => path, :expires => Time.now + expires_in}
-    else
+    else 
       cookie = {:value => value.to_s, :path => path}
     end
     cookies[OJ_CONFIG["misc"]["cookie_prefix"] + name.to_s] = cookie
@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
   # When logged in is needed
   def need_login
     respond_to do |format|
-      format.html { redirect_to controller: "users", action: "login" }
+      format.html { redirect_to controller: "users", action: "signin", referer: request.original_url }
       format.json { render status: :forbidden, json: { msg: t("global.need_login") } }
     end
   end

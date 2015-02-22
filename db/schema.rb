@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 20150218060735) do
   add_index "ojinfo", ["name"], name: "name", unique: true, using: :btree
 
   create_table "privileges", force: :cascade do |t|
-    t.integer  "user_id",           limit: 4
+    t.integer  "user_id",           limit: 4,   null: false
     t.string   "privilege",         limit: 255, null: false
     t.string   "restrict_to_key",   limit: 255, null: false
     t.string   "restrict_to_value", limit: 255, null: false
@@ -155,10 +155,7 @@ ActiveRecord::Schema.define(version: 20150218060735) do
     t.datetime "updated_at",                    null: false
   end
 
-  add_index "privileges", ["privilege"], name: "index_privileges_on_privilege", using: :btree
-  add_index "privileges", ["restrict_to_key"], name: "index_privileges_on_restrict_to_key", using: :btree
-  add_index "privileges", ["restrict_to_value"], name: "index_privileges_on_restrict_to_value", using: :btree
-  add_index "privileges", ["user_id"], name: "index_privileges_on_user_id", using: :btree
+  add_index "privileges", ["user_id", "privilege", "restrict_to_key", "restrict_to_value"], name: "user_priv", unique: true, using: :btree
 
   create_table "problem", primary_key: "pid", force: :cascade do |t|
     t.string  "title",                limit: 255,                    null: false
