@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     isroot == 1
   end
 
+  def is_owner_of? contest
+    contest.owner == name
+  end
+
   def unread_message_count
     in_messages.where(status: 0).count
   end
@@ -39,12 +43,8 @@ class User < ActiveRecord::Base
   end
 
   # Whether user has certain privilege
-  def can? (privilege, restriction = nil)
-    if restriction.nil?
-      privileges.where(privilege: privilege, restrict_to_key: "any", restrict_to_value: "any").count > 0
-    else
-      privileges.where(privilege: privilege, restrict_to_key: restriction.keys[0], restrict_to_value: restriction.values[0]).count > 0
-    end
+  def can? (privilege, restriction = {"any" => "any"})
+    is_admin? || privileges.where(privilege: privilege, restrict_to_key: restriction.keys[0], restrict_to_value: restriction.values[0]).count > 0
   end
 
 end

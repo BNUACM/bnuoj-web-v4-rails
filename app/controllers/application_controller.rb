@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include AccessHelper
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -32,6 +31,28 @@ class ApplicationController < ActionController::Base
     Encryptor.decrypt(:value => Base64.decode64(password), :key => OJ_CONFIG["encrypt"]["password"]["key"],
       :iv => OJ_CONFIG["encrypt"]["password"]["iv"], :salt => OJ_CONFIG["encrypt"]["password"]["salt"])
   end
+
+  # Get current user, if not signed in, return nil.
+  def current_user
+    return @current_user unless @current_user.nil?
+    if !get_cookie("username").nil? && !get_cookie("password").nil?
+      @current_user ||= User.find_by(username: get_cookie("username"))
+      if @current_user.nil? || @current_user.password != decrypt_password(get_cookie("password"))
+        @current_user = nil
+        set_cookie("username", "")
+        set_cookie("password", "")
+      end
+    else
+      @current_user = nil
+    end
+    @current_user
+  end
+  helper_method :current_user
+
+  def logged_in?
+    current_user != nil
+  end
+  helper_method :logged_in?
 
   # When logged in is needed
   def need_login
