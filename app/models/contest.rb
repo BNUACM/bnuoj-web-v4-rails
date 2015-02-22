@@ -3,11 +3,16 @@ class Contest < ActiveRecord::Base
   self.primary_key = "cid"
   self.inheritance_column = :_type_disabled
 
-  has_many :runs, class_name: "Status", primary_key: "cid", foreign_key: "contest_belong", inverse_of: :contest
-  has_many :replay_runs, class_name: "ReplayStatus", primary_key: "cid", foreign_key: "contest_belong", inverse_of: :contest
-  has_many :clarifies, class_name: "ContestClarify", primary_key: "cid", foreign_key: "cid", inverse_of: :contest
-  has_many :problem_infos, class_name: "ContestProblem", primary_key: "cid", foreign_key: "cid", inverse_of: :contest
-  has_many :challenges, primary_key: "cid", foreign_key: "cid", inverse_of: :contest
+  has_many :runs, class_name: "Status", primary_key: "cid",
+      foreign_key: "contest_belong", inverse_of: :contest
+  has_many :replay_runs, class_name: "ReplayStatus", primary_key: "cid",
+      foreign_key: "contest_belong", inverse_of: :contest
+  has_many :clarifies, class_name: "ContestClarify", primary_key: "cid",
+      foreign_key: "cid", inverse_of: :contest
+  has_many :problem_infos, class_name: "ContestProblem", primary_key: "cid",
+      foreign_key: "cid", inverse_of: :contest
+  has_many :challenges, primary_key: "cid", foreign_key: "cid",
+      inverse_of: :contest
 
   scope :standard, -> { where(isvirtual: 0)}
   scope :virtual, -> { where(isvirtual: 1)}

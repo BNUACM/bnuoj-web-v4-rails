@@ -29,30 +29,39 @@
     // Override.
     parseUrlParams: function(url) {
       url = url || window.location.href;
-      this.currentInfo.contestType = BNUOJ.Utils.getUrlParam('type', url) || "-99";
-      this.currentInfo.access = BNUOJ.Utils.getUrlParam('access', url) || "";
-      this.currentInfo.isVirtual = BNUOJ.Utils.getUrlParam('virtual', url) || "0";
+      this.currentInfo.contestType =
+          BNUOJ.Utils.getUrlParam('type', url) || "-99";
+      this.currentInfo.access =
+          BNUOJ.Utils.getUrlParam('access', url) || "";
+      this.currentInfo.isVirtual =
+          BNUOJ.Utils.getUrlParam('virtual', url) || "0";
       return "";
     },
 
     // Override.
     filterStateInfo: function(info) {
       if (info.contestType != this.currentInfo.contestType) {
-        $(this._selectors.CONTEST_TYPE_BTNS).filter('[contest-type="' + info.contestType + '"]').click();
+        $(this._selectors.CONTEST_TYPE_BTNS).filter(
+            '[contest-type="' + info.contestType + '"]').click();
       }
       if (info.access != this.currentInfo.access) {
-        $(this._selectors.ACCESS_BTNS).filter('[access="' + info.access + '"]').click();
+        $(this._selectors.ACCESS_BTNS).filter(
+            '[access="' + info.access + '"]').click();
       }
       if (info.isVirtual != this.currentInfo.isVirtual) {
-        $(this._selectors.IS_VIRTUAL_BTNS).filter('[is-virtual="' + info.isVirtual + '"]').click();
+        $(this._selectors.IS_VIRTUAL_BTNS).filter(
+            '[is-virtual="' + info.isVirtual + '"]').click();
       }
     },
 
     // Override.
     afterViewAll: function() {
-      $(this._selectors.CONTEST_TYPE_BTNS).filter('[contest-type="' + this.currentInfo.contestType + '"]').click();
-      $(this._selectors.ACCESS_BTNS).filter('[access="' + this.currentInfo.access + '"]').click();
-      $(this._selectors.IS_VIRTUAL_BTNS).filter('[is-virtual="' + this.currentInfo.isVirtual + '"]').click();
+      $(this._selectors.CONTEST_TYPE_BTNS).filter(
+          '[contest-type="' + this.currentInfo.contestType + '"]').click();
+      $(this._selectors.ACCESS_BTNS).filter(
+          '[access="' + this.currentInfo.access + '"]').click();
+      $(this._selectors.IS_VIRTUAL_BTNS).filter(
+          '[is-virtual="' + this.currentInfo.isVirtual + '"]').click();
     },
 
     // Override.
@@ -62,9 +71,20 @@
 
     // Override.
     getViewUrl: function() {
-      return (this.currentInfo.contestType == "-99" || this.currentInfo.contestType == null ? "" : "&type=" + encodeURIComponent(this.currentInfo.contestType)) +
-          (this.currentInfo.access == "" || this.currentInfo.access == null ? "" : "&access=" + encodeURIComponent(this.currentInfo.access)) +
-          (this.currentInfo.isVirtual == "0" || this.currentInfo.isVirtual == null ? "" : "&virtual=" + encodeURIComponent(this.currentInfo.isVirtual));
+      return (
+          (this.currentInfo.contestType == "-99" ||
+              this.currentInfo.contestType == null ?
+                  "" : "&type=" +
+                      encodeURIComponent(this.currentInfo.contestType)) +
+          (this.currentInfo.access == "" ||
+              this.currentInfo.access == null ?
+                  "" : "&access=" +
+                      encodeURIComponent(this.currentInfo.access)) +
+          (this.currentInfo.isVirtual == "0" ||
+              this.currentInfo.isVirtual == null ?
+                  "" : "&virtual=" +
+                      encodeURIComponent(this.currentInfo.isVirtual))
+      );
     },
 
     // When user click contest type radio buttons to filter contests.
@@ -106,7 +126,8 @@
     // Override.
     setupTableOptions: function() {
       this.tableOptions = ({
-        "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"clearfix"><"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
+        "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"clearfix">' +
+            '<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
         "oLanguage": {
           "sEmptyTable": "No contests found.",
           "sZeroRecords": "No contests found.",
@@ -117,7 +138,8 @@
         "sPaginationType": "bs_full" ,
         "aLengthMenu": [[25, 50, 100, 150, 200], [25, 50, 100, 150, 200]] ,
         "iDisplayLength": globalConfig.limits.contests_per_page,
-        "iDisplayStart": (this.currentInfo.page - 1) * globalConfig.limits.contests_per_page,
+        "iDisplayStart":
+            (this.currentInfo.page - 1) * globalConfig.limits.contests_per_page,
         "aoColumnDefs": [ 
           { "sWidth": "400px", "aTargets": [ 1 ] },
           { "sWidth": "180px", "aTargets": [ 2, 3 ] },
@@ -126,14 +148,18 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance title column. Title maybe truncated, need tooltip.
-              return "<a href='" + basePath + "contests/" + full[0] + "' title='" + BNUOJ.Utils.escapeHtml(BNUOJ.Utils.stripTags(data)) + "'>" + data + "</a>";
+              return (
+                  "<a href='" + basePath + "contests/" + full[0] +"' title='" +
+                  BNUOJ.Utils.escapeHtml(BNUOJ.Utils.stripTags(data)) + "'>" +
+                  data + "</a>");
             },
             "aTargets": [ 1 ]
           },
           {
             "mRender": function ( data, type, full ) {
               // Enhance cid column.
-              return "<a href='" + basePath + "contests/" + data + "'>" + data + "</a>";
+              return "<a href='" + basePath + "contests/" + data + "'>" + data +
+                  "</a>";
             },
             "aTargets": [ 2 ]
           },
@@ -167,7 +193,8 @@
             "mRender": function ( data, type, full ) {
               // Enhance owner status.
               if (!_.isEmpty(data)) {
-                return "<a href='" + basePath + "users/" + data + "' target='_blank'>" + data + "</a>";
+                return "<a href='" + basePath + "users/" + data +
+                    "' target='_blank'>" + data + "</a>";
               }
               else  {
                 return "-";

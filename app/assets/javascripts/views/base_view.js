@@ -16,7 +16,8 @@
     },
 
     // Standard ajax loading html, can be overrided.
-    ajaxLoadingHtml: '<img style="height:20px" src="' + basePath + 'assets/ajax-loader.gif" /> Loading....',
+    ajaxLoadingHtml: '<img style="height:20px" src="' + basePath +
+        'assets/ajax-loader.gif" /> Loading....',
 
     // jQuery selector inside the view dom.
     $: function() {
@@ -36,7 +37,8 @@
       this.afterAll();
     },
 
-    // Bind events using delegation, so it will also work on elements created after initialization.
+    // Bind events using delegation, so it will also work on elements created
+    // after initialization.
     // https://learn.jquery.com/events/event-delegation/
     bindEvents: function() {
       var self = this;
@@ -98,25 +100,33 @@
           tform.trigger("preprocess");
         },
         beforeSubmit: function (formData, tform, options) {
-          $(self._selectors.AJAX_FORM_BTNS, tform).attr("disabled", "disabled").addClass("disabled");
-          $(self._selectors.AJAX_FORM_MSG, tform).removeClass().addClass('alert alert-info').html(self.ajaxLoadingHtml).fadeIn(500);
+          $(self._selectors.AJAX_FORM_BTNS, tform).attr("disabled", "disabled").
+              addClass("disabled");
+          $(self._selectors.AJAX_FORM_MSG, tform).removeClass().
+              addClass('alert alert-info').html(self.ajaxLoadingHtml).
+              fadeIn(500);
           return true;
         },
         success: function(responseJSON, statusText, xhr, form) {
           $(self._selectors.AJAX_FORM_MSG, form).fadeTo(100, 0.1, function() {
-            $(this).html(responseJSON.msg).removeClass().addClass('alert alert-success').fadeTo(100, 1, function(){
+            $(this).html(responseJSON.msg).removeClass().
+                addClass('alert alert-success').fadeTo(100, 1, function(){
               form.trigger("correct");
             });
           });
-          $(self._selectors.AJAX_FORM_BTNS, form).removeAttr("disabled").removeClass("disabled");
+          $(self._selectors.AJAX_FORM_BTNS, form).removeAttr("disabled").
+              removeClass("disabled");
         },
 
         error: function(response, statusText, xhr, form) {
-          responseJSON = _.extend({msg: "Unknown error occured."}, response.responseJSON);
+          responseJSON = _.extend({msg: "Unknown error occured."},
+              response.responseJSON);
           $(self._selectors.AJAX_FORM_MSG, form).fadeTo(100, 0.1, function() {
-            $(this).html(responseJSON.msg).removeClass().addClass('alert alert-danger').fadeTo(300, 1);
+            $(this).html(responseJSON.msg).removeClass().
+                addClass('alert alert-danger').fadeTo(300, 1);
           });
-          $(self._selectors.AJAX_FORM_BTNS, form).removeAttr("disabled").removeClass("disabled");
+          $(self._selectors.AJAX_FORM_BTNS, form).removeAttr("disabled").
+              removeClass("disabled");
         }
       });
     }

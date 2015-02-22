@@ -30,9 +30,11 @@
     // Parse url params.
     parseBaseUrlParams: function(url) {
       url = url || window.location.href;
-      this.currentInfo.page = parseInt(BNUOJ.Utils.getUrlParam('page', url) || "1");
+      this.currentInfo.page =
+          parseInt(BNUOJ.Utils.getUrlParam('page', url) || "1");
       if (_.isNaN(this.currentInfo.page)) this.currentInfo.page = 1;
-      this.currentInfo.searchString = BNUOJ.Utils.getUrlParam('searchstr', url) || "";
+      this.currentInfo.searchString =
+          BNUOJ.Utils.getUrlParam('searchstr', url) || "";
     },
 
     // Parse view specific params, should be overrided.
@@ -53,7 +55,8 @@
       this.parseBaseUrlParams();
       this.parseUrlParams();
       // Store landing page info for history.js
-      History.replaceState(_.clone(this.currentInfo), this.getCurrentTitle(), window.location.href);
+      History.replaceState(_.clone(this.currentInfo), this.getCurrentTitle(),
+          window.location.href);
 
       this.isPoppingState = true;
       this.beforeRenderView();
@@ -70,7 +73,8 @@
       var info = state.data;
 
       // Filters search string.
-      if (this.withSearchBar && info.searchString != this.currentInfo.searchString) {
+      if (this.withSearchBar &&
+          info.searchString != this.currentInfo.searchString) {
         this.$(this._selectors.SEARCH_INPUT).val(info.searchString);
         this.listTable.fnFilter(info.searchString);
       }
@@ -121,7 +125,8 @@
 
       this.currentInfo.page = this.listTable.fnPagingInfo().iPage + 1;
       if (this.withSearchBar) {
-        this.currentInfo.searchString = this.$(this._selectors.SEARCH_INPUT).val();
+        this.currentInfo.searchString =
+          this.$(this._selectors.SEARCH_INPUT).val();
       }
       this.updateCurrentInfo();
 
@@ -129,8 +134,10 @@
       // Avoid push empty string to history。
       url += ("&page=" + this.currentInfo.page);
       if (this.withSearchBar) {
-        url += (this.currentInfo.searchString == "" || this.currentInfo.searchString == null) ? 
-          "" : "&searchstr=" + encodeURIComponent(this.currentInfo.searchString);
+        url += (this.currentInfo.searchString == "" ||
+            this.currentInfo.searchString == null) ? 
+                "" : "&searchstr=" +
+                    encodeURIComponent(this.currentInfo.searchString);
       }
       if (url != "") {
         url = "?" + url.substr(1);
@@ -173,7 +180,8 @@
           if (self.withSearchBar) {
             // Hack for search input, add class to fit bootstrap layout.
             // TODO(51isoft): I18n.
-            self.$(self._selectors.SEARCH_INPUT).addClass("form-control").attr("placeholder", "Search");
+            self.$(self._selectors.SEARCH_INPUT).addClass("form-control").
+                attr("placeholder", "Search");
           }
         },
         "fnDrawCallback": function() {
@@ -185,7 +193,8 @@
       _.extend(options, this.tableOptions)
       if (this.withSearchBar) {
         // We should delay the response when user is typing.
-        this.listTable = this.$(this._selectors.DATATABLE).dataTable(options).fnSetFilteringDelay();
+        this.listTable = this.$(this._selectors.DATATABLE).dataTable(options).
+            fnSetFilteringDelay();
       } else {
         this.listTable = this.$(this._selectors.DATATABLE).dataTable(options);
       }

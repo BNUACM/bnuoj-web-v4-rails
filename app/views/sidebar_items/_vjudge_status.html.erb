@@ -10,7 +10,8 @@
   <tbody>
 
   <% OjInfo.where('name NOT LIKE ?', OJ_CONFIG["misc"]["OJcode"]).each { |info| %>
-    <tr title='<%= t "sidebars.vjudge_status.check_text", :time => info.lastcheck_display, :status => info.status %>'>
+    <tr title='<%= t "sidebars.vjudge_status.check_text", :time => info.lastcheck_display,
+        :status => info.status %>'>
       <td><%= info.name %></td>
       <% if info.status == "Normal" %>
         <td><img src='<%= image_path("green_light.png") %>' /></td>

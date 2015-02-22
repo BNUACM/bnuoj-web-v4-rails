@@ -2,7 +2,9 @@ class ProblemsDatatable
 
   def initialize(view)
     @view = view
-    @columns = %w[problem.pid problem.title problem.source problem.total_ac problem.total_submit problem.vacnum problem.vtotalnum problem.vacpnum problem.vtotalpnum problem.vname problem.vid]
+    @columns = %w[problem.pid problem.title problem.source problem.total_ac
+        problem.total_submit problem.vacnum problem.vtotalnum problem.vacpnum
+        problem.vtotalpnum problem.vname problem.vid]
     @model = Problem
   end
 
@@ -25,8 +27,11 @@ private
   def data
     pids = records.pluck(:pid)
     if logged_in?
-      @submit_table = Status.where(username: current_user.username, pid: pids).group('pid').count
-      @ac_table = Status.where(username: current_user.username, pid: pids, result: 'Accepted').group('pid').count
+      @submit_table = Status.where(
+          username: current_user.username, pid: pids).group('pid').count
+      @ac_table = Status.where(
+          username: current_user.username, pid: pids, result: 'Accepted').
+              group('pid').count
     else
       @submit_table = {}
       @ac_table = {}
@@ -76,7 +81,9 @@ private
       end
     }
 
-    records = records.user_unsolved(current_user.username) if params[:unsolved] == "1" && logged_in?
+    if params[:unsolved] == "1" && logged_in?
+      records = records.user_unsolved(current_user.username) 
+    end
     return records
   end
 
@@ -91,7 +98,8 @@ private
   end
 
   def per_page
-    params[:iDisplayLength].to_i > 0 ? [params[:iDisplayLength].to_i, 100].min : 10
+    params[:iDisplayLength].to_i > 0 ?
+        [params[:iDisplayLength].to_i, 100].min : 10
   end
 
   def sort_column

@@ -4,7 +4,8 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       <h4 class="modal-title" id="modal-title">{{ title }}</h4>
     </div>
-    <form method="POST" action="{{ basePath }}statuses" accept-charset="UTF-8" id="problem_submit_form" class="ajform form-horizontal" role="form">
+    <form method="POST" action="{{ basePath }}statuses" accept-charset="UTF-8"
+        id="problem_submit_form" class="ajform form-horizontal" role="form">
       <div class="modal-body">
         <input type="hidden" name="status[pid]" value="{{ pid }}" />
         <input type="hidden" name="status[contest_belong]" value="{{ cid }}" />
@@ -35,7 +36,8 @@
             </div>
           </div>
         </div>
-        <textarea rows="12" class="form-control" name="status[source]" placeholder="Put your solution here..."></textarea>
+        <textarea rows="12" class="form-control" name="status[source]"
+            placeholder="Put your solution here..."></textarea>
       </div>
       <div class="modal-footer">
         <span id="msgbox" style="display:none"></span>

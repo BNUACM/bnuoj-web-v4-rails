@@ -1,37 +1,85 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+          data-target=".navbar-collapse">
         <span class="sr-only"><%= t "navbar.toggle_navigation" %></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<%= url_for :controller => 'home', :action => 'index' %>"><%= t "navbar.brand_name" %></a>
+      <a class="navbar-brand" href="<%= url_for :controller => 'home', :action => 'index' %>">
+        <%= t "navbar.brand_name" %>
+      </a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav" id="main_navbar">
         <li class="dropdown" id="problem">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="<%= url_for :controller => 'problems', :action => 'index' %>"><%= t "navbar.problem.main" %> <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown"
+              href="<%= url_for :controller => 'problems', :action => 'index' %>">
+            <%= t "navbar.problem.main" %> <b class="caret"></b>
+          </a>
           <ul class="dropdown-menu">
-            <li id="localp"><a href="<%= url_for :controller => 'problems', :action => 'index' %>?oj=<%= OJ_CONFIG["misc"]["OJcode"] %>"><%= t "navbar.problem.local_problems" %></a></li>
-            <li id="allp"><a href="<%= url_for :controller => 'problems', :action => 'index' %>"><%= t "navbar.problem.all_problems" %></a></li>
-            <li id="categoryp"><a href="problem_category.php"><%= t "navbar.problem.problem_category" %></a></li>
+            <li id="localp">
+              <a href="<%= url_for :controller => 'problems',
+                  :action => 'index' %>?oj=<%= OJ_CONFIG["misc"]["OJcode"] %>">
+                <%= t "navbar.problem.local_problems" %>
+              </a>
+            </li>
+            <li id="allp">
+              <a href="<%= url_for :controller => 'problems', :action => 'index' %>">
+                <%= t "navbar.problem.all_problems" %>
+              </a>
+            </li>
+            <li id="categoryp">
+              <a href="problem_category.php">
+                <%= t "navbar.problem.problem_category" %>
+              </a>
+            </li>
           </ul>
         </li>
-        <li id="status"><a href="<%= url_for :controller => 'statuses', :action => 'index' %>"><%= t "navbar.status" %></a></li>
+        <li id="status">
+          <a href="<%= url_for :controller => 'statuses', :action => 'index' %>">
+            <%= t "navbar.status" %>
+          </a>
+        </li>
         <li class="dropdown" id="contest">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="<%= url_for :controller => 'contests', :action => 'index' %>"><%= t "navbar.contest.main" %> <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown"
+              href="<%= url_for :controller => 'contests', :action => 'index' %>">
+            <%= t "navbar.contest.main" %> <b class="caret"></b>
+          </a>
           <ul class="dropdown-menu">
-            <li id="stdcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>"><%= t "navbar.contest.standard_contests" %></a></li>
-            <li id="icpccontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=0"><%= t "navbar.contest.icpc_contests" %></a></li>
-            <li id="cfcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=1"><%= t "navbar.contest.cf_contests" %></a></li>
-            <li id="repcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=99"><%= t "navbar.contest.replay_contests" %></a></li>
-            <li id="vcontest"><a href="<%= url_for :controller => 'contests', :action => 'index' %>?virtual=1"><%= t "navbar.contest.virtual_contests" %></a></li>
+            <li id="stdcontest">
+              <a href="<%= url_for :controller => 'contests', :action => 'index' %>">
+                <%= t "navbar.contest.standard_contests" %>
+              </a>
+            </li>
+            <li id="icpccontest">
+              <a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=0">
+                <%= t "navbar.contest.icpc_contests" %>
+              </a>
+            </li>
+            <li id="cfcontest">
+              <a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=1">
+                <%= t "navbar.contest.cf_contests" %>
+              </a>
+            </li>
+            <li id="repcontest">
+              <a href="<%= url_for :controller => 'contests', :action => 'index' %>?type=99">
+                <%= t "navbar.contest.replay_contests" %>
+              </a>
+            </li>
+            <li id="vcontest">
+              <a href="<%= url_for :controller => 'contests', :action => 'index' %>?virtual=1">
+                <%= t "navbar.contest.virtual_contests" %>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="dropdown" id="more">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="teaminfo.php"><%= t "navbar.more" %> <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="teaminfo.php">
+            <%= t "navbar.more" %> <b class="caret"></b>
+          </a>
           <ul class="dropdown-menu">
             <li><a href="ranklist.php"><%= t "navbar.ranklist" %></a></li>
             <li><a href="discuss.php"><%= t "navbar.discuss" %></a></li>
@@ -64,18 +112,24 @@
             <li><a href="mail.php" id="mail">
               Mail
               <% if current_user.unread_message_count > 0 %>
-              <b style='color:#F00'> (<%= current_user.unread_message_count %>) <b class="caret"></b></a>
+                <b style='color:#F00'> (<%= current_user.unread_message_count %>)</b></a>
               <% end %>
             </a></li>
   <% if current_user.is_admin? %>
             <li><a href="admin_index.php" id="admin"><%= t "navbar.personal.admin" %></a></li>
   <% end %>
-            <li><a href="<%= url_for :controller => 'users', :action => 'logout' %>" id="logout-btn"><%= t "navbar.logout" %></a></li>
+            <li>
+              <a href="<%= url_for :controller => 'users', :action => 'logout' %>" id="logout-btn">
+                <%= t "navbar.logout" %>
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
 <% end %>
-      <p class="navbar-text navbar-right"><span id="servertime"><%= Time.now.to_s :db %></span>&nbsp;</p>
+      <p class="navbar-text navbar-right">
+        <span id="servertime"><%= Time.now.to_s :db %></span>&nbsp;
+      </p>
     </div><!--/.navbar-collapse -->
   </div>
 </div>

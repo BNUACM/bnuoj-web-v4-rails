@@ -65,7 +65,8 @@
     // On click modify button in navbar.
     onClickModify: function() {
       BNUOJ.Dialogs.show("modify_user_box", {
-        ajaxUrl: basePath + "users/" + BNUOJ.Utils.getCookie('username') + ".json"
+        ajaxUrl:
+            basePath + "users/" + BNUOJ.Utils.getCookie('username') + ".json"
       });
     },
 

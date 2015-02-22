@@ -3,10 +3,12 @@
     <form id="status-filter">
       <div class="row">
         <div class="col-sm-3">
-          <input type='text' name='showname' placeholder="<%= t "user.username" %>" class="form-control" value='' />
+          <input type='text' name='showname' placeholder="<%= t "user.username" %>"
+              class="form-control" value='' />
         </div>
         <div class="col-sm-3">
-          <input type='text' name='showpid' placeholder="<%= t "problem.id" %>" class="form-control" />
+          <input type='text' name='showpid' placeholder="<%= t "problem.id" %>"
+              class="form-control" />
         </div>
         <div class="col-sm-3">
           <select name="showres" class="form-control">
@@ -15,10 +17,18 @@
             <option value='Wrong Answer'><%= t "status.results.wrong_answer" %></option>
             <option value='Runtime Error'><%= t "status.results.runtime_error" %></option>
             <option value='Time Limit Exceed'><%= t "status.results.time_limit_exceed" %></option>
-            <option value='Memory Limit Exceed'><%= t "status.results.memory_limit_exceed" %></option>
-            <option value='Output Limit Exceed'><%= t "status.results.output_limit_exceed" %></option>
-            <option value='Presentation Error'><%= t "status.results.presentation_error" %></option>
-            <option value='Restricted Function'><%= t "status.results.restricted_function" %></option>
+            <option value='Memory Limit Exceed'>
+              <%= t "status.results.memory_limit_exceed" %>
+            </option>
+            <option value='Output Limit Exceed'>
+              <%= t "status.results.output_limit_exceed" %>
+            </option>
+            <option value='Presentation Error'>
+              <%= t "status.results.presentation_error" %>
+            </option>
+            <option value='Restricted Function'>
+              <%= t "status.results.restricted_function" %>
+            </option>
             <option value='Compile Error'><%= t "status.results.compile_error" %></option>
           </select>
         </div>
@@ -33,7 +43,9 @@
               </select>
             </div>
             <div class="col-xs-6">
-              <button type='submit' class="btn btn-primary pull-right"><%= t "global.show" %></button>
+              <button type='submit' class="btn btn-primary pull-right">
+                <%= t "global.show" %>
+              </button>
             </div>
           </div>
         </div>

@@ -6,7 +6,10 @@
         <h4 class="modal-title" id="modal-title">{{ ajaxContent.title }}</h4>
       </div>
       <div class="modal-body">
-        <div style="margin-bottom:10px">by <b>{{ ajaxContent.author }}</b> <span class="display_time">{{ ajaxContent.time_added_display }}</span></div>
+        <div style="margin-bottom:10px">
+          by <b>{{ ajaxContent.author }}</b>
+          <span class="display_time">{{ ajaxContent.time_added_display }}</span>
+        </div>
         <div>{{{ ajaxContent.content }}}</div>
       </div>
     {{else}}

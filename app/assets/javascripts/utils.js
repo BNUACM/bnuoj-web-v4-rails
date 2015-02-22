@@ -7,13 +7,17 @@
         return output;
       };
       ++ timePassed;
-      var displayTime = moment(currentServerTime, globalConfig.misc.datetime_format + ' Z').add(timePassed, 's').local();
-      $("#servertime").text(displayTime.format(globalConfig.misc.datetime_format));
+      var displayTime =
+          moment(currentServerTime, globalConfig.misc.datetime_format + ' Z').
+              add(timePassed, 's').local();
+      $("#servertime").text(
+          displayTime.format(globalConfig.misc.datetime_format));
     },
 
     // Get current server time.
     getTime: function() {
-      $.get(basePath + "server_time", {'r': Math.random()}).done(function(data){
+      $.get(basePath + "server_time", {'r': Math.random()}).
+          done(function(data) {
         currentServerTime = data;
         timePassed = 0
       });
@@ -21,14 +25,17 @@
 
     // Convert server time to local time.
     getLocalTime: function(servertime) {
-      var displayTime = moment(servertime + ' ' + globalConfig.misc.server_timezone_offset , globalConfig.misc.datetime_format + ' Z').local();
+      var displayTime =
+          moment(servertime + ' ' + globalConfig.misc.server_timezone_offset ,
+              globalConfig.misc.datetime_format + ' Z').local();
       return displayTime.format(globalConfig.misc.datetime_format);
     },
 
     // Convert local time to server time.
     convertToServerTime: function(localtime) {
       var displayTime = moment(localtime);
-      return displayTime.zone(globalConfig.misc.server_timezone_offset).format(globalConfig.misc.datetime_format);
+      return displayTime.zone(globalConfig.misc.server_timezone_offset).
+          format(globalConfig.misc.datetime_format);
     },
 
     // Get the result class for given status.
@@ -81,7 +88,11 @@
     // Get param value for given url or current url if not set.
     getUrlParam: function(param, url) {
       url = url || window.location.href;
-      return decodeURIComponent((RegExp("[?|&|#]" + param + "=" + "(.*?)(&|#|;|$)").exec(url) || [null, ""])[1].replace(/\+/g, "%20")) || null
+      return decodeURIComponent(
+          (RegExp("[?|&|#]" + param + "=" +
+              "(.*?)(&|#|;|$)").exec(url) || [null, ""])[1].
+                  replace(/\+/g, "%20"))
+          || null;
     },
 
     // Escapes given string to HTML-safe content.

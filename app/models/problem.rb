@@ -6,7 +6,8 @@ class Problem < ActiveRecord::Base
   has_many :discusses, primary_key: 'pid', foreign_key: 'pid', inverse_of: :problem
   scope :public_problems, -> { where(hide: 0) }
   scope :user_unsolved, ->(username) { 
-    where(' pid NOT IN ( SELECT DISTINCT(pid) FROM status WHERE result = "Accepted" AND username = ? ) ', username)
+    where(' pid NOT IN ( SELECT DISTINCT(pid) FROM status'\
+        'WHERE result = "Accepted" AND username = ? ) ', username)
   }
 
   # External Url for virtual problems.
@@ -18,7 +19,8 @@ class Problem < ActiveRecord::Base
       when "OpenJudge"
         "http://poj.openjudge.cn/practice/#{vid}"
       when "CodeForces"
-        "http://codeforces.com/problemset/problem/#{vid[/\\d+/]}#{vid[/[^\\d]+/]}"
+        "http://codeforces.com/problemset/problem/#{vid[/\\d+/]}"\
+        "#{vid[/[^\\d]+/]}"
       when "HDU"
         "http://acm.hdu.edu.cn/showproblem.php?pid=#{vid}"
       when "SGU"
@@ -48,7 +50,8 @@ class Problem < ActiveRecord::Base
       when "UVALive"
         vvid = vid.to_i
         vvid = vvid + 10 if vvid > 5722
-        "http://livearchive.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=#{vvid-1999}"
+        "http://livearchive.onlinejudge.org/index.php?option=com_onlinejudge&"\
+        "Itemid=8&page=show_problem&problem=#{vvid-1999}"
       else
         begin
           VUrl.where(voj: vname, vid: vid).first.url
@@ -61,6 +64,7 @@ class Problem < ActiveRecord::Base
 
   # Get categories for this problem.
   def tagged_categories
-    ProblemCategory.joins(:category).includes(:category).where(pid: pid).where('weight > 0')
+    ProblemCategory.joins(:category).includes(:category).where(pid: pid).
+        where('weight > 0')
   end
 end

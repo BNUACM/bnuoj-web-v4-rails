@@ -3,10 +3,17 @@
 </h3>
 <% News.order(time_added: :desc).limit(JS_CONFIG["limits"]["news_on_index"]).each { |news| %>
   <% if news.title.length > JS_CONFIG["limits"]["news_on_index_title_len"] %>
-    <h4><%= truncate(news.title, length: JS_CONFIG["limits"]["news_on_index_title_len"]) %><a name='<%= news.newsid %>' class='newslink' href='#'>[...]</a></h4>
+    <h4>
+      <%= truncate(news.title, length: JS_CONFIG["limits"]["news_on_index_title_len"]) %>
+      <a name='<%= news.newsid %>' class='newslink' href='#'>[...]</a>
+    </h4>
   <% else %>
     <h4><%= news.title %></h4>
   <% end %>
-  <p><%= truncate(strip_tags(news.content), length: JS_CONFIG["limits"]["news_on_index_content_len"], escape: false) %> <a name='<%= news.newsid %>' class='newslink' href='#'>[...]</a></p>
+  <p>
+    <%= truncate(strip_tags(news.content),
+        length: JS_CONFIG["limits"]["news_on_index_content_len"], escape: false) %>
+    <a name='<%= news.newsid %>' class='newslink' href='#'>[...]</a>
+  </p>
 
 <% } %>

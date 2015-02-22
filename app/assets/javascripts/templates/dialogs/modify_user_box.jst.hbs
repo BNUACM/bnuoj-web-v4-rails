@@ -5,18 +5,21 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="modifyUserModal">Modify My Information</h4>
       </div>
-      <form method="POST" action="{{ basePath }}users/{{ ajaxContent.username }}" accept-charset="UTF-8" id="modify_form" class="ajform form-horizontal" role="form">
+      <form method="POST" action="{{ basePath }}users/{{ ajaxContent.username }}"
+          accept-charset="UTF-8" id="modify_form" class="ajform form-horizontal" role="form">
         <div class="modal-body">
           <div class="form-group">
             <label for="username" class="control-label col-sm-4">Username</label>
             <div class="col-sm-8">
-              <input class="form-control" name="username" type="text" value="{{ ajaxContent.username }}" id="username" disabled='true'>
+              <input class="form-control" name="username" type="text"
+                  value="{{ ajaxContent.username }}" id="username" disabled='true'>
             </div>
           </div>
           <div class="form-group">
             <label for="ol_password" class="control-label col-sm-4">Old Password</label>
             <div class="col-sm-8">
-              <input class="form-control" name="ol_password" type="password" value="" id="ol_password">
+              <input class="form-control" name="ol_password" type="password" value=""
+                  id="ol_password">
             </div>
           </div>
           <div class="form-group">
@@ -28,25 +31,29 @@
           <div class="form-group">
             <label for="repassword" class="control-label col-sm-4">Repeat Password</label>
             <div class="col-sm-8">
-              <input class="form-control" name="repassword" type="password" value="" id="repassword">
+              <input class="form-control" name="repassword" type="password" value=""
+                  id="repassword">
             </div>
           </div>
           <div class="form-group">
             <label for="nickname" class="control-label col-sm-4">Nickname</label>
             <div class="col-sm-8">
-              <input class="form-control" name="nickname" type="text" value="{{ ajaxContent.nickname }}" id="nickname">
+              <input class="form-control" name="nickname" type="text"
+                  value="{{ ajaxContent.nickname }}" id="nickname">
             </div>
           </div>
           <div class="form-group">
             <label for="school" class="control-label col-sm-4">School</label>
             <div class="col-sm-8">
-              <input class="form-control" name="school" type="text" value="{{ ajaxContent.school }}" id="school">
+              <input class="form-control" name="school" type="text" value="{{ ajaxContent.school }}"
+                  id="school">
             </div>
           </div>
           <div class="form-group">
             <label for="email" class="control-label col-sm-4">Email</label>
             <div class="col-sm-8">
-              <input class="form-control" name="email" type="email" value="{{ ajaxContent.email }}" id="email"> 
+              <input class="form-control" name="email" type="email" value="{{ ajaxContent.email }}"
+                  id="email"> 
             </div>
           </div>
         </div>

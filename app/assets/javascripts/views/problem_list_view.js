@@ -29,7 +29,8 @@
     // Override.
     parseUrlParams: function(url) {
       url = url || window.location.href;
-      this.currentInfo.unsolveCheck = BNUOJ.Utils.getUrlParam('unsolved', url) || "0";
+      this.currentInfo.unsolveCheck =
+          BNUOJ.Utils.getUrlParam('unsolved', url) || "0";
       this.currentInfo.shownStat = BNUOJ.Utils.getUrlParam('stat', url) || "0";
       this.currentInfo.OJ = BNUOJ.Utils.getUrlParam('oj', url) || "";
     },
@@ -41,21 +42,27 @@
       }
 
       if (info.shownStat != this.currentInfo.shownStat) {
-        $(this._selectors.STAT_BTNS).filter('[stat="' + info.shownStat + '"]').click();
+        $(this._selectors.STAT_BTNS).filter(
+            '[stat="' + info.shownStat + '"]').click();
       }
 
       if (info.unsolveCheck != this.currentInfo.unsolveCheck) {
-        $(this._selectors.UNSOLVED_BTNS).filter('[unsolved="' + info.unsolveCheck + '"]').click();
+        $(this._selectors.UNSOLVED_BTNS).filter(
+            '[unsolved="' + info.unsolveCheck + '"]').click();
       }
     },
 
     // Override.
     afterViewAll: function() {
       if (this.currentInfo.OJ != "") {
-        $(this._selectors.OJ_SELECTOR).val(this.currentInfo.OJ).trigger('change');
+        $(this._selectors.OJ_SELECTOR).val(this.currentInfo.OJ).
+            trigger('change');
       }
-      $(this._selectors.STAT_BTNS).filter('[stat="' + this.currentInfo.shownStat + '"]').click();
-      $(this._selectors.UNSOLVED_BTNS).filter('[unsolved="' + this.currentInfo.unsolveCheck + '"]').addClass('active');
+      $(this._selectors.STAT_BTNS).filter(
+          '[stat="' + this.currentInfo.shownStat + '"]').click();
+      $(this._selectors.UNSOLVED_BTNS).filter(
+          '[unsolved="' + this.currentInfo.unsolveCheck + '"]').
+              addClass('active');
     },
 
     // Change the visibility of stats columns.
@@ -125,9 +132,17 @@
 
     // Override.
     getViewUrl: function() {
-      return (this.currentInfo.OJ == "" || this.currentInfo.OJ == null ? "" : "&oj=" + encodeURIComponent(this.currentInfo.OJ)) +
-          (this.currentInfo.unsolveCheck == "0" || this.currentInfo.unsolveCheck == null ? "" : "&unsolved=" + encodeURIComponent(this.currentInfo.unsolveCheck)) +
-          (this.currentInfo.shownStat == "0" || this.currentInfo.shownStat == null ? "" : "&stat=" + encodeURIComponent(this.currentInfo.shownStat));
+      return (
+          (this.currentInfo.OJ == "" || this.currentInfo.OJ == null ?
+              "" : "&oj=" + encodeURIComponent(this.currentInfo.OJ)) +
+          (this.currentInfo.unsolveCheck == "0" ||
+              this.currentInfo.unsolveCheck == null ?
+                  "" : "&unsolved=" +
+                      encodeURIComponent(this.currentInfo.unsolveCheck)) +
+          (this.currentInfo.shownStat == "0" ||
+              this.currentInfo.shownStat == null ?
+                  "" : "&stat=" +
+                      encodeURIComponent(this.currentInfo.shownStat)));
     },
 
     // Override. Nothing specific to do.
@@ -137,13 +152,17 @@
     // Add ajax params for on going request.
     addAjaxParams: function(aoData) {
       // Unresolve is not an acutal column of the data table.
-      aoData.push({"name" : 'unsolved', "value" : this.currentInfo.unsolveCheck});
+      aoData.push({
+        "name" : 'unsolved',
+        "value" : this.currentInfo.unsolveCheck
+      });
     },
 
     // Override.
     setupTableOptions: function() {
       this.tableOptions = ({
-        "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"clearfix"><"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
+        "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"clearfix">' +
+            '<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
         "oLanguage": {
           "sEmptyTable": "No problems found.",
           "sZeroRecords": "No problems found.",
@@ -154,7 +173,8 @@
         "sPaginationType": "bs_full",
         "aLengthMenu": [[25, 50, 100, 150, 200], [25, 50, 100, 150, 200]] ,
         "iDisplayLength": globalConfig.limits.problems_per_page,
-        "iDisplayStart": (this.currentInfo.page - 1) * globalConfig.limits.problems_per_page,
+        "iDisplayStart":
+            (this.currentInfo.page - 1) * globalConfig.limits.problems_per_page,
         "aoColumnDefs": [
           { "sWidth": "65px", "aTargets": [ 10 ] },
           { "sWidth": "55px", "aTargets": [ 0, 1, 4, 5, 6, 7, 8, 9, 11 ] },
@@ -163,35 +183,40 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance accpeted number column.
-              return "<a href='" + basePath + "statuses?pid=" + full[1] + "&result=Accepted'>" + full[4] + "</a>";
+              return "<a href='" + basePath + "statuses?pid=" + full[1] +
+                  "&result=Accepted'>" + full[4] + "</a>";
             },
             "aTargets": [ 4 ]
           },
           {
             "mRender": function ( data, type, full ) {
               // Enhance total number column.
-              return "<a href='" + basePath + "statuses?pid=" + full[1] + "'>" + full[5] + "</a>";
+              return "<a href='" + basePath + "statuses?pid=" + full[1] + "'>"
+                  + full[5] + "</a>";
             },
             "aTargets": [ 5 ]
           },
           {
             "mRender": function ( data, type, full ) {
               // Enhance pid column.
-              return "<a href='" + basePath + "problems/" + full[1] + "' title='" + full[2] + "' >" + full[2] + "</a>";
+              return "<a href='" + basePath + "problems/" + full[1] +
+                  "' title='" + full[2] + "' >" + full[2] + "</a>";
             },
             "aTargets": [ 2 ]
           },
           {
             "mRender": function ( data, type, full ) {
               // Enhance source column.
-              return "<a class='source_search' href='#' title='" + data + "'>"+data+"</a>";
+              return "<a class='source_search' href='#' title='" + data +
+                  "'>" + data + "</a>";
             },
             "aTargets": [ 3 ]
           },
           {
             "mRender": function ( data, type, full ) {
               // Enhance problem title column.
-              return "<a href='" + basePath + "problems/" + data + "'>" + data + "</a>";
+              return "<a href='" + basePath + "problems/" + data + "'>" + data +
+                  "</a>";
             },
             "aTargets": [ 1 ]
           },

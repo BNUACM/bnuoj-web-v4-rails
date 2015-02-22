@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-sm-12">
     <% if logged_in? %>
-      <button id="arrangevirtual" class="btn btn-primary"><%= t "contest.btns.arrange_vcontest" %></button>
+      <button id="arrangevirtual" class="btn btn-primary">
+        <%= t "contest.btns.arrange_vcontest" %>
+      </button>
     <% end %>
     <div class="btn-group virtual-btns">
       <button class="btn btn-default" is-virtual=""><%= t "contest.btns.all" %></button>

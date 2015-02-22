@@ -30,10 +30,14 @@
     // Override.
     parseUrlParams: function(url) {
       url = url || window.location.href;
-      this.currentInfo.userShown = BNUOJ.Utils.getUrlParam('user', url) || "";
-      this.currentInfo.pidShown = BNUOJ.Utils.getUrlParam('pid', url) || "";
-      this.currentInfo.resultShown = BNUOJ.Utils.getUrlParam('result', url) || "";
-      this.currentInfo.languageShown = BNUOJ.Utils.getUrlParam('language', url) || "";
+      this.currentInfo.userShown =
+          BNUOJ.Utils.getUrlParam('user', url) || "";
+      this.currentInfo.pidShown =
+          BNUOJ.Utils.getUrlParam('pid', url) || "";
+      this.currentInfo.resultShown =
+          BNUOJ.Utils.getUrlParam('result', url) || "";
+      this.currentInfo.languageShown =
+          BNUOJ.Utils.getUrlParam('language', url) || "";
     },
 
     // Override.
@@ -55,12 +59,15 @@
         this.currentInfo.pidShown = $(this._selectors.PID_FILTER).val();
         this.listTable.fnFilter(this.currentInfo.pidShown, 2);
       }
-      if (this.currentInfo.resultShown != $(this._selectors.RESULT_FILTER).val()) {
+      if (this.currentInfo.resultShown !=
+            $(this._selectors.RESULT_FILTER).val()) {
         this.currentInfo.resultShown = $(this._selectors.RESULT_FILTER).val();
         this.listTable.fnFilter(this.currentInfo.resultShown, 3);
       }
-      if (this.currentInfo.languageShown != $(this._selectors.LANGUAGE_FILTER).val()) {
-        this.currentInfo.languageShown = $(this._selectors.LANGUAGE_FILTER).val();
+      if (this.currentInfo.languageShown !=
+            $(this._selectors.LANGUAGE_FILTER).val()) {
+        this.currentInfo.languageShown = 
+            $(this._selectors.LANGUAGE_FILTER).val();
         this.listTable.fnFilter(this.currentInfo.languageShown, 4);
       }
     },
@@ -92,10 +99,17 @@
 
     // Override.
     getViewUrl: function() {
-      return (this.currentInfo.userShown == "" ? "" : "&user=" + encodeURIComponent(this.currentInfo.userShown)) +
-          (this.currentInfo.pidShown == "" ? "" : "&pid=" + encodeURIComponent(this.currentInfo.pidShown)) +
-          (this.currentInfo.resultShown == "" ? "" : "&result=" + encodeURIComponent(this.currentInfo.resultShown)) +
-          (this.currentInfo.languageShown == "" ? "" : "&language=" + encodeURIComponent(this.currentInfo.languageShown));
+      return (
+          (this.currentInfo.userShown == "" ?
+              "" : "&user=" + encodeURIComponent(this.currentInfo.userShown)) +
+          (this.currentInfo.pidShown == "" ?
+              "" : "&pid=" + encodeURIComponent(this.currentInfo.pidShown)) +
+          (this.currentInfo.resultShown == "" ?
+              "" : "&result=" +
+                  encodeURIComponent(this.currentInfo.resultShown)) +
+          (this.currentInfo.languageShown == "" ?
+              "" : "&language=" +
+                  encodeURIComponent(this.currentInfo.languageShown)));
     },
 
     // Override. Nothing specific to do.
@@ -109,7 +123,9 @@
         return;
       }
       var runid = $(evt.target).attr('runid');
-      BNUOJ.Dialogs.show("source_code_box", { ajaxUrl: basePath + "statuses/" + runid + ".json" } );
+      BNUOJ.Dialogs.show("source_code_box", {
+        ajaxUrl: basePath + "statuses/" + runid + ".json"
+      });
     },
 
     // When user clicks the compile error link to see the compiler info.
@@ -119,7 +135,9 @@
         return;
       }
       var runid = $(evt.target).attr('runid');
-      BNUOJ.Dialogs.show("compile_info_box", { ajaxUrl: basePath + "statuses/compile_info/" + runid + ".json" } );
+      BNUOJ.Dialogs.show("compile_info_box", {
+        ajaxUrl: basePath + "statuses/compile_info/" + runid + ".json"
+      });
     },
 
     // Override.
@@ -135,7 +153,8 @@
         "bSort": false,
         "bLengthChange": false,
         "iDisplayLength": globalConfig.limits.status_per_page,
-        "iDisplayStart": (this.currentInfo.page - 1) * globalConfig.limits.status_per_page,
+        "iDisplayStart":
+            (this.currentInfo.page - 1) * globalConfig.limits.status_per_page,
         "aoColumnDefs": [
           { "sWidth": "170px", "aTargets": [ 8 ] },
           { "sWidth": "210px", "aTargets": [ 3 ] },
@@ -143,7 +162,8 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance user column.
-              return "<a target='_blank' href='" + basePath + "users/" + data + "'>" + data + "</a>";
+              return "<a target='_blank' href='" + basePath + "users/" + data +
+                  "'>" + data + "</a>";
             },
             "aTargets": [ 0 ]
           },
@@ -153,14 +173,16 @@
               if (full[9] == false) {
                 return data;
               }
-              return "<a class='show-source' runid='" + full[1] + "' href='#'>" + data + "</a>";
+              return "<a class='show-source' runid='" + full[1] +
+                  "' href='#'>" + data + "</a>";
             },
             "aTargets": [ 1, 4 ]
           },
           {
             "mRender": function ( data, type, full ) {
               // Enhance pid column.
-              return "<a href='" + basePath + "problems/" + data + "'>" + data + "</a>";
+              return "<a href='" + basePath + "problems/" + data + "'>" +
+                  data + "</a>";
             },
             "aTargets": [ 2 ]
           },
@@ -194,17 +216,20 @@
               if (full[9] == false) {
                 return display;
               }
-              return "<a class='show-source' runid='" + full[1] + "' href='#'>" + display + "</a>";
+              return "<a class='show-source' runid='" + full[1] +
+                  "' href='#'>" + display + "</a>";
             },
             "aTargets": [ 7 ]
           },
           {
             "mRender": function ( data, type, full ) {
               // Enhance result column.
-              var tdata = "<span class='" + BNUOJ.Utils.getResultClass(data) + "' runid='" + full[1] + "'>" + data + "</span>";
+              var tdata = "<span class='" + BNUOJ.Utils.getResultClass(data) +
+                  "' runid='" + full[1] + "'>" + data + "</span>";
               // TODO(51isoft): I18n.
               if (data.substr(0, 7) == "Compile") {
-                return "<a href='#' class='ce-info' runid='" + full[1] + "'>" + tdata + "</a>";
+                return "<a href='#' class='ce-info' runid='" + full[1] + "'>" +
+                    tdata + "</a>";
               }
               return tdata;
             },

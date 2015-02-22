@@ -2,7 +2,8 @@ class ContestsDatatable
 
   def initialize(view)
     @view = view
-    @columns = %w[contest.cid contest.title contest.start_time contest.end_time contest.isprivate contest.owner contest.isvirtual contest.type]
+    @columns = %w[contest.cid contest.title contest.start_time contest.end_time
+        contest.isprivate contest.owner contest.isvirtual contest.type]
     @model = Contest
   end
 
@@ -73,11 +74,12 @@ private
   end
 
   def page
-    params[:iDisplayStart].to_i/per_page + 1
+    params[:iDisplayStart].to_i / per_page + 1
   end
 
   def per_page
-    params[:iDisplayLength].to_i > 0 ? [params[:iDisplayLength].to_i, 100].min : 10
+    params[:iDisplayLength].to_i > 0 ?
+        [params[:iDisplayLength].to_i, 100].min : 10
   end
 
   def sort_column

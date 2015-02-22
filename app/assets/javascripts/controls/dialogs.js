@@ -69,7 +69,9 @@
 
     onAjaxContentLoaded: function() {
       // Add span class wrapper for status result.
-      this.ajaxContent.displayResult = "<span class='" + BNUOJ.Utils.getResultClass(this.ajaxContent.result) + "'>" + this.ajaxContent.result + "</span>";
+      this.ajaxContent.displayResult = "<span class='" +
+          BNUOJ.Utils.getResultClass(this.ajaxContent.result) + "'>" +
+          this.ajaxContent.result + "</span>";
     },
 
     // User clicks share radio.

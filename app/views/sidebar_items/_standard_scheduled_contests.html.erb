@@ -3,7 +3,9 @@
   <h3><%= t "sidebars.contests.scheduled_contests" %></h3>
   <p>
     <% contests.each { |contest| %>
-      <%= raw t("sidebars.contests.future_item", :link => url_for(:controller => 'contests', :action => 'show', :id => contest.cid), :title => contest.title, :start_time => contest.start_time) %><br />
+      <%= raw t("sidebars.contests.future_item", :link => url_for(:controller => 'contests',
+          :action => 'show', :id => contest.cid), :title => contest.title,
+          :start_time => contest.start_time) %><br />
     <% } %>
   </p>
 <% end %>

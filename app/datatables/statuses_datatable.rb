@@ -2,7 +2,8 @@ class StatusesDatatable
 
   def initialize(view)
     @view = view
-    @columns = %w[username runid pid result language time_used memory_used LENGTH(source) time_submit isshared]
+    @columns = %w[username runid pid result language time_used memory_used
+        LENGTH(source) time_submit isshared]
     # Eager load language_name since we'll need that to render
     @model = Status.eager_load(:language_name)
   end
@@ -30,7 +31,8 @@ private
         if !logged_in? || record.isshared
           record.isshared
         else
-          if current_user.username.casecmp(record.username) == 0 || current_user.is_admin?
+          if current_user.username.casecmp(record.username) == 0 ||
+              current_user.is_admin?
             true
           else
             false
@@ -77,7 +79,8 @@ private
   end
 
   def per_page
-    params[:iDisplayLength].to_i > 0 ? [params[:iDisplayLength].to_i, 100].min : 10
+    params[:iDisplayLength].to_i > 0 ?
+        [params[:iDisplayLength].to_i, 100].min : 10
   end
 
 end
