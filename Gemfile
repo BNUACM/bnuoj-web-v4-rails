@@ -77,3 +77,6 @@ gem 'i18n-js'
 
 # i18n test
 gem 'i18n-tasks', '~> 0.7.12'
+
+# assets pipeline
+gem 'sprockets-rails', :require => 'sprockets/railtie'
