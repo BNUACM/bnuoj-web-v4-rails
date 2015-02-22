@@ -1,14 +1,14 @@
 # config valid only for Capistrano 3.1
-lock '3.1.0'
+lock '>=3.1.0'
 
 set :application, 'bnuoj_v4'
-set :repo_url, 'git@github.com:BNUACM/bnuoj-web-v4-rails.git'
+set :repo_url, 'https://github.com/BNUACM/bnuoj-web-v4-rails.git'
 
 # Default branch is :master
 set :branch, 'develop'
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/deploy/bnuoj-v4-rails'
+set :deploy_to, '/home/deploy/release/bnuoj-v4-rails'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -34,6 +34,13 @@ set :deploy_to, '/home/deploy/bnuoj-v4-rails'
 # Default value for keep_releases is 5
 set :keep_releases, 3
 
+set :linked_dirs, %w{bin log tmp}
+
+set :rvm1_ruby_version, "2.2.0"       # use the same ruby as used locally for deployment
+
+before 'deploy', 'rvm1:install:rvm'  # install/update RVM
+before 'deploy', 'rvm1:install:ruby' # install Ruby and create gemset (both if missing)
+
 namespace :deploy do
 
   task :install_bower do
@@ -47,29 +54,20 @@ namespace :deploy do
 
   before 'assets:precompile', :install_bower
 
-  task :start do
+  task :copy_config_file do
     on roles(:app), in: :sequence, wait: 5 do
-      within release_path do
-        execute :bundle, "exec unicorn_rails -D -E #{env.fetch(:stage)} -c config/unicorn.conf"
-      end
+      execute "cp -f ~/bnuoj-configs/v4/database.yml #{release_path}/config/database.yml"
+      execute "cp -f ~/bnuoj-configs/v4/oj_config.yml #{release_path}/config/oj_config.yml"
     end
   end
+
+  after :updating, :copy_config_file
 
   desc 'Restart application'
   task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
-
-      execute "kill -USR2 `cat #{deploy_to}/tmp/pids/unicorn.pid`"
-      sleep 5
-      execute "kill -WINCH `cat #{deploy_to}/tmp/pids/unicorn.pid.oldbin`"
-      sleep 5
-      execute "kill -QUIT `cat #{deploy_to}/tmp/pids/unicorn.pid.oldbin`"
-    end
+    invoke 'unicorn:restart'
   end
-  
-  after :publishing, :cleanup 
+
   after :publishing, :restart
 
   after :restart, :clear_cache do
