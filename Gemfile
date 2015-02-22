@@ -45,6 +45,7 @@ group :development do
     gem 'capistrano-rails', '~> 1.1'
     gem 'capistrano-npm'
     gem 'capistrano3-unicorn'
+    gem 'capistrano3-puma'
     gem 'rvm1-capistrano3', require: false
 end
 

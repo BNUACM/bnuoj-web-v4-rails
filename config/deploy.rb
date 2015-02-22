@@ -65,7 +65,7 @@ namespace :deploy do
 
   desc 'Restart application'
   task :restart do
-    invoke 'unicorn:restart'
+    invoke 'puma:restart'
   end
 
   after :publishing, :restart
