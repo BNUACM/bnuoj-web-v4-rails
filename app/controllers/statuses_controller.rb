@@ -6,7 +6,7 @@ class StatusesController < ApplicationController
   before_action :check_visibility, only: [:show, :compile_info, :update]
 
   def index
-    @page_title = "Status List"
+    @page_title = t("status.titles.list")
     respond_to do |format|
       format.html
       format.json {
@@ -52,7 +52,7 @@ class StatusesController < ApplicationController
 
   # Show compile info, standalone page.
   def compile_info
-    @page_title = "Compile Information of Run #{@status.runid}"
+    @page_title = t("status.titles.compile_info", runid: @status.runid)
     respond_to do |format|
       format.html
       format.json {
@@ -65,7 +65,7 @@ class StatusesController < ApplicationController
 
   # Show source code, standalone page.
   def show
-    @page_title = "Source Code of Run #{@status.runid}"
+    @page_title = t("status.titles.show", runid: @status.runid)
     respond_to do |format|
       format.html
       format.json {
@@ -85,7 +85,7 @@ class StatusesController < ApplicationController
     create_params = status_params
     create_params[:username] = current_user.username
     create_params[:time_submit] = Time.now
-    create_params[:result] = 'Waiting'
+    create_params[:result] = t("status.results.waiting")
     create_params[:ipaddr] = request.remote_ip
     create_params[:jnum] = 0
     create_params[:contest_belong] = 0 if @contest && @contest.ended?
@@ -103,7 +103,7 @@ class StatusesController < ApplicationController
         current_user.save
       rescue
       end
-      render json: { msg: "Submitted" }, status: :created
+      render json: { msg: t("status.prompts.submitted") }, status: :created
     else
       render json: { msg: @status.errors }, status: :unprocessable_entity
     end
@@ -123,34 +123,39 @@ class StatusesController < ApplicationController
   # Check whether the submit is valid.
   def check_submit_valid
     begin
-      raise 'Source code too long' if params[:status][:source].length >
+      if params[:status][:source].length > 
           JS_CONFIG["limits"]["max_source_code_len"]
+        raise t("status.prompts.source_code_too_long") 
+      end
       begin
         @problem = Problem.find(params[:status][:pid])
       rescue
-        raise 'No such problem'
+        raise t("problem.prompts.nonexist")
       end
-      if params[:status][:contest_belong].to_i == 0
-        raise 'No such problem' if @problem.hide && !current_user.is_admin?
+      if params[:status][:contest_belong].to_i == 0 &&
+          @problem.hide && !current_user.is_admin?
+        raise t("problem.prompts.nonexist")
       else
         begin
           @contest = Contest.find(params[:status][:contest_belong].to_i)
         rescue
-          raise 'No such contest'
+          raise t("contest.prompts.nonexist")
         end
         unless @contest.has_user(current_user.username)
-          raise 'User not in the contest' 
+          raise t("global.prompts.access_denied");
         end
         if ContestProblem.where(
             cid: params[:status][:contest_belong].to_i,
             pid: params[:status][:pid].to_i).empty?
-          raise 'No such problem in this contest'
+          raise t("problem.prompts.nonexist")
         end
       end
-      raise 'Please select language' if params[:status][:language].to_i == 0
+      raise t("status.prompts.language_unspecified") if 
+        params[:status][:language].to_i == 0
       last_status = Status.where(username: current_user.username)
           .order(time_submit: :desc).first
-      raise 'Too fast' if Time.now - last_status.time_submit < 5
+      raise t("global.prompts.too_frequent") if
+        Time.now - last_status.time_submit < 5
     rescue Exception => e
       render status: :not_acceptable, json: { msg: e.message }
       return

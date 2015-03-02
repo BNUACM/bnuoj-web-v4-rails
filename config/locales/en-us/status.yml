@@ -3,7 +3,9 @@ en-us:
     titles:
       edit: Editing status
       new: New status
+      list: Status List
       show: "Source Code of Run %{runid}"
+      compile_info: "Compile Information of Run %{runid}"
     headers:
       username: Username
       runid: Run ID
@@ -29,3 +31,8 @@ en-us:
       presentation_error: Presentation Error
       restricted_function: Restricted Function
       compile_error: Compile Error
+      waiting: Waiting
+    prompts:
+      submitted: Submitted
+      source_code_too_long: Source code too long
+      language_unspecified: Please select language

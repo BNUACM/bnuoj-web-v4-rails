@@ -1,7 +1,7 @@
 class ContestsController < ApplicationController
 
   def index
-    @page_title = "Contest List"
+    @page_title = t("contest.titles.list");
     respond_to do |format|
       format.html
       format.json {

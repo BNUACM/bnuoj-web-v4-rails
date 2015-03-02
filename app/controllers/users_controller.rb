@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     user = User.find_by(username: params[:username])
     if user.nil? || user.password != password
       render(
-          json: { msg: "Username or password doesn't match." },
+          json: { msg: t("user.prompts.userpass_error") },
           status: :not_acceptable)
       return
     end
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to params[:referer] } if params[:referer]
       format.html { redirect_to controller: "home", action: "index" }
-      format.json { render json: { msg: "Logged in." } }
+      format.json { render json: { msg: t("user.prompts.logged_in") } }
     end
   end
 

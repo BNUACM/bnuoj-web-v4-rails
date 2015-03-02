@@ -4,6 +4,8 @@ en-us:
     titles:
       edit: Editing problem
       new: New problem
+      list: Problem List
+      show: "BNUOJ %{pid} - %{title}"
     btns:
       all: All
       unsolved: Unsolved
@@ -43,3 +45,5 @@ en-us:
       author: Author
       tags: Tags
       toggle: Toggle
+    prompts:
+      nonexist: No such problem

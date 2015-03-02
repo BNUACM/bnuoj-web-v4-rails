@@ -4,3 +4,5 @@ en-us:
       edit: Editing news
       list: Listing news
       new: New news
+    prompts:
+      nonexist: News not found

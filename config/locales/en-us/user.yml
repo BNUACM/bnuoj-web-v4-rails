@@ -9,3 +9,6 @@ en-us:
     password: Password
     signin:
       remeber_me: Remeber me
+    prompts:
+      userpass_error: Username or password doesn't match.
+      logged_in: Logged in.

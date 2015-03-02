@@ -3,6 +3,7 @@ en-us:
     titles:
       edit: Editing contest
       new: New contest
+      list: Contest List
     btns:
       arrange_vcontest: Arrange VContest
       all: All
@@ -25,3 +26,5 @@ en-us:
       manager: Manager
       private: Private
       type: Type
+    prompts:
+      nonexist: No such contest

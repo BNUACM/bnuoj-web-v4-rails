@@ -5,6 +5,7 @@ en-us:
       need_admin: Need admin
       access_denied: Access denied
       is_sure: Are you sure?
+      too_frequent: Too frequent
     links:
       register: Register
       show: Show
