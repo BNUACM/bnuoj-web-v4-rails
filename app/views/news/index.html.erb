@@ -1,4 +1,4 @@
-<h1><%= t "news.list_title" %></h1>
+<h1><%= t "news.titles.list" %></h1>
 
 <table>
   <thead>
@@ -12,9 +12,9 @@
   <tbody>
     <% @news.each do |news| %>
       <tr>
-        <td><%= link_to t("global.show"), news %></td>
-        <td><%= link_to t("global.edit"), edit_news_path(news) %></td>
-        <td><%= link_to t("global.delete"), news, method: :delete, data: { confirm: t("global.is_sure") } %></td>
+        <td><%= link_to t("global.links.show"), news %></td>
+        <td><%= link_to t("global.links.edit"), edit_news_path(news) %></td>
+        <td><%= link_to t("global.links.delete"), news, method: :delete, data: { confirm: t("global.prompts.is_sure") } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to t("global.new"), new_news_path %>
+<%= link_to t("global.links.new"), new_news_path %>

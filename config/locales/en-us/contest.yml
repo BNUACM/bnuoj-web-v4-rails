@@ -1,7 +1,8 @@
 en-us:
   contest:
-    edit_title: Editing contest
-    new_title: New contest
+    titles:
+      edit: Editing contest
+      new: New contest
     btns:
       arrange_vcontest: Arrange VContest
       all: All

@@ -80,7 +80,7 @@ class ApplicationController < ActionController::Base
       format.json {
         render(
             status: :forbidden,
-            json: { msg: t("global.need_login") }
+            json: { msg: t("global.prompts.need_login") }
         )
       }
     end
@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
       format.json {
         render(
             status: :forbidden,
-            json: { msg: t("global.access_denied") }
+            json: { msg: t("global.prompts.access_denied") }
         )
       }
     end

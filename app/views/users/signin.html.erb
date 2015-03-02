@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <h1><%= t "user.signin_title" %></h1>
+    <h1><%= t "user.titles.signin" %></h1>
     <%= before_login_prompt %>
     <form method="POST" action="<%= url_for :controller => 'users', :action => 'login' %>"
         accept-charset="UTF-8" id="login_form" class="ajform form-horizontal" role="form">
@@ -20,7 +20,7 @@
         <div class="col-sm-offset-3 col-sm-9">
           <div class="checkbox">
             <label>
-              <input name="cksave" type="checkbox" value="1"> <%= t "global.remeber_me" %>
+              <input name="cksave" type="checkbox" value="1"> <%= t "user.signin.remeber_me" %>
             </label>
           </div>
         </div>
@@ -28,7 +28,7 @@
       <div class="text-right">
         <span id="msgbox" style="display:none"></span>
         <input class="btn btn-primary" type="submit" value="Login">
-        <a class='btn btn-default' id="register-btn" href="#"><%= t "global.register" %></a>
+        <a class='btn btn-default' id="register-btn" href="#"><%= t "global.links.register" %></a>
       </div>
     </form>
   </div>
