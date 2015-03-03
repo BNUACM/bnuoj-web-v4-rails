@@ -1,8 +1,14 @@
 en-us:
   user:
-    signin_title: Signin
-    edit_title: Editing user
-    list_title: Listing users
-    new_title: New user
+    titles:
+      signin: Signin
+      edit: Editing user
+      list: Listing users
+      new: New user
     username: Username
     password: Password
+    signin:
+      remeber_me: Remeber me
+    prompts:
+      userpass_error: Username or password doesn't match.
+      logged_in: Logged in.

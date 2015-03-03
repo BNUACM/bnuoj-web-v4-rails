@@ -5,7 +5,7 @@ class ProblemsController < ApplicationController
   # # GET /problems
   # # GET /problems.json
   def index
-    @page_title = "Problem List"
+    @page_title = t("problem.titles.list");
     respond_to do |format|
       format.html
       format.json {
@@ -38,7 +38,9 @@ class ProblemsController < ApplicationController
   # GET /problems/1
   # GET /problems/1.json
   def show
-    @page_title = "BNUOJ #{@problem.pid} - #{@problem.title}"
+    @page_title = t("problem.titles.show",
+                    pid: @problem.pid,
+                    title: @problem.title);
   end
 
   private

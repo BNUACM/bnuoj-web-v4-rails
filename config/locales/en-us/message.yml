@@ -1,5 +1,6 @@
 en-us:
   message:
-    edit_title: Editing message
-    new_title: New message
-    list_title: Listing messages
+    titles:
+      edit: Editing message
+      new: New message
+      list: Listing messages

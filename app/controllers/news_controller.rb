@@ -4,7 +4,7 @@ class NewsController < ApplicationController
   def show
     news = News.find(params[:id]);
     if news.nil?
-      render json: { msg: "News not found" }, status: :not_found
+      render json: { msg: t("news.prompts.nonexist") }, status: :not_found
       return
     end
     render json: news.to_json(:methods => [:time_added_display])

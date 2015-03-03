@@ -1,13 +1,17 @@
 en-us:
   global:
-    need_login: Need login
-    need_admin: Need admin
-    remeber_me: Remeber me
-    is_sure: Are you sure?
-    register: Register
-    show: Show
-    edit: Edit
-    delete: Delete
-    new: New
-    back: Back
-    all: All
+    prompts:
+      need_login: Need login
+      need_admin: Need admin
+      access_denied: Access denied
+      is_sure: Are you sure?
+      too_frequent: Too frequent
+    links:
+      register: Register
+      show: Show
+      edit: Edit
+      delete: Delete
+      new: New
+      back: Back
+    options:
+      all: All
