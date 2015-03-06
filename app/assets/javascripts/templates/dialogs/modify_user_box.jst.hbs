@@ -3,14 +3,14 @@
     {{#if ajaxContentLoaded }}
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="modifyUserModal">{{{ t "user.titles.modify_my" }}}</h4>
+        <h4 class="modal-title" id="modifyUserModal">{{ t "user.titles.modify_my" }}</h4>
       </div>
       <form method="POST" action="{{ basePath }}users/{{ ajaxContent.username }}"
           accept-charset="UTF-8" id="modify_form" class="ajform form-horizontal" role="form">
         <div class="modal-body">
           <div class="form-group">
             <label for="username" class="control-label col-sm-4">
-              {{{ t "user.username" }}}
+              {{ t "user.username" }}
             </label>
             <div class="col-sm-8">
               <input class="form-control" name="username" type="text"
@@ -19,7 +19,7 @@
           </div>
           <div class="form-group">
             <label for="ol_password" class="control-label col-sm-4">
-              {{{ t "user.old_password" }}}
+              {{ t "user.old_password" }}
             </label>
             <div class="col-sm-8">
               <input class="form-control" name="ol_password" type="password" value=""
@@ -28,7 +28,7 @@
           </div>
           <div class="form-group">
             <label for="password" class="control-label col-sm-4">
-              {{{ t "user.password" }}}
+              {{ t "user.password" }}
             </label>
             <div class="col-sm-8">
               <input class="form-control" name="password" type="password" value="" id="password">
@@ -36,7 +36,7 @@
           </div>
           <div class="form-group">
             <label for="repassword" class="control-label col-sm-4">
-              {{{ t "user.re_password" }}}
+              {{ t "user.re_password" }}
             </label>
             <div class="col-sm-8">
               <input class="form-control" name="repassword" type="password" value=""
@@ -45,7 +45,7 @@
           </div>
           <div class="form-group">
             <label for="nickname" class="control-label col-sm-4">
-              {{{ t "user.nickname" }}}
+              {{ t "user.nickname" }}
             </label>
             <div class="col-sm-8">
               <input class="form-control" name="nickname" type="text"
@@ -54,7 +54,7 @@
           </div>
           <div class="form-group">
             <label for="school" class="control-label col-sm-4">
-              {{{ t "user.school" }}}
+              {{ t "user.school" }}
             </label>
             <div class="col-sm-8">
               <input class="form-control" name="school" type="text" value="{{ ajaxContent.school }}"
@@ -62,7 +62,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="email" class="control-label col-sm-4">{{{ t "user.email" }}}</label>
+            <label for="email" class="control-label col-sm-4">{{ t "user.email" }}</label>
             <div class="col-sm-8">
               <input class="form-control" name="email" type="email" value="{{ ajaxContent.email }}"
                   id="email"> 
@@ -71,13 +71,13 @@
         </div>
         <div class="modal-footer">
           <span id="msgbox" style="display:none"></span>
-          <input class="btn btn-primary" type="submit" value="{{{ t "global.links.modify" }}}">
+          <input class="btn btn-primary" type="submit" value="{{ t "global.links.modify" }}">
         </div>
         <input type='hidden' name='_method' value='put'>
       </form>
     {{else}}
       <div class="modal-body">
-        {{{ ajaxLoadingHtml }}}
+        {{ ajaxLoadingHtml }}
       </div>
     {{/if}}
   </div>

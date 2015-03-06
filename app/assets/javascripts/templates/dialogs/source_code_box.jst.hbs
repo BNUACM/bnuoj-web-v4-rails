@@ -4,38 +4,38 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 id="modal-title" class="modal-title">
-          {{{ t "status.titles.show" runid=ajaxContent.runid }}}
+          {{ t "status.titles.show" runid=ajaxContent.runid }}
         </h4>
       </div>
       <div class="modal-body">
         <div class="well" style="text-align:center">
-          {{{ t "status.show.result" result=ajaxContent.displayResult }}} &nbsp;&nbsp;&nbsp;
-          {{{ t "status.show.memory" memory=ajaxContent.memory_used }}}&nbsp;&nbsp;&nbsp;
-          {{{ t "status.show.time" time=ajaxContent.time_used }}}<br/>
-          {{{ t "status.show.lang" lang=ajaxContent.language_name.name }}}&nbsp;&nbsp;&nbsp;
-          {{{ t "status.show.user" user=ajaxContent.username }}}&nbsp;&nbsp;&nbsp;
-          {{{ t "status.show.pid" pid=ajaxContent.pid }}}<br/>
-          {{{ t "status.show.is_share" }}}
+          {{ t "status.show.result" result=ajaxContent.displayResult }} &nbsp;&nbsp;&nbsp;
+          {{ t "status.show.memory" memory=ajaxContent.memory_used }}&nbsp;&nbsp;&nbsp;
+          {{ t "status.show.time" time=ajaxContent.time_used }}<br/>
+          {{ t "status.show.lang" lang=ajaxContent.language_name.name }}&nbsp;&nbsp;&nbsp;
+          {{ t "status.show.user" user=ajaxContent.username }}&nbsp;&nbsp;&nbsp;
+          {{ t "status.show.pid" pid=ajaxContent.pid }}<br/>
+          {{ t "status.show.is_share" }}
           <div class="btn-group" id="rshare">
             <button isshared="1" type="button" class="btn btn-default
                 {{#if ajaxContent.isshared}} active{{/if}}">
-              {{{ t "global.options.yes" }}}
+              {{ t "global.options.yes" }}
             </button>
             <button isshared="0" type="button" class="btn btn-default
                 {{#unless ajaxContent.isshared}} active{{/unless}}">
-              {{{ t "global.options.no" }}}
+              {{ t "global.options.no" }}
             </button>
           </div>
           <br />
           <b id='sharenote'{{#unless ajaxContent.isshared}} style="display: none"{{/unless}}>
-            {{{ t "status.show.shared" }}}
+            {{ t "status.show.shared" }}
           </b>
         </div>
         <pre>{{ ajaxContent.source }}</pre>
       </div>
     {{else}}
       <div class="modal-body">
-        {{{ ajaxLoadingHtml }}}
+        {{ ajaxLoadingHtml }}
       </div>
     {{/if}}
   </div>

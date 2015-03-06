@@ -10,11 +10,11 @@
           by <b>{{ ajaxContent.author }}</b>
           <span class="display_time">{{ ajaxContent.time_added_display }}</span>
         </div>
-        <div>{{{ ajaxContent.content }}}</div>
+        <div>{{ ajaxContent.content }}</div>
       </div>
     {{else}}
       <div class="modal-body">
-        {{{ ajaxLoadingHtml }}}
+        {{ ajaxLoadingHtml }}
       </div>
     {{/if }}
   </div>

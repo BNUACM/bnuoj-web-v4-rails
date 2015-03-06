@@ -184,7 +184,8 @@
             "mRender": function ( data, type, full ) {
               // Enhance accpeted number column.
               return "<a href='" + basePath + "statuses?pid=" + full[1] +
-                  "&result=" + I18n.t("status.results.accepted") + "'>" + full[4] + "</a>";
+                  "&result=" + I18n.t("status.results.accepted") + "'>" + 
+                  full[4] + "</a>";
             },
             "aTargets": [ 4 ]
           },
@@ -224,8 +225,12 @@
             "mRender": function ( data, type, full ) {
               // Enhance solve flag column.
               data = $.trim(data);
-              if (data == I18n.t("global.options.yes")) return "<span class='ac'>" + data + "</span>";
-              if (data == I18n.t("global.options.no")) return "<span class='wa'>" + data + "</span>";
+              if (data == "Yes")
+                return "<span class='ac'>" + I18n.t("global.options.yes") + 
+                    "</span>";
+              if (data == "No")
+                return "<span class='wa'>" + I18n.t("global.options.no") + 
+                    "</span>";
               return data;
             },
             "aTargets": [ 0 ]

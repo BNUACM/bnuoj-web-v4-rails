@@ -222,8 +222,9 @@
             "mRender": function ( data, type, full ) {
               // Enhance result column.
               var tdata = "<span class='" + BNUOJ.Utils.getResultClass(data) +
-                  "' runid='" + full[1] + "'>" + data + "</span>";
-              if (data == I18n.t("status.results.compile_error")) {
+                  "' runid='" + full[1] + "'>" + BNUOJ.Utils.transResult(data) +
+                  "</span>";
+              if (data.substr(0, 7) == "Compile") {
                 return "<a href='#' class='ce-info' runid='" + full[1] + "'>" +
                     tdata + "</a>";
               }

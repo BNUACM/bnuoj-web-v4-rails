@@ -166,12 +166,15 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance current status.
-              if (data == I18n.t("contest.statuses.passed")) {
-                return "<span class='passed'>" + data + "</a>";
-              } else if (data == I18n.t("contest.statuses.scheduled")) {
-                return "<span class='scheduled'>" + data + "</a>";
+              if (data == "Passed")) {
+                return "<span class='passed'>" + 
+                    I18n.t("contest.statuses.passed") + "</a>";
+              } else if (data == "Scheduled")) {
+                return "<span class='scheduled'>" + 
+                    I18n.t("contest.statuses.scheduled") + "</a>";
               } else {
-                return "<span class='running'>" + data + "</a>";
+                return "<span class='running'>" + 
+                    I18n.t("contest.statuses.running") + "</a>";
               }
             },
             "aTargets": [ 4 ]
@@ -179,10 +182,12 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance access status.
-              if (data == I18n.t("contest.statuses.public")) {
-                return "<span class='public'>" + data + "</a>";
+              if (data == "Public")) {
+                return "<span class='public'>" + 
+                    I18n.t("contest.statuses.public") + "</a>";
               } else {
-                return "<span class='private'>" + data + "</a>";
+                return "<span class='private'>" + 
+                    I18n.t("contest.statuses.private") + "</a>";
               }
             },
             "aTargets": [ 5 ]

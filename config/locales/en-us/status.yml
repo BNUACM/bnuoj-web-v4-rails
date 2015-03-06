@@ -42,6 +42,14 @@ en-us:
       restricted_function: Restricted Function
       compile_error: Compile Error
       waiting: Waiting
+      judging: Judging
+      rejudging: Rejudging
+      judge_error: Judge Error
+      invalid_language: Judge Error (Invalid Language)
+      no_data: Judge Error (No Data)
+      no_spj: Judge Error (No SPJ)
+      requeued: Judge Error & Requeued
+      same_code: Judge Error (Same Code)
     prompts:
       submitted: Submitted
       source_code_too_long: Source code too long

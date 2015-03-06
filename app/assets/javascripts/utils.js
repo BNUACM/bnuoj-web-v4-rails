@@ -80,6 +80,31 @@
       }
     },
 
+    // I18n for result
+    transResult: function(result){
+      var result_table = {
+        "Accepted": "accepted",
+        "Wrong Answer": "wrong_answer",
+        "Runtime Error": "runtime_error",
+        "Time Limit Exceed": "time_limit_exceed",
+        "Memory Limit Exceed": "memory_limit_exceed",
+        "Output Limit Exceed": "output_limit_exceed",
+        "Presentation Error": "presentation_error",
+        "Restricted Function": "restricted_function",
+        "Compile Error": "compile_error",
+        "Waiting": "waiting",
+        "Judging": "judging",
+        "Rejudging": "rejudging",
+        "Judge Error": "judge_error",
+        "Judge Error (Invalid Language)": "invalid_language",
+        "Judge Error (No Data)": "no_data",
+        "Judge Error (No SPJ)": "no_spj",
+        "Judge Error & Requeued": "requeued",
+        "Judge Error (Same Code)": "same_code"
+      };
+      return I18n.t("status.results." + result_table[result]);
+    },
+
     // Strip html tags in the string.
     stripTags: function(html) {
       return html.replace(/(<([^>]+)>)/ig, "")

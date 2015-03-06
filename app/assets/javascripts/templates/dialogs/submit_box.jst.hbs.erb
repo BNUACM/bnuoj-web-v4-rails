@@ -11,7 +11,7 @@
         <input type="hidden" name="status[contest_belong]" value="{{ cid }}" />
         <div class="form-group">
           <label for="languageSelect" class="col-sm-3 control-label">
-            {{{ t "status.lang" }}}
+            {{ t "status.lang" }}
           </label>
           <div class="col-sm-9">
             <select id="languageSelect" class="form-control" name="status[language]">
@@ -22,29 +22,29 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-3 control-label">{{{ t "status.show.is_share" }}}</label>
+          <label class="col-sm-3 control-label">{{ t "status.show.is_share" }}</label>
           <div class="col-sm-9">
             <div class="radio-inline">
               <label>
                 <input name="status[isshared]" type="radio" value="1" checked />
-                {{{ t "global.options.yes" }}}
+                {{ t "global.options.yes" }}
               </label>
             </div>
             <div class="radio-inline">
               <label>
                 <input name="status[isshared]" type="radio" value="0" />
-                {{{ t "global.options.no" }}}
+                {{ t "global.options.no" }}
               </label>
             </div>
           </div>
         </div>
         <textarea rows="12" class="form-control" name="status[source]"
-            placeholder="{{{ t "global.placeholders.code" }}}"></textarea>
+            placeholder="{{ t "global.placeholders.code" }}"></textarea>
       </div>
       <div class="modal-footer">
         <span id="msgbox" style="display:none"></span>
         <input name='login' class="btn btn-primary" type='submit'
-            value='{{{ t "global.btns.submit" }}}' />
+            value='{{ t "global.btns.submit" }}' />
       </div>
     </form>
   </div>

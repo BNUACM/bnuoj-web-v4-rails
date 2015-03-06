@@ -31,4 +31,6 @@ en-us:
     statuses:
       passed: Passed
       scheduled: Scheduled
+      running: Running
       public: Public
+      private: Private
