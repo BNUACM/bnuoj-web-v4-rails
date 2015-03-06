@@ -97,7 +97,7 @@
     onFailed: function() {
       if (loggedIn) {
         BNUOJ.Dialogs.show("error_box", {
-          errorMessage: "No permission to see this code."
+          errorMessage: I18n.t("global.prompts.access_denied")
         });
       } else {
         BNUOJ.Dialogs.show("login_box");
@@ -116,8 +116,8 @@
   BNUOJ.Dialogs.ErrorDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/error_box",
     // TODO(51isoft): I18n.
-    errorTitle: "Error Occured",
-    errorMessage: "Something is wrong."
+    errorTitle: I18n.t("global.titles.error"),
+    errorMessage: I18n.t("global.prompts.error")
   });
 
   // Code submit dialog.
@@ -140,7 +140,7 @@
     onFailed: function() {
       if (loggedIn) {
         BNUOJ.Dialogs.show("error_box", {
-          errorMessage: "No permission to see this code."
+          errorMessage: I18n.t("global.prompts.access_denied")
         });
       } else {
         BNUOJ.Dialogs.show("login_box");

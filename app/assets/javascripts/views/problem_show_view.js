@@ -24,7 +24,7 @@
       }
       var pid = this.$(this._selectors.PROBLEM_ID).text();
       BNUOJ.Dialogs.show("submit_box", {
-        title: "Submit Problem " + pid,
+        title: I18n.t("problem.titles.submit", {"pid": pid}),
         pid: pid,
         cid: 0
       });

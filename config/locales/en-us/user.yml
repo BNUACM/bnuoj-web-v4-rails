@@ -5,8 +5,15 @@ en-us:
       edit: Editing user
       list: Listing users
       new: New user
+      modify_my: Modify My Information
+      register: Register
     username: Username
     password: Password
+    old_password: Old Password
+    re_password: Repeat Password
+    nickname: Nickname
+    school: School
+    email: Email
     signin:
       remeber_me: Remeber me
     prompts:

@@ -1,5 +1,6 @@
 en-us:
   status:
+    lang: Language
     titles:
       edit: Editing status
       new: New status
@@ -18,9 +19,18 @@ en-us:
       submit_time: Submit Time
       visible: Visible
     show:
+      result: "Result: %{result}"
       memory: "Memory Used: %{memory} KB"
       time: "Time Used: %{time} ms"
+      lang: "Language: %{lang}"
+      user: "Username: %{user}"
+      pid: "Problem ID: %{pid}"
       shared: This code is shared.
+      is_share: Share Code?
+    list:
+      time: "%{time} ms"
+      memory: "%{memory} KB"
+      length: "%{length} B"
     results:
       accepted: Accepted
       wrong_answer: Wrong Answer
@@ -36,3 +46,4 @@ en-us:
       submitted: Submitted
       source_code_too_long: Source code too long
       language_unspecified: Please select language
+      nonexist: No status found.

@@ -6,6 +6,7 @@ en-us:
       new: New problem
       list: Problem List
       show: "BNUOJ %{pid} - %{title}"
+      submit: "Submit Problem %{pid}"
     btns:
       all: All
       unsolved: Unsolved

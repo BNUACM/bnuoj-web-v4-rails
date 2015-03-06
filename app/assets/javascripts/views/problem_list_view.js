@@ -127,7 +127,7 @@
 
     // Override.
     getCurrentTitle: function() {
-      return "Problem List";
+      return I18n.t("problem.titles.list");
     },
 
     // Override.
@@ -164,9 +164,9 @@
         "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"clearfix">' +
             '<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
         "oLanguage": {
-          "sEmptyTable": "No problems found.",
-          "sZeroRecords": "No problems found.",
-          "sInfoEmpty": "No entries to show"
+          "sEmptyTable": I18n.t("problem.prompts.nonexist"),
+          "sZeroRecords": I18n.t("problem.prompts.nonexist"),
+          "sInfoEmpty": I18n.t("global.prompts.no_entry")
         },
         "sAjaxSource": basePath + "problems.json",
         "aaSorting": [ [ 0, 'asc'] ],
@@ -184,7 +184,7 @@
             "mRender": function ( data, type, full ) {
               // Enhance accpeted number column.
               return "<a href='" + basePath + "statuses?pid=" + full[1] +
-                  "&result=Accepted'>" + full[4] + "</a>";
+                  "&result=" + I18n.t("status.results.accepted") + "'>" + full[4] + "</a>";
             },
             "aTargets": [ 4 ]
           },
@@ -223,10 +223,9 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance solve flag column.
-              // TODO(51isoft): I18n.
               data = $.trim(data);
-              if (data == "Yes") return "<span class='ac'>" + data + "</span>";
-              if (data == "No") return "<span class='wa'>" + data + "</span>";
+              if (data == I18n.t("global.options.yes")) return "<span class='ac'>" + data + "</span>";
+              if (data == I18n.t("global.options.no")) return "<span class='wa'>" + data + "</span>";
               return data;
             },
             "aTargets": [ 0 ]

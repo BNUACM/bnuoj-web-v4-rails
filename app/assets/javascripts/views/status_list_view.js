@@ -94,7 +94,7 @@
 
     // Override.
     getCurrentTitle: function() {
-      return "Status List";
+      return I18n.t("status.titles.list");
     },
 
     // Override.
@@ -145,9 +145,9 @@
       this.tableOptions = ({
         "sDom": '<"row"<"col-sm-12"p>r<"clearfix"><"table-responsive"t>>',
         "oLanguage": {
-          "sEmptyTable": "No status found.",
-          "sZeroRecords": "No status found.",
-          "sInfoEmpty": "No status to show."
+          "sEmptyTable": I18n.t("status.prompts.nonexist"),
+          "sZeroRecords": I18n.t("status.prompts.nonexist"),
+          "sInfoEmpty": I18n.t("global.prompts.no_entry")
         },
         "sAjaxSource": basePath + "statuses.json",
         "bSort": false,
@@ -192,8 +192,7 @@
               if (!data || (data == "0" && full[6] == "0")) {
                 return "";
               }
-              // TODO(51isoft): I18n.
-              return data + " ms";
+              return I18n.t("status.list.time", {time: data});
             },
             "aTargets": [ 5 ]
           },
@@ -203,16 +202,14 @@
               if (!data || data == "0") {
                 return "";
               }
-              // TODO(51isoft): I18n.
-              return data + " KB";
+              return I18n.t("status.list.memory", {memory: data});
             },
             "aTargets": [ 6 ]
           },
           {
             "mRender": function ( data, type, full ) {
               // Enhance code length column.
-              // TODO(51isoft): I18n.
-              var display = data + " B";
+              var display = I18n.t("status.list.length", {length: data});
               if (full[9] == false) {
                 return display;
               }
@@ -226,8 +223,7 @@
               // Enhance result column.
               var tdata = "<span class='" + BNUOJ.Utils.getResultClass(data) +
                   "' runid='" + full[1] + "'>" + data + "</span>";
-              // TODO(51isoft): I18n.
-              if (data.substr(0, 7) == "Compile") {
+              if (data == I18n.t("status.results.compile_error")) {
                 return "<a href='#' class='ce-info' runid='" + full[1] + "'>" +
                     tdata + "</a>";
               }

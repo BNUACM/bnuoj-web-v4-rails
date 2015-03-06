@@ -17,7 +17,7 @@
 
     // Standard ajax loading html, can be overrided.
     ajaxLoadingHtml: '<img style="height:20px" src="' + basePath +
-        'assets/ajax-loader.gif" /> Loading....',
+        'assets/ajax-loader.gif" /> ' + I18n.t("global.prompts.loading"),
 
     // jQuery selector inside the view dom.
     $: function() {
@@ -119,7 +119,7 @@
         },
 
         error: function(response, statusText, xhr, form) {
-          responseJSON = _.extend({msg: "Unknown error occured."},
+          responseJSON = _.extend({msg: I18n.t("global.prompts.error")},
               response.responseJSON);
           $(self._selectors.AJAX_FORM_MSG, form).fadeTo(100, 0.1, function() {
             $(this).html(responseJSON.msg).removeClass().

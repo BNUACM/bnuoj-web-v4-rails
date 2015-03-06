@@ -66,7 +66,7 @@
 
     // Override.
     getCurrentTitle: function() {
-      return "Contest List";
+      return I18n.t("contest.titles.list");
     },
 
     // Override.
@@ -129,9 +129,9 @@
         "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"clearfix">' +
             '<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
         "oLanguage": {
-          "sEmptyTable": "No contests found.",
-          "sZeroRecords": "No contests found.",
-          "sInfoEmpty": "No entries to show"
+          "sEmptyTable": I18n.t("contest.prompts.nonexist"),
+          "sZeroRecords": I18n.t("contest.prompts.nonexist"),
+          "sInfoEmpty": I18n.t("global.prompts.no_entry")
         },
         "sAjaxSource": basePath + "contests.json",
         "aaSorting": [ [2, 'desc'] ],
@@ -166,10 +166,9 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance current status.
-              // TODO(51isoft): I18n.
-              if (data == "Passed") {
+              if (data == I18n.t("contest.statuses.passed")) {
                 return "<span class='passed'>" + data + "</a>";
-              } else if (data == "Scheduled") {
+              } else if (data == I18n.t("contest.statuses.scheduled")) {
                 return "<span class='scheduled'>" + data + "</a>";
               } else {
                 return "<span class='running'>" + data + "</a>";
@@ -180,8 +179,7 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance access status.
-              // TODO(51isoft): I18n.
-              if (data == "Public") {
+              if (data == I18n.t("contest.statuses.public")) {
                 return "<span class='public'>" + data + "</a>";
               } else {
                 return "<span class='private'>" + data + "</a>";
