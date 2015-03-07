@@ -66,7 +66,7 @@
 
     // Override.
     getCurrentTitle: function() {
-      return "Contest List";
+      return I18n.t("contest.titles.list");
     },
 
     // Override.
@@ -129,9 +129,9 @@
         "sDom": '<"row"<"col-sm-4"f><"col-sm-8"p>r<"clearfix">' +
             '<"table-responsive"t><"col-sm-9"i><"col-sm-3"l>>',
         "oLanguage": {
-          "sEmptyTable": "No contests found.",
-          "sZeroRecords": "No contests found.",
-          "sInfoEmpty": "No entries to show"
+          "sEmptyTable": I18n.t("contest.prompts.nonexist"),
+          "sZeroRecords": I18n.t("contest.prompts.nonexist"),
+          "sInfoEmpty": I18n.t("global.prompts.no_entry")
         },
         "sAjaxSource": basePath + "contests.json",
         "aaSorting": [ [2, 'desc'] ],
@@ -166,13 +166,15 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance current status.
-              // TODO(51isoft): I18n.
-              if (data == "Passed") {
-                return "<span class='passed'>" + data + "</a>";
-              } else if (data == "Scheduled") {
-                return "<span class='scheduled'>" + data + "</a>";
+              if (data == "Passed")) {
+                return "<span class='passed'>" + 
+                    I18n.t("contest.statuses.passed") + "</a>";
+              } else if (data == "Scheduled")) {
+                return "<span class='scheduled'>" + 
+                    I18n.t("contest.statuses.scheduled") + "</a>";
               } else {
-                return "<span class='running'>" + data + "</a>";
+                return "<span class='running'>" + 
+                    I18n.t("contest.statuses.running") + "</a>";
               }
             },
             "aTargets": [ 4 ]
@@ -180,11 +182,12 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance access status.
-              // TODO(51isoft): I18n.
-              if (data == "Public") {
-                return "<span class='public'>" + data + "</a>";
+              if (data == "Public")) {
+                return "<span class='public'>" + 
+                    I18n.t("contest.statuses.public") + "</a>";
               } else {
-                return "<span class='private'>" + data + "</a>";
+                return "<span class='private'>" + 
+                    I18n.t("contest.statuses.private") + "</a>";
               }
             },
             "aTargets": [ 5 ]

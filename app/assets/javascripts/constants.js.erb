@@ -8,3 +8,7 @@ window.BNUOJ = {
 
 // Inject global configs.
 window.globalConfig = (<%= JS_CONFIG.to_json %>);
+
+// Set locale
+I18n.defaultLocale = "<%= I18n.default_locale %>";
+I18n.locale = "<%= I18n.locale %>";

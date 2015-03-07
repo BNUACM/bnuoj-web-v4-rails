@@ -28,3 +28,9 @@ en-us:
       type: Type
     prompts:
       nonexist: No such contest
+    statuses:
+      passed: Passed
+      scheduled: Scheduled
+      running: Running
+      public: Public
+      private: Private

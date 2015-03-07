@@ -1,17 +1,31 @@
 en-us:
   global:
+    titles:
+      error: Error Occurred
     prompts:
       need_login: Need login
       need_admin: Need admin
       access_denied: Access denied
       is_sure: Are you sure?
       too_frequent: Too frequent
+      error: Something is wrong.
+      loading: Loading...
+      no_entry: No entries to show
     links:
       register: Register
+      signin: Sign in
       show: Show
       edit: Edit
       delete: Delete
       new: New
       back: Back
+      modify: Modify
     options:
       all: All
+      "yes": "Yes"
+      "no": "No"
+    btns:
+      submit: Submit
+    placeholders:
+      search: Search
+      code: Put your solution here...

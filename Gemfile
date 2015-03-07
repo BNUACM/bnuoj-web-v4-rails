@@ -74,7 +74,7 @@ gem "will_paginate"
 gem "bower-rails", "~> 0.7.1"
 
 #I18n-js
-gem 'i18n-js'
+gem 'i18n-js', ">= 3.0.0.rc8"
 
 # i18n test
 gem 'i18n-tasks', '~> 0.7.12'

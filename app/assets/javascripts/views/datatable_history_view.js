@@ -179,9 +179,8 @@
         "fnPreDrawCallback": function() {
           if (self.withSearchBar) {
             // Hack for search input, add class to fit bootstrap layout.
-            // TODO(51isoft): I18n.
             self.$(self._selectors.SEARCH_INPUT).addClass("form-control").
-                attr("placeholder", "Search");
+                attr("placeholder", I18n.t("global.placeholders.search"));
           }
         },
         "fnDrawCallback": function() {
