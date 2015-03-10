@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   end
 
   def server_time
-    render text: Time.now.to_s
+    render plain: Time.now.to_s
   end
 end

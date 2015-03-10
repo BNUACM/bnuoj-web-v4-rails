@@ -166,10 +166,10 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance current status.
-              if (data == "Passed")) {
+              if (data == "Passed") {
                 return "<span class='passed'>" + 
                     I18n.t("contest.statuses.passed") + "</a>";
-              } else if (data == "Scheduled")) {
+              } else if (data == "Scheduled") {
                 return "<span class='scheduled'>" + 
                     I18n.t("contest.statuses.scheduled") + "</a>";
               } else {
@@ -182,7 +182,7 @@
           {
             "mRender": function ( data, type, full ) {
               // Enhance access status.
-              if (data == "Public")) {
+              if (data == "Public") {
                 return "<span class='public'>" + 
                     I18n.t("contest.statuses.public") + "</a>";
               } else {

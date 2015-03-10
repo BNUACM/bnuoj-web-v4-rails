@@ -7,11 +7,8 @@ BnuojV4::Application.routes.draw do
   
   scope ENV['RAILS_RELATIVE_URL_ROOT'] || '/' do
     root :to => 'home#index'
-    post 'users/login' => 'users#login'
-    get 'users/logout' => 'users#logout'
     get 'statuses/compile_info/:id' => 'statuses#compile_info'
     get 'signin' => 'users#signin'
-
     get 'server_time' => 'home#server_time'
 
     resources :statuses
@@ -20,6 +17,7 @@ BnuojV4::Application.routes.draw do
     resources :contests
     resources :problems
     resources :users
+    resource :session, only: [:create, :destroy]
 
   end
 

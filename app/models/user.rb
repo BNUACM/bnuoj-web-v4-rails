@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :tags, primary_key: "username", foreign_key: "username",
       inverse_of: :user
   has_many :privileges, inverse_of: :user
+  has_many :sessions, primary_key: "username", foreign_key: "username",
+      inverse_of: :user
 
   # Override to specify the columns to show.
   def to_json(options = {})
