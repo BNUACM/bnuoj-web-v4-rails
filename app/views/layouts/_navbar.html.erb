@@ -119,9 +119,7 @@
             <li><a href="admin_index.php" id="admin"><%= t "navbar.personal.admin" %></a></li>
   <% end %>
             <li>
-              <a href="<%= url_for :controller => 'users', :action => 'logout' %>" id="logout-btn">
-                <%= t "navbar.logout" %>
-              </a>
+              <%= link_to t("navbar.logout"), session_path, method: 'delete', id: 'logout-btn' %>
             </li>
           </ul>
         </li>

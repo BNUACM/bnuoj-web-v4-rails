@@ -47,19 +47,26 @@ class ApplicationController < ActionController::Base
 
   # Get current user, if not signed in, return nil.
   def current_user
-    return @current_user unless @current_user.nil?
-    if !get_cookie("username").nil? && !get_cookie("password").nil?
-      @current_user ||= User.find_by(username: get_cookie("username"))
-      if (@current_user.nil? ||
-          @current_user.password != decrypt_password(get_cookie("password")))
-        @current_user = nil
-        set_cookie("username", "")
-        set_cookie("password", "")
+    return nil if get_cookie("token").nil?
+    begin
+      @session = Session.find(get_cookie("token"))
+      if @session.ipaddr == request.remote_ip
+        if @session.expire_at < Time.now
+          @session.destroy and set_cookie "token", nil
+        else
+          @current_user ||= @session.user
+          if @session.cksave
+            @session.expire_at = Time.now + 2.weeks and @session.save
+            set_cookie "token", @session.token, 2.weeks
+          end
+        end
+      else
+        set_cookie "token", nil
       end
-    else
-      @current_user = nil
+    rescue ActiveRecord::RecordNotFound
+      logger.info "Invalid session token #{get_cookie "token"}"
     end
-    @current_user
+    return @current_user
   end
   helper_method :current_user
 

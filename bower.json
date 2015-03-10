@@ -9,6 +9,7 @@
     "dependencies": {
       "underscore": "~1",
       "jquery": "1",
+      "jquery-ujs": "1",
       "bootstrap": "~3",
       "bootswatch-dist": "cerulean",
       "datatables": "~1",

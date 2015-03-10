@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218060735) do
+ActiveRecord::Schema.define(version: 20150310105428) do
 
   create_table "category", force: :cascade do |t|
     t.string  "name",   limit: 2048, null: false
@@ -34,9 +34,12 @@ ActiveRecord::Schema.define(version: 20150218060735) do
   add_index "challenge", ["cid"], name: "cid", using: :btree
   add_index "challenge", ["username"], name: "username", length: {"username"=>333}, using: :btree
 
-  create_table "config", primary_key: "lable", force: :cascade do |t|
-    t.string "substitle", limit: 4096, null: false
+  create_table "config", force: :cascade do |t|
+    t.string "name",  limit: 255,  null: false
+    t.string "value", limit: 4096, null: false
   end
+
+  add_index "config", ["name"], name: "name", unique: true, using: :btree
 
   create_table "contest", primary_key: "cid", force: :cascade do |t|
     t.string   "title",                limit: 255
@@ -137,11 +140,12 @@ ActiveRecord::Schema.define(version: 20150218060735) do
   end
 
   create_table "ojinfo", force: :cascade do |t|
-    t.string   "name",      limit: 255,  null: false
-    t.string   "int64io",   limit: 255,  null: false
-    t.string   "javaclass", limit: 255,  null: false
-    t.string   "status",    limit: 1024, null: false
-    t.datetime "lastcheck",              null: false
+    t.string   "name",        limit: 255,  null: false
+    t.string   "int64io",     limit: 255,  null: false
+    t.string   "javaclass",   limit: 255,  null: false
+    t.string   "status",      limit: 1024, null: false
+    t.string   "supportlang", limit: 1024, null: false
+    t.datetime "lastcheck",                null: false
   end
 
   add_index "ojinfo", ["name"], name: "name", unique: true, using: :btree
@@ -234,6 +238,16 @@ ActiveRecord::Schema.define(version: 20150218060735) do
   add_index "replay_status", ["result"], name: "result", using: :btree
   add_index "replay_status", ["time_submit"], name: "time_submit", using: :btree
   add_index "replay_status", ["username"], name: "username", length: {"username"=>333}, using: :btree
+
+  create_table "sessions", id: false, force: :cascade do |t|
+    t.string   "token",     limit: 255,                 null: false
+    t.string   "username",  limit: 255,                 null: false
+    t.string   "ipaddr",    limit: 255,                 null: false
+    t.datetime "expire_at",                             null: false
+    t.boolean  "cksave",    limit: 1,   default: false
+  end
+
+  add_index "sessions", ["token"], name: "index_sessions_on_token", unique: true, using: :btree
 
   create_table "solver", primary_key: "solverid", force: :cascade do |t|
     t.integer "pid",      limit: 4,    null: false

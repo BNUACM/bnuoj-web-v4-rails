@@ -4,23 +4,23 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       <h4 id="modal-title" class="modal-title">{{ t "user.titles.signin" }}</h4>
     </div>
-    <form method="POST" action="{{ basePath }}users/login" accept-charset="UTF-8" id="login_form"
+    <form method="POST" action="{{ basePath }}session" accept-charset="UTF-8" id="login_form"
         class="ajform form-horizontal" role="form">
       <div class="modal-body">
         <div class="form-group">
-          <label for="username" class="control-label col-sm-3">
+          <label for="session[username]" class="control-label col-sm-3">
             {{ t "user.username" }}
           </label>
           <div class="col-sm-9">
-            <input class="form-control" name="username" type="text" value="" id="username">
+            <input class="form-control" name="session[username]" type="text" value="" id="username">
           </div>
         </div>
         <div class="form-group">
-          <label for="password" class="control-label col-sm-3">
+          <label for="session[password]" class="control-label col-sm-3">
             {{ t "user.password" }}
           </label>
           <div class="col-sm-9">
-            <input class="form-control" name="password" type="password" value="" id="password">
+            <input class="form-control" name="session[password]" type="password" value="" id="password">
           </div>
         </div>
         <div class="form-group">

@@ -13,6 +13,7 @@
 // vendor js below
 //= require i18n/translations
 //= require jquery/dist/jquery
+//= require jquery-ujs
 //= require bootstrap/dist/js/bootstrap
 //= require underscore/underscore
 //= require history/scripts/bundled-uncompressed/html4+html5/jquery.history
