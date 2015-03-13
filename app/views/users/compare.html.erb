@@ -1,0 +1,32 @@
+<h4>
+  <%= t 'user.compare.only_solved_by',
+      user: url_for(@user1.username) %>
+</h4>
+<p><%= pid_link_list @user1.accepted_pids - @user2.accepted_pids %></p>
+<h4>
+  <%= t 'user.compare.only_solved_by',
+      user: url_for(@user2.username) %>
+</h4>
+<p><%= pid_link_list @user2.accepted_pids - @user1.accepted_pids %></p>
+<h4>
+  <%= t 'user.compare.both_solved',
+      user1: url_for(@user1.username),
+      user2: url_for(@user2.username) %>
+</h4>
+<p><%= pid_link_list @user1.accepted_pids & @user1.accepted_pids %></p>
+<h4>
+  <%= t 'user.compare.failed_by',
+      user: url_for(@user1.username) %>
+</h4>
+<p><%= pid_link_list @user1.failed_pids - @user2.failed_pids %></p>
+<h4>
+  <%= t 'user.compare.failed_by',
+      user: url_for(@user2.username) %>
+</h4>
+<p><%= pid_link_list @user2.failed_pids - @user1.failed_pids %></p>
+<h4>
+  <%= t 'user.compare.both_failed',
+      user1: url_for(@user1.username),
+      user2: url_for(@user2.username) %>
+</h4>
+<p><%= pid_link_list @user1.failed_pids & @user1.failed_pids %></p>

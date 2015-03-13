@@ -107,7 +107,8 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><a href=""><%= t "navbar.personal.show_my_info" %></a></li>
+            <li><%= link_to t("navbar.personal.show_my_info"), controller: :users, action: :show,
+                id: current_user.username %></a></li>
             <li><a href="#" id="modify-my-info"><%= t "navbar.personal.modify_my_info" %></a></li>
             <li><a href="mail.php" id="mail">
               Mail

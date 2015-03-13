@@ -1,4 +1,79 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to t("global.links.edit"), edit_user_path(@user) %> |
-<%= link_to t("global.links.back"), users_path %>
+<div class="row">
+  <div class="col-md-8">
+    <h2><%= t 'user.show.info_of', user: @user.username %></h2>
+    <table class="table" id="userinfo">
+      <tr>
+        <th class="col-md-3"><%= t 'user.username' %></th>
+        <td class="col-md-9"><%= @user.username %></td>
+      </tr>
+      <tr><th><%= t 'user.id' %></th><td><%= @user.id %></td></tr>
+      <tr><th><%= t 'user.rank' %></th><td><%= @user.rank %></td></tr>
+      <tr><th><%= t 'user.nickname' %></th><td><%= @user.nickname %></td></tr>
+      <tr><th><%= t 'user.school' %></th><td><%= @user.school %></td></tr>
+      <tr><th><%= t 'user.email' %></th><td><%= @user.email %></td></tr>
+      <tr>
+        <th><%= t 'user.register_time' %></th>
+        <td><%= l @user.register_time, format: :long %></td>
+      </tr>
+      <tr>
+        <th><%= t 'user.last_login' %></th>
+        <td><%= l @user.last_login_time, format: :long %></td>
+      </tr>
+<% if logged_in? && current_user.is_admin? %>
+      <tr><th><%= t 'user.last_login_ip' %></th><td><%= @user.ipaddr %></td></tr>
+<% end %>
+      <tr>
+        <th><%= t 'status.results.accepted' %></th>
+        <td>
+          <%= @user.total_ac %>
+          <button id="showac" class="btn btn-primary btn-xs" data-toggle="collapse"
+              data-target="#userac" aria-controls="userac" aria-expanded="false">
+            <%= t "global.btns.show_hide" %>
+          </button>
+          <div style="width:100%" id="userac" class="collapse">
+            <%= pid_link_list @user.accepted_pids %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th><%= t 'user.show.compare' %></th>
+        <td class="form-inline">
+          <form class="form-inline" id="compare">
+            <div class="input-group input-group-sm col-md-6">
+              <input class="form-control" type="text" id="compare_with" 
+                  value="<%= current_user.username %>" />
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary"><%= t "user.show.do_compare" %>
+                </button>
+              </span>
+            </div>
+            <button id="hide_compare" type="button" class="btn btn-primary btn-sm">
+              <%= t "global.links.hide" %>
+            </button>
+          </form>
+        </div>
+        <div class="collapse" id="compare_info"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4 well">
+    <div id="user_stat_pie"></div>
+    <table id="user_stat" class="table">
+      <tr>
+        <th class="col-md-9"><%= t 'user.total_submit' %></th>
+        <td class="col-md-3"><%= status_link @user.total_submit, user: @user.username %></td>
+      </tr>
+<% @user.stat.each do |rslt, cnt| %>
+      <tr>
+        <th><%= rslt %></th>
+  <% if rslt == "Other" %>
+        <td><%= cnt %></td>
+  <% else %>
+        <td><%= status_link cnt, user: @user.username, result: rslt %></td>
+  <% end %>
+      </tr>
+<% end %>
+    </table>
+  </div>
+</div>

@@ -9,6 +9,11 @@ class Status < ActiveRecord::Base
   has_one :language_name, primary_key: "language", foreign_key: "id"
 
   scope :accepted, ->{ where(result: "Accepted") }
+  scope :normal, -> { where( result: [ "Accepted", "Compile Error",
+      "Wrong Answer", "Presentation Error", "Runtime Error",
+      "Time Limit Exceed", "Memory Limit Exceed", "Output Limit Exceed",
+      "Restricted Function" ]) }
+
   scope :public_contests, ->{
     joins('LEFT JOIN contest ON status.contest_belong = contest.cid').
         where('contest_belong = 0 OR end_time < NOW()')

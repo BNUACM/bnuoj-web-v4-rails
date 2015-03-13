@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  rescue_from UserError::UserNotFound do
+    @error_msg = t "user.prompts.nonexist"
+    respond_to do |format|
+      format.html { render "home/error", layout: !request.xhr? }
+      format.json { render json: { msg: @error_msg } }
+    end
+  end
 
   def login
     password = hash_password(params[:password])
@@ -43,7 +50,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    user = User.find_by(username: params[:id])
+    @user = User.find_by(username: params[:id])
+    raise UserError::UserNotFound if @user.nil?
     options = {}
     options[:except] = []
     if !logged_in? || !current_user.is_admin?
@@ -51,7 +59,19 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render json: user.to_json(options) }
+      format.json { render json: @user.to_json(options) }
+    end
+  end
+
+  # GET /users/username1/username2
+  def compare
+    @user1 = User.find_by(username: params[:user_id])
+    @user2 = User.find_by(username: params[:other_id])
+    raise UserError::UserNotFound if @user1.nil? || @user2.nil?
+    respond_to do |format|
+      format.html { render layout: !request.xhr? }
+      format.json { render json: { @user1.username => @user1.accepted_pids,
+                                   @user2.username => @user2.accepted_pids } }
     end
   end
 
