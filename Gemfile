@@ -81,3 +81,6 @@ gem 'i18n-tasks', '~> 0.7.12'
 
 # assets pipeline
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+
+# client side routes
+gem 'js-routes'

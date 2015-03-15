@@ -8,14 +8,30 @@ en-us:
       modify_my: Modify My Information
       register: Register
     username: Username
+    id: User ID
     password: Password
     old_password: Old Password
     re_password: Repeat Password
     nickname: Nickname
     school: School
     email: Email
+    register_time: Rigister Time
+    last_login: Last Login
+    last_login_ip: Last Login IP
+    total_submit: Total Submissions
     signin:
       remeber_me: Remeber me
     prompts:
       userpass_error: Username or password doesn't match.
       logged_in: Logged in.
+      nonexist: No such user.
+    show:
+      info_of: "Information of %{user}"
+      compare: Compare
+      do_compare: Go!
+      stat: User Statistics
+    compare:
+      only_solved_by: "Problems only %{user} Accepted:"
+      both_solved: "Problems both %{user1} and %{user2} Accepted:"
+      failed_by: "Problems %{user} tried but failed:"
+      both_failed: "Problems both %{user1} and %{user2} tried but failed:"

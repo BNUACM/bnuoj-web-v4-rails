@@ -129,6 +129,11 @@
               removeClass("disabled");
         }
       });
+    },
+
+    // Render a Handlebars template to targetElement
+    renderTemplate: function(targetElement, template, context) {
+      targetElement.html(JST[template](context));
     }
 
   })

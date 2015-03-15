@@ -15,6 +15,7 @@ en-us:
       register: Register
       signin: Sign in
       show: Show
+      hide: Hide
       edit: Edit
       delete: Delete
       new: New
@@ -26,6 +27,7 @@ en-us:
       "no": "No"
     btns:
       submit: Submit
+      show_hide: Show/Hide
     placeholders:
       search: Search
       code: Put your solution here...

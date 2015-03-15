@@ -20,7 +20,7 @@ BnuojV4::Application.routes.draw do
     resources :contests
     resources :problems
     resources :users
-
+    get 'users/compare/:user1/:user2' => 'users#compare', as: 'user_compare'
   end
 
   # Example of regular route:
