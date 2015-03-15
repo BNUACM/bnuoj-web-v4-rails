@@ -42,7 +42,7 @@
           <form class="form-inline" id="compare">
             <div class="input-group input-group-sm col-md-6">
               <input class="form-control" type="text" id="compare_with" 
-                  value="<%= current_user.username %>" />
+                  value="<%= logged_in? ? current_user.username : "" %>" />
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-primary"><%= t "user.show.do_compare" %>
                 </button>
