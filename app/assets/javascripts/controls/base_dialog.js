@@ -93,7 +93,7 @@
 
     // Renders the dialog view.
     renderInternal: function() {
-      $(this._container).html(JST[this._template](this));
+      this.renderTemplate($(this._container), this._template, this);
       if (this._withAjax && !this.ajaxContentLoaded) {
         var self = this;
         $.get(this.ajaxUrl, {r: Math.random()}).done(function() {
