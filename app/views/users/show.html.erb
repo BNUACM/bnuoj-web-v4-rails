@@ -31,7 +31,8 @@
             <%= t "global.btns.show_hide" %>
           </button>
           <div style="width:100%" id="userac" class="collapse">
-            <%= pid_link_list @user.accepted_pids %>
+            <%= raw @user.accepted_pids.map{ |pid| link_to pid, problem_path, id: pid }
+                .join('&nbsp; ') %>
           </div>
         </td>
       </tr>
