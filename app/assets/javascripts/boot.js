@@ -8,7 +8,7 @@ $(document).ready(function() {
     "^contests(\/?)$"                   : BNUOJ.Views.ContestListView,
     "^signin(\/?)$"                     : BNUOJ.Views.SignInView,
     "^problems\/[0-9]+$"                : BNUOJ.Views.ProblemShowView,
-    "^users\/[a-zA-Z0-9_-]+$"             : BNUOJ.Views.UserShowView
+    "^users\/[a-zA-Z0-9_-]+$"           : BNUOJ.Views.UserShowView
   };
 
   // Find the first matching route.

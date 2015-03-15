@@ -15,14 +15,17 @@
     }, BNUOJ.Views.PageView.prototype._selectors),
 
     compareUser: function() {
-      var _template = "templates/partials/user_compare";
+      var self = this;
+      var _template = "templates/users/user_compare";
       var user1 = BNUOJ.Utils.getCookie('username');
       var user2 = this.$(this._selectors.COMPARE_WITH).val();
       var compareInfoElement = this.$(this._selectors.COMPARE_INFO);
       var url = Routes.user_compare_path(user1, user2);
       $.getJSON(url).done(function(data) {
-        compareInfoElement.html(JST[_template](_.extend({user1: user1,
-            user2: user2}, data)));
+        self.renderTemplate(compareInfoElement, _template, _.extend({
+          user1: user1,
+          user2: user2
+        }, data));
       });
       compareInfoElement.collapse('show');
       this.$(this._selectors.COMPARE_HIDE).show();
@@ -36,15 +39,15 @@
     afterRenderPage: function() {
       this.$(this._selectors.COMPARE_HIDE).hide();
 
-      var stat_table = this.$(this._selectors.STAT_TABLE).clone();
-      stat_table.find("a").contents().unwrap();
+      var statTable = this.$(this._selectors.STAT_TABLE).clone();
+      statTable.find("a").contents().unwrap();
       this.$(this._selectors.STAT_CHART).highcharts({
         chart: {
           type: 'pie',
           backgroundColor: null
         },
         data: {
-          table: stat_table[0],
+          table: statTable[0],
           startRow: 1
         },
         title: {

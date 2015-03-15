@@ -129,6 +129,10 @@
               removeClass("disabled");
         }
       });
+    },
+
+    renderTemplate: function(targetElement, template, context) {
+      targetElement.html(JST[template](context));
     }
 
   })
