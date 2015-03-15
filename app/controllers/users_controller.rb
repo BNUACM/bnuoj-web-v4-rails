@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @error_msg = t "user.prompts.nonexist"
     respond_to do |format|
       format.html { render "home/error", layout: !request.xhr? }
-      format.json { render json: { msg: @error_msg } }
+      format.json { render json: { msg: @error_msg }, status: :bad_request }
     end
   end
 
@@ -63,25 +63,33 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/username1/username2
+  # GET /users/compare/username1/username2
   def compare
-    @user1 = User.find_by(username: params[:user_id])
-    @user2 = User.find_by(username: params[:other_id])
+    @user1 = User.find_by(username: params[:user1])
+    @user2 = User.find_by(username: params[:user2])
     raise UserError::UserNotFound if @user1.nil? || @user2.nil?
     respond_to do |format|
       format.html { render layout: !request.xhr? }
-      format.json { render json: { @user1.username => @user1.accepted_pids,
-                                   @user2.username => @user2.accepted_pids } }
+      format.json { render json: { 
+          @user1.username => {
+            'ac' => @user1.accepted_pids,
+            'wa' => @user1.failed_pids
+          },
+          @user2.username => {
+            'ac' => @user2.accepted_pids,
+            'wa' => @user2.failed_pids
+          }
+      }}
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list
-    # through.
-    def user_params
-    end
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
+  def user_params
+  end
 end

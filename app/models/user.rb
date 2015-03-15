@@ -71,21 +71,21 @@ class User < ActiveRecord::Base
         distinct.order(:pid).map(&:pid)
   end
 
-  # Return an array of tried problems' id
-  def tried_pids
+  # Return an array of submitted problems' id
+  def submitted_pids
     Status.where( username: username ).select(:pid).
         distinct.order(:pid).map(&:pid)
   end
 
   # Return an array of tried but failed problems' id
   def failed_pids
-    tried_pids - accepted_pids
+    submitted_pids - accepted_pids
   end
 
   # User statistics
   def stat
-    cnts = runs.normal.group("result").count
-    cnts["Other"] = total_submit - cnts.map{|k,v| v}.reduce(0, :+)
+    counts = runs.normal.group("result").count
+    counts["Other"] = total_submit - cnts.map{|k,v| v}.reduce(:+)
     return cnts
   end
 end

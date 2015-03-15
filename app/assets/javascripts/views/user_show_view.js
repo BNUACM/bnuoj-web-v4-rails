@@ -16,28 +16,28 @@
 
     compareUser: function() {
       var _template = "templates/partials/user_compare";
-      var compare_with = $(this._selectors.COMPARE_WITH).val();
-      var $compare_info = $(this._selectors.COMPARE_INFO);
+      var compare_with = this.$(this._selectors.COMPARE_WITH).val();
+      var compareInfoElement = this.$(this._selectors.COMPARE_INFO);
       var url = Routes.user_compare_path(
-                    BNUOJ.Utils.getCookie('username'), compare_with);
+          BNUOJ.Utils.getCookie('username'), compare_with);
       $.get(url).done(function(html) {
-        $compare_info.html(html);
+        compareInfoElement.html(html);
       });
-      $compare_info.collapse('show');
-      $(this._selectors.COMPARE_HIDE).show();
+      compareInfoElement.collapse('show');
+      this.$(this._selectors.COMPARE_HIDE).show();
     },
 
     hideCompare: function() {
-      $(this._selectors.COMPARE_INFO).collapse('hide');
-      $(this._selectors.COMPARE_HIDE).hide();
+      this.$(this._selectors.COMPARE_INFO).collapse('hide');
+      this.$(this._selectors.COMPARE_HIDE).hide();
     },
 
     afterRenderPage: function() {
-      $(this._selectors.COMPARE_HIDE).hide();
+      this.$(this._selectors.COMPARE_HIDE).hide();
 
-      stat_table = $(this._selectors.STAT_TABLE).clone();
+      var stat_table = this.$(this._selectors.STAT_TABLE).clone();
       stat_table.find("a").contents().unwrap();
-      $(this._selectors.STAT_CHART).highcharts({
+      this.$(this._selectors.STAT_CHART).highcharts({
         chart: {
           type: 'pie',
           backgroundColor: null

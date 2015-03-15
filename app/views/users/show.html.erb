@@ -62,7 +62,9 @@
     <table id="user_stat" class="table">
       <tr>
         <th class="col-md-9"><%= t 'user.total_submit' %></th>
-        <td class="col-md-3"><%= status_link @user.total_submit, user: @user.username %></td>
+        <td class="col-md-3">
+          <%= link_to @user.total_submit, statuses_path( user: @user.username ) %>
+        </td>
       </tr>
 <% @user.stat.each do |rslt, cnt| %>
       <tr>
@@ -70,7 +72,7 @@
   <% if rslt == "Other" %>
         <td><%= cnt %></td>
   <% else %>
-        <td><%= status_link cnt, user: @user.username, result: rslt %></td>
+        <td><%= link_to cnt, statuses_path( user: @user.username, result: rslt ) %></td>
   <% end %>
       </tr>
 <% end %>

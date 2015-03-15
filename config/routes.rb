@@ -19,9 +19,8 @@ BnuojV4::Application.routes.draw do
     resources :messages
     resources :contests
     resources :problems
-    resources :users do
-      get ':other_id' => 'users#compare', as: 'compare'
-    end
+    resources :users
+    get 'users/compare/:user1/:user2' => 'users#compare', as: 'user_compare'
   end
 
   # Example of regular route:
