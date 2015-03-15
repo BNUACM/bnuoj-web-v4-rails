@@ -131,7 +131,7 @@
       });
     },
 
-    // Render a Handlebars template to targetelement
+    // Render a Handlebars template to targetElement
     renderTemplate: function(targetElement, template, context) {
       targetElement.html(JST[template](context));
     }
