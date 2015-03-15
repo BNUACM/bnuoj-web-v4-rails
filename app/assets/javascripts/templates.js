@@ -11,13 +11,13 @@ Handlebars.registerHelper('t', function(key, options) {
 });
 
 Handlebars.registerHelper('path_to', function(route) {
-  options = _.last(arguments);
-  args = _.toArray(arguments).slice(1, -1).concat(options.hash)
+  var options = _.last(arguments);
+  var args = _.toArray(arguments).slice(1, -1).concat(options.hash)
   return Routes[route].apply(this, args);
 });
 
 Handlebars.registerHelper('link_to', function(text, route) {
-  options = _.last(arguments);
-  args = _.toArray(arguments).slice(2, -1).concat(options.hash)
+  var options = _.last(arguments);
+  var args = _.toArray(arguments).slice(2, -1).concat(options.hash)
   return '<a href="' + Routes[route].apply(this, args) + '">' + text + '</a>';
 });
