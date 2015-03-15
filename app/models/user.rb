@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
   # User statistics
   def stat
     counts = runs.normal.group("result").count
-    counts["Other"] = total_submit - cnts.map{|k,v| v}.reduce(:+)
-    return cnts
+    counts["Other"] = total_submit - counts.map{|k,v| v}.reduce(:+)
+    return counts
   end
 end

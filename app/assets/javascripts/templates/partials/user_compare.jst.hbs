@@ -1,0 +1,62 @@
+<h4>
+  {{{ t 'user.compare.only_solved_by'
+          user=( link_to user1 "user_path" user1 id="test" )
+  }}}
+</h4>
+<p>
+  {{#each only_user1_solved}}
+    {{{ link_to this 'problem_path' this }}}
+  {{/each}}
+</p>
+<h4>
+  {{{ t 'user.compare.only_solved_by'
+          user=( link_to user2 "user_path" user2 )
+  }}}
+</h4>
+<p>
+  {{#each only_user2_solved}}
+    {{{ link_to this "problem_path" this }}}
+  {{/each}}
+</p>
+<h4>
+  {{{ t 'user.compare.both_solved'
+          user1=( link_to user1 "user_path" user1 )
+          user2=( link_to user2 "user_path" user2 )
+  }}}
+</h4>
+<p>
+  {{#each both_solved}}
+    {{{ link_to this 'problem_path' this }}}
+  {{/each}}
+</p>
+<h4>
+  {{{ t 'user.compare.failed_by'
+          user=( link_to user1 "user_path" user1 )
+  }}}
+</h4>
+<p>
+  {{#each user1_failed}}
+    {{{ link_to this 'problem_path' this }}}
+  {{/each}}
+</p>
+<h4>
+  {{{ t 'user.compare.failed_by'
+          user=( link_to user2 "user_path" user2 )
+  }}}
+</h4>
+<p>
+  {{#each user2_failed}}
+    {{{ link_to this 'problem_path' this }}}
+  {{/each}}
+</p>
+<h4>
+  {{{ t 'user.compare.both_failed'
+          user1=( link_to user1 "user_path" user1 )
+          user2=( link_to user2 "user_path" user2 )
+  }}}
+</h4>
+<p>
+  {{#each both_failed}}
+    {{{ link_to this 'problem_path' this }}}
+  {{/each}}
+</p>

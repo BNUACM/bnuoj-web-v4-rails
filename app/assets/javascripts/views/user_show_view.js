@@ -16,12 +16,13 @@
 
     compareUser: function() {
       var _template = "templates/partials/user_compare";
-      var compare_with = this.$(this._selectors.COMPARE_WITH).val();
+      var user1 = BNUOJ.Utils.getCookie('username');
+      var user2 = this.$(this._selectors.COMPARE_WITH).val();
       var compareInfoElement = this.$(this._selectors.COMPARE_INFO);
-      var url = Routes.user_compare_path(
-          BNUOJ.Utils.getCookie('username'), compare_with);
-      $.get(url).done(function(html) {
-        compareInfoElement.html(html);
+      var url = Routes.user_compare_path(user1, user2);
+      $.getJSON(url).done(function(data) {
+        compareInfoElement.html(JST[_template](_.extend({user1: user1,
+            user2: user2}, data)));
       });
       compareInfoElement.collapse('show');
       this.$(this._selectors.COMPARE_HIDE).show();

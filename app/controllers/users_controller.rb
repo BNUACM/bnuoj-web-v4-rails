@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   rescue_from UserError::UserNotFound do
     @error_msg = t "user.prompts.nonexist"
     respond_to do |format|
-      format.html { render "home/error", layout: !request.xhr? }
+      format.html { render "home/error" }
       format.json { render json: { msg: @error_msg }, status: :bad_request }
     end
   end
@@ -69,16 +69,14 @@ class UsersController < ApplicationController
     @user2 = User.find_by(username: params[:user2])
     raise UserError::UserNotFound if @user1.nil? || @user2.nil?
     respond_to do |format|
-      format.html { render layout: !request.xhr? }
-      format.json { render json: { 
-          @user1.username => {
-            'ac' => @user1.accepted_pids,
-            'wa' => @user1.failed_pids
-          },
-          @user2.username => {
-            'ac' => @user2.accepted_pids,
-            'wa' => @user2.failed_pids
-          }
+      format.html
+      format.json { render json: {
+          'only_user1_solved' => @user1.accepted_pids - @user2.accepted_pids,
+          'only_user2_solved' => @user2.accepted_pids - @user1.accepted_pids,
+          'both_solved' => @user1.accepted_pids & @user2.accepted_pids,
+          'user1_failed' => @user1.failed_pids,
+          'user2_failed' => @user2.failed_pids,
+          'both_failed' => @user1.failed_pids & @user2.failed_pids
       }}
     end
   end
