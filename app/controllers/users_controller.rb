@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  rescue_from UserError::UserNotFound do
+    @error_msg = t "user.prompts.nonexist"
+    respond_to do |format|
+      format.html { render "home/error" }
+      format.json { render json: { msg: @error_msg }, status: :bad_request }
+    end
+  end
 
   def login
     password = hash_password(params[:password])
@@ -43,7 +50,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    user = User.find_by(username: params[:id])
+    @user = User.find_by(username: params[:id])
+    raise UserError::UserNotFound if @user.nil?
     options = {}
     options[:except] = []
     if !logged_in? || !current_user.is_admin?
@@ -51,17 +59,35 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render json: user.to_json(options) }
+      format.json { render json: @user.to_json(options) }
+    end
+  end
+
+  # GET /users/compare/username1/username2
+  def compare
+    @user1 = User.find_by(username: params[:user1])
+    @user2 = User.find_by(username: params[:user2])
+    raise UserError::UserNotFound if @user1.nil? || @user2.nil?
+    respond_to do |format|
+      format.html
+      format.json { render json: {
+          'only_user1_solved' => @user1.accepted_pids - @user2.accepted_pids,
+          'only_user2_solved' => @user2.accepted_pids - @user1.accepted_pids,
+          'both_solved' => @user1.accepted_pids & @user2.accepted_pids,
+          'user1_failed' => @user1.failed_pids,
+          'user2_failed' => @user2.failed_pids,
+          'both_failed' => @user1.failed_pids & @user2.failed_pids
+      }}
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list
-    # through.
-    def user_params
-    end
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
+  def user_params
+  end
 end

@@ -55,4 +55,37 @@ class User < ActiveRecord::Base
             restrict_to_value: restriction.values[0]).count > 0
   end
 
+  # Calculate the rank of user
+  def rank
+    User.where('local_ac > :local_ac OR
+        ( local_ac = :local_ac AND ( total_ac > :total_ac OR
+        ( total_ac = :total_ac AND ( total_submit < :total_submit OR
+        ( total_submit = :total_submit AND username < :username )))))',
+        local_ac: local_ac, total_ac: total_ac, total_submit: total_submit,
+            username: username).count + 1
+  end
+
+  # Return an array of accepted problems' id
+  def accepted_pids
+    Status.where( username: username, result: 'Accepted' ).select(:pid).
+        distinct.order(:pid).map(&:pid)
+  end
+
+  # Return an array of submitted problems' id
+  def submitted_pids
+    Status.where( username: username ).select(:pid).
+        distinct.order(:pid).map(&:pid)
+  end
+
+  # Return an array of tried but failed problems' id
+  def failed_pids
+    submitted_pids - accepted_pids
+  end
+
+  # User statistics
+  def stat
+    counts = runs.normal.group("result").count
+    counts["Other"] = total_submit - counts.map{|k,v| v}.reduce(:+)
+    return counts
+  end
 end

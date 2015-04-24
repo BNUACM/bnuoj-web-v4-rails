@@ -24,6 +24,10 @@
 //= require jquery.cookie/jquery.cookie
 //= require handlebars.runtime
 //= require google-code-prettify/src/prettify
+//= require js-routes
+//= require highcharts-release/highcharts
+//= require highcharts-release/highcharts-more
+//= require highcharts-release/modules/data
 //= require base-class
 //
 // app js below
