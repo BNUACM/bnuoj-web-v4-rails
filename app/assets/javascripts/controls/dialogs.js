@@ -5,7 +5,7 @@
     _template: "templates/dialogs/login_box",
 
     events: {
-      "correct #login_form": "onLoggedIn",
+      "AJAX_FORM_CORRECT #login_form": "onLoggedIn",
       "click .toregister": "onClickRegister"
     },
 
@@ -33,7 +33,7 @@
     _template: "templates/dialogs/register_box",
 
     events: {
-      "correct #reg_form": "onRegistered"
+      "AJAX_FORM_CORRECT #reg_form": "onRegistered"
     },
 
     onShown: function() {
@@ -115,7 +115,6 @@
   // Basic error dialog.
   BNUOJ.Dialogs.ErrorDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/error_box",
-    // TODO(51isoft): I18n.
     errorTitle: I18n.t("global.titles.error"),
     errorMessage: I18n.t("global.prompts.error")
   });
@@ -124,7 +123,7 @@
   BNUOJ.Dialogs.SubmitDialog = BNUOJ.Dialogs.BaseDialog.extend({
     _template: "templates/dialogs/submit_box",
     events: {
-      "correct #problem_submit_form": "onSubmitted"
+      "AJAX_FORM_CORRECT #problem_submit_form": "onSubmitted"
     },
 
     onSubmitted: function() {

@@ -44,6 +44,9 @@
       var self = this;
       _.each(this.events, function(func, evt) {
         var result = evt.match(/([^ ]*) (.*)/);
+        if (_.has(BNUOJ.Events, result[1])) {
+          result[1] = BNUOJ.Events[result[1]];
+        }
         self.$el.on(result[1], result[2], function(evt) {
           self[func].apply(self, arguments);
           evt.preventDefault();
@@ -111,8 +114,8 @@
           $(self._selectors.AJAX_FORM_MSG, form).fadeTo(100, 0.1, function() {
             $(this).html(responseJSON.msg).removeClass().
                 addClass('alert alert-success').fadeTo(100, 1, function(){
-              form.trigger("correct");
-            });
+                  form.trigger(BNUOJ.Events.AJAX_FORM_CORRECT, responseJSON);
+                });
           });
           $(self._selectors.AJAX_FORM_BTNS, form).removeAttr("disabled").
               removeClass("disabled");
