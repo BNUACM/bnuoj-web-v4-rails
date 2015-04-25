@@ -2,7 +2,7 @@
   // Standalone sign-in page.
   BNUOJ.Views.SignInView = BNUOJ.Views.PageView.extend({
     events: _.extend({
-      "correct #login_form": "onLoggedIn"
+      "AJAX_FORM_CORRECT #login_form": "onLoggedIn"
     }, BNUOJ.Views.PageView.prototype.events),
 
     _selectors: _.extend({
