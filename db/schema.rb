@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 20150218060735) do
 
   add_index "problem", ["hide"], name: "hide", using: :btree
   add_index "problem", ["isvirtual"], name: "isvirtual", using: :btree
-  add_index "problem", ["source"], name: "source", type: :fulltext
+  add_index "problem", ["source"], name: "source", length: {"source" => 333}, using: :btree
   add_index "problem", ["title"], name: "title", using: :btree
   add_index "problem", ["vid"], name: "vid", using: :btree
   add_index "problem", ["vname"], name: "vname", using: :btree
