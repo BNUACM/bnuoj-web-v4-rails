@@ -36,10 +36,7 @@ set :keep_releases, 3
 
 set :linked_dirs, %w{bin log tmp}
 
-set :rvm1_ruby_version, "2.3.0"       # use the same ruby as used locally for deployment
-
-before 'deploy', 'rvm1:install:rvm'  # install/update RVM
-before 'deploy', 'rvm1:install:ruby' # install Ruby and create gemset (both if missing)
+set :rvm_ruby_version, '2.3'
 
 namespace :deploy do
 
